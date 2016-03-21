@@ -1,0 +1,8 @@
+{
+  "sourceBase":"src/client/app",
+  "testBase":"tests",
+  "smartPath":"containers",
+  "dumbPath":"components",
+  "fileCasing":"pascal"
+}
+
