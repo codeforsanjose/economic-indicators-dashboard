@@ -1,12 +1,21 @@
 Econonomic Indicators Dashboard 
 ===============================
 
-based on react-reduct-starter-kit by Dave Zuko
+
 
 [![Build Status](https://travis-ci.org/codeforsanjose/economic-indicators-dashboard.svg?branch=master)](https://travis-ci.org/codeforsanjose/economic-indicators-dashboard?branch=master)
 [![dependencies](https://david-dm.org/codeforsanjose/economic-indicators-dashboard.svg)](https://david-dm.org/codeforsanjose/economic-indicators-dashboard)
 [![devDependency Status](https://david-dm.org/codeforsanjose/economic-indicators-dashboard/dev-status.svg)](https://david-dm.org/codeforsanjose/economic-indicators-dashboard#info=devDependencies)
 [![js-standard-style](https://img.shields.io/badge/code%20style-standard-brightgreen.svg)](http://standardjs.com/)
+
+
+See the [wiki](https://github.com/codeforsanjose/economic-indicators-dashboard/wiki) for overview
+[Initial mockup prototype](http://codeforsanjose.github.io/economic-indicators-dashboard/#/?_k=9sa7tb)
+
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+based on react-reduct-starter-kit by Dave Zuko
 
 > ### Want Semicolons?
 > After installing npm dependencies, open `.eslintrc`, change the `semi` rule from `never` to `always`, and then run `npm run lint:fix` -- Easy as that! Alternatively, use the same npm script after installing and extending your preferred ESLint configuration; it's easy to customize the project's code style to suit your team's needs. See, we can coexist peacefully.
