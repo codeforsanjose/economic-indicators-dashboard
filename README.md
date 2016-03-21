@@ -10,6 +10,7 @@ Econonomic Indicators Dashboard
 
 
 See the [wiki](https://github.com/codeforsanjose/economic-indicators-dashboard/wiki) for overview
+
 [Initial mockup prototype](http://codeforsanjose.github.io/economic-indicators-dashboard/#/?_k=9sa7tb)
 
 
