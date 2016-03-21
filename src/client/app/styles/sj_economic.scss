@@ -1,0 +1,122 @@
+
+.outline {
+  border: solid, white, 2px;
+  text-align: center;
+  margin-right: 10px;
+}
+
+.econ-header {
+  background: $primary-green;
+  color: white;
+  font-family: "Noto Sans", "sans-serif";
+
+  .head-title {
+    font-size: 150%;
+    margin-top: 5%;
+  }
+
+  .container {
+    margin-top: 10px;
+  }
+}
+
+.econ-footer {
+  background: $primary-grey;
+  color: white;
+  font-family: "Noto Sans", "sans-serif";
+}
+
+.footer-right {
+  float: right;
+}
+
+.source {
+  margin-bottom: 50px;
+  clear:both;
+}
+
+.talent {
+
+  float:left;
+
+  .headlineBox-talent {
+    background-color:$secondary-blue;
+  }
+
+  .contentBox-talent {
+    background-color: $primary-grey-50;
+  }
+
+  .footerBox-talent {
+    background-color: $primary-grey-25;
+  }
+}
+
+.jobs {
+
+  float:left;
+
+  .headlineBox-jobs {
+    background-color:$secondary-red;
+  }
+
+  .contentBox-jobs {
+    background-color: $primary-grey-50;
+  }
+
+  .footerBox-jobs {
+    background-color: $primary-grey-25;
+  }
+}
+
+.real_estate {
+
+  float: left;
+
+  .headlineBox-real_estate {
+    background-color: $primary-green;
+  }
+
+  .contentBox-real_estate {
+    background-color: $primary-grey-50;
+  }
+
+  .footerBox-real_estate {
+    background-color: $primary-grey-25;
+  }
+}
+
+.dashboard-label {
+  width: 125px;
+  min-height: 100px;
+  font-size: 150%;
+  text-align: right;
+}
+
+.dashboardBox {
+  width: 150px;
+  margin-left: 5px;
+  text-align: center;
+
+  .dashboard-headline {
+    color: white;
+    min-height: 60px;
+    padding-right: 10px;
+    padding-left: 10px;
+  }
+
+  .dashboard-content {
+    min-height: 60px;
+    font-size: 150%;
+    padding-right: 10px;
+    padding-left: 10px;
+  }
+
+  .dashboard-footer{
+    min-height: 50px;
+    padding-right: 10px;
+    padding-left: 10px;
+  }
+}
+
+
