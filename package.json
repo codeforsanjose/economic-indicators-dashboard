@@ -1,6 +1,6 @@
 {
-  "name": "react-redux-starter-kit",
-  "version": "2.0.0-alpha.2",
+  "name": "economic-indicators-dashboard",
+  "version": "0.0.1",
   "description": "Get started with React, Redux, and React-Router!",
   "main": "index.js",
   "engines": {
@@ -59,9 +59,9 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/davezuko/react-redux-starter-kit.git"
+    "url": "git+https://github.com/codeforsanjose/economic-indicators-dashboard.git"
   },
-  "author": "David Zukowski <david@zuko.me> (http://zuko.me)",
+  "author": "Code For San Jose",
   "license": "MIT",
   "dependencies": {
     "debug": "^2.2.0",
