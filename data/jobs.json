@@ -1,4 +1,4 @@
-export const jobs_data = {
+{
   'title': 'JOBS',
   'type': 'jobs',
   'source': 'California Employment Development Department',
