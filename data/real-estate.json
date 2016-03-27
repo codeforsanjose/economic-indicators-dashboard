@@ -1,4 +1,4 @@
-export const real_estate_data = {
+{
   'title': 'REAL ESTATE',
   'type': 'real_estate',
   'source': 'CBRE MarketView Q4 2015',
