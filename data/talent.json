@@ -1,4 +1,4 @@
-export const talent_data = {
+{
   'title': 'TALENT',
   'type': 'talent',
   'source': 'US Census Bureau, 2014 American Community Survey 1 Year Estimates',
