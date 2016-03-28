@@ -9,28 +9,32 @@
       "value": "73,200",
       "trend": "up",
       "trend_label": "29%",
-      "value_type": "number"
+      "value_type": "number",
+      "id": "tech-workers"
     },
     {
       "title": "# of college-educated millennials (25-34)",
       "value": "68,700",
       "trend": "up",
       "trend_label": "24%",
-      "value_type": "number"
+      "value_type": "number",
+      "id": "college-millenials"
     },
     {
       "title": "% Population with Bachelor\"s Degree or Higher",
       "value": "40%",
       "trend": "up",
       "trend_label": "3% pts",
-      "value_type": "percent"
+      "value_type": "percent",
+      "id": "higher-edu"
     },
     {
       "title": "% Population Born Outside the US",
       "value": "40%",
       "trend": "up",
       "trend_label": "1% pts",
-      "value_type": "percent"
+      "value_type": "percent",
+      "id": "intl-pop"
     },
     {
       "title": "Labor Force",
@@ -38,6 +42,7 @@
       "trend": "up",
       "trend_label": "53,700",
       "value_type": "number"
+      "id": "labor-force"
     }
   ]
 }
