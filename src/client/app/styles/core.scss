@@ -1,52 +1,31 @@
 :global {
+
   @import 'base';
-  @import 'sj_economic';
   @import 'vendor/normalize';
+  @import 'main.scss';
+  @import 'sj_economic.scss';
+  @import 'chart_panels.scss';
+
+  // Some best-practice CSS that's useful for most apps
+  // Just remove them if they're not what you want
+  html {
+    box-sizing: border-box;
+  }
+
+  html,
+  body {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+  }
 
   *,
   *:before,
   *:after {
     box-sizing: inherit;
   }
-
-  html {
-    position: relative;
-    margin: 0;
-    padding: 0;
-    min-height: 100%;
-    box-sizing: border-box;
-  }
-  body {
-    /* Margin bottom by footer height */
-    margin-bottom: 60px;
-    font-family: "Open Sans", "sans-serif";
-  }
-  .footer {
-    position: absolute;
-    bottom: 0;
-    width: 100%;
-    /* Set the fixed height of the footer here */
-    height: 30px;
-  }
-
-
-  /* Custom page CSS
-  -------------------------------------------------- */
-  /* Not required for template or sticky footer method. */
-
-  body > .container-fluid {
-    padding: 60px 15px 0;
-  }
-  .container-fluid .text-muted {
-    margin: 20px 0;
-  }
-
-  .footer > .container-fluid {
-    padding-right: 15px;
-    padding-left: 15px;
-  }
-
-  code {
-    font-size: 80%;
-  }
 }
+
+
+
+

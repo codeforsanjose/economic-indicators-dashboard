@@ -5,7 +5,7 @@ import React, { PropTypes } from 'react'
 // import { connect } from 'react-redux'
 // import { increment, doubleAsync } from '../../redux/modules/counter'
 // import DuckImage from './Duck.jpg'
-// import classes from './HomeView.scss'
+// import classes from './DashboardView.scss'
 
 // We can use Flow (http://flowtype.org/) to type our component's props
 // and state. For convenience we've included both regular propTypes and
@@ -42,7 +42,7 @@ export var Box = React.createClass({
 
     return (
       <div>
-        <div className={boxType + ' dashboardBox'}>
+        <div className={boxType + ' dashboardBox col-lg-2 col-md-2 col-sm-2'}>
           <div className={'headlineBox-' + boxType + ' dashboard-headline'}>
             {headline}
           </div>

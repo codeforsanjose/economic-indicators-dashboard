@@ -1,6 +1,5 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
-// import createBrowserHistory from 'history/lib/createBrowserHistory'
 import createHashHistory from 'history/lib/createHashHistory'
 import { useRouterHistory } from 'react-router'
 import { syncHistoryWithStore } from 'react-router-redux'
@@ -9,19 +8,18 @@ import Root from 'containers/Root'
 import configureStore from 'redux/configureStore'
 
 // Configure history for react-router
-const browserHistory = useRouterHistory(createHashHistory)({
+// Use hashhistory so that it works with github pages
+const hashHistory = useRouterHistory(createHashHistory)({
   basename: __BASENAME__
 })
-
-// const browserHistory = createHashHistory()
 
 // Create redux store and sync with react-router-redux. We have installed the
 // react-router-redux reducer under the key "router" in src/routes/index.js,
 // so we need to provide a custom `selectLocationState` to inform
 // react-router-redux of its location.
 const initialState = window.__INITIAL_STATE__
-const store = configureStore(initialState, browserHistory)
-const history = syncHistoryWithStore(browserHistory, store, {
+const store = configureStore(initialState, hashHistory)
+const history = syncHistoryWithStore(hashHistory, store, {
   selectLocationState: (state) => state.router
 })
 
