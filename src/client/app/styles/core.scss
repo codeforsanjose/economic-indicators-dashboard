@@ -3,8 +3,14 @@
   @import 'base';
   @import 'vendor/normalize';
   @import 'main.scss';
+  @import 'bootstrap_overrides.scss';
+  @import 'page_layout.scss';
+  @import 'metrics_panel_labels.scss';
   @import 'sj_economic.scss';
   @import 'chart_panels.scss';
+  @import 'jobs.scss';
+  @import 'talent.scss';
+  @import 'real_estate.scss';
 
   // Some best-practice CSS that's useful for most apps
   // Just remove them if they're not what you want

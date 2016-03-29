@@ -1,12 +1,22 @@
 
-#panel, #flip {
-  padding: 5px;
-  text-align: center;
-  background-color: #e5eecc;
-  border: solid 1px #c3c3c3;
-}
-
-#panel {
-  padding: 50px;
+.jobs-chart-panel {
+  margin-bottom: 10px;
+  background-color: white;
+  border: solid 2px $secondary-yellow;
+  border-radius: 10px;
   display: none;
 }
+
+#unemp-panel {
+  text-align: center;
+}
+
+#jobs-panel {
+  text-align: center;
+}
+
+.jobs-plot {
+  padding-left: 35px;
+}
+
+

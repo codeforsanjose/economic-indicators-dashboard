@@ -1,7 +1,14 @@
 /* @flow */
+/*global $:true*/
+
+/*eslint max-len: [2, 200, 4]*/ // extend the maximum allowed characters
+
 import React from 'react'
 import {Box} from '../../components/Box'
-import {loadJSON} from '../../redux/utils/fetchData'
+// import {loadJSON} from '../../redux/utils/fetchData'
+import {generateUUID} from '../../redux/utils/generateUUID'
+import {showChart} from '../../charts/chartUtilities'
+import {talent_data_url, jobs_data_url, real_estate_data_url} from '../../config/dataURLs'
 
 // We can use Flow (http://flowtype.org/) to type our component's props
 // and state. For convenience we've included both regular propTypes and
@@ -11,56 +18,169 @@ import {loadJSON} from '../../redux/utils/fetchData'
 // code, or `npm i -g flow-bin` to have access to the binary globally.
 // Sorry Windows users :(.
 
-// Get the data - ToDo - Initialize store with this data
-/*eslint max-len: [2, 150, 4]*/ // maximum length of 150 characters
-var talent_data_url = 'https://raw.githubusercontent.com/codeforsanjose/economic-indicators-dashboard/gh-pages/data/talent.json'
-var jobs_data_url = 'https://raw.githubusercontent.com/codeforsanjose/economic-indicators-dashboard/gh-pages/data/jobs.json'
-var real_estate_data_url = 'https://raw.githubusercontent.com/codeforsanjose/economic-indicators-dashboard/gh-pages/data/real-' +
-    'estate.json'
+var panelStates = {}
+var currentShownPanelID
 
-var talentData = loadJSON(talent_data_url)
-var jobsData = loadJSON(jobs_data_url)
-var realEstateData = loadJSON(real_estate_data_url)
+panelStates['unemp-panel'] = {
+  name: 'unemp-panel',
+  state: 'hidden',
+  group: 'jobs'
+}
+panelStates['jobs-panel'] = {
+  name: 'jobs-panel',
+  state: 'hidden',
+  group: 'jobs'
+}
 
 export default class DashboardView extends React.Component {
 
+  handleBoxClick (event) {
+    console.log('handleUnemploymentRateClick (' + event.currentTarget.id + ')')
+
+    var panelID = null
+    var chartID = null
+    // Get the current id from the element
+    switch (event.currentTarget.id) {
+      case 'unemp-rate':
+        panelID = 'unemp-panel'
+        chartID = 'unemp-chart'
+        break
+      case 'total-jobs' :
+        panelID = 'jobs-panel'
+        chartID = 'jobs-chart'
+    }
+
+    // Check if one of the available panels was selected
+    if (panelID) {
+      // Get the item
+      var selectedPanelItem = panelStates[panelID]
+
+      // Check if a current panel is showing and that it is different from the selected panel
+      if (currentShownPanelID !== panelID && currentShownPanelID != null) {
+        // Get the currently selected panel item
+        var panelItem = panelStates[currentShownPanelID]
+
+        // Hide any currently showing panels in the same group
+        if (selectedPanelItem.group === panelItem.group) {
+          var showingID = '#' + currentShownPanelID
+          $(showingID).slideUp()
+          panelStates[currentShownPanelID].state = 'hidden'
+          currentShownPanelID = null
+        }
+      }
+
+      // handle the selected panel id
+      var id = '#' + panelID
+      if (selectedPanelItem.state === 'hidden') {
+        showChart(chartID)
+        $(id).slideDown()
+        selectedPanelItem.state = 'shown'
+        currentShownPanelID = panelID
+      } else {
+        $(id).slideUp()
+        selectedPanelItem.state = 'hidden'
+        currentShownPanelID = null
+      }
+    }
+  }
+
+  // Retrieve the data for the dashboard
+  componentDidMount () {
+    this.serverRequest = $.get(talent_data_url, function (result) {
+      this.setState({
+        talentData: JSON.parse(result)
+      })
+      console.log('got talentData')
+    }.bind(this))
+
+    this.serverRequest = $.get(jobs_data_url, function (result) {
+      this.setState({
+        jobsData: JSON.parse(result)
+      })
+      console.log('got jobsData')
+    }.bind(this))
+
+    this.serverRequest = $.get(real_estate_data_url, function (result) {
+      this.setState({
+        realEstateData: JSON.parse(result)
+      })
+      console.log('got realEstateData')
+    }.bind(this))
+  }
+
+  // don't update if the data hasn't finished being retrieved
+  shouldComponentUpdate () {
+    var returnStatus = true
+    if (!this.state) {
+      returnStatus = false
+    }
+    console.log('shouldcomponentUpdate ' + returnStatus)
+    return returnStatus
+  }
+
   render () {
-    var talentBoxes = talentData.data.map((item) => {
+    // If the data isn't defined - just show loading
+    if (this.state === null ||
+        this.state.talentData === undefined ||
+        this.state.jobsData === undefined ||
+        this.state.realEstateData === undefined) {
+      return (<h1>Loading data</h1>)
+    }
+
+    // Create the collection of talent boxes
+    var talentBoxes = this.state.talentData.data.map((item) => {
+      var uuid = generateUUID()
       return (
         <Box boxType={'talent'}
           headline={item.title}
           content={item.value}
           footer={item.trend_label}
+          trend={item.trend}
+          key={uuid}
+          idName={item.id}
+          clickHandler={this.handleBoxClick}
         />
       )
     })
 
-    var jobsBoxes = jobsData.data.map((item) => {
+    // Create the collection of jobs boxes
+    var jobsBoxes = this.state.jobsData.data.map((item) => {
+      var uuid = generateUUID()
       return (
         <Box boxType={'jobs'}
           headline={item.title}
           content={item.value}
           footer={item.trend_label}
+          trend={item.trend}
+          key={uuid}
+          idName={item.id}
+          clickHandler={this.handleBoxClick}
         />
       )
     })
 
-    var realEstateBoxes = realEstateData.data.map((item) => {
+    // Create the collection of real estate boxes
+    var realEstateBoxes = this.state.realEstateData.data.map((item) => {
+      var uuid = generateUUID()
       return (
         <Box boxType={'real_estate'}
           headline={item.title}
           content={item.value}
           footer={item.trend_label}
+          trend={item.trend}
+          key={uuid}
+          idName={item.id}
+          clickHandler={this.handleBoxClick}
         />
       )
     })
 
     return (
       <div>
-        <div className={'row-fluid'}>
-          <div className={'talent dashboard-label col-lg-2 col-md-2 col-xs-2'}>
+        <div className={'row-fluid row-eq-height'}>
+          <div className={'talent dashboard-label col-lg-1 col-md-1 col-xs-1 '}>
             <div className={'image-holder'}>
-              <div className={'talent-overlay'}></div>
+              <div className={'talent-overlay label-overlay'}></div>
               <div className={'title'}>
                 <h4>TALENT </h4>
               </div>
@@ -70,13 +190,13 @@ export default class DashboardView extends React.Component {
             {talentBoxes}
           </div>
         </div>
-        <div className={'source col-lg-offset-3 col-md-offset-3'}>
-          {talentData.source}
+        <div className={'source col-lg-offset-1 col-md-offset-1'}>
+          {this.state.talentData.source}
         </div>
-        <div className={'row-fluid'}>
-          <div className={'jobs dashboard-label col-lg-2 col-md-2 col-xs-2'}>
+        <div className={'row-fluid row-eq-height'}>
+          <div className={'jobs dashboard-label col-lg-1 col-md-1 col-xs-1 '}>
             <div className={'image-holder'}>
-              <div className={'jobs-overlay'}></div>
+              <div className={'jobs-overlay label-overlay'}></div>
               <div className={'title'}>
                 <h4>JOBS </h4>
               </div>
@@ -85,16 +205,32 @@ export default class DashboardView extends React.Component {
           <div>
             {jobsBoxes}
           </div>
-          <div id='unemployment-panel'>Hello world- Unemployment!</div>
-          <div id='jobs-panel'>Hello world - Jobs!</div>
-        </div>
-        <div className={'source col-lg-offset-3 col-md-offset-3'}>
-          {jobsData.source}
         </div>
         <div className={'row-fluid'}>
-          <div className={'real_estate dashboard-label col-lg-2 col-md-2 col-xs-2'}>
+          <div className={'source col-lg-offset-1 col-md-offset-1'}>
+            {this.state.jobsData.source}
+          </div>
+        </div>
+        <div className={'row'}>
+          <div id='unemp-panel' className={'col-lg-9 col-md-9 col-xs-9 col-lg-offset-1 col-md-offset-1 jobs-chart-panel '}>
+            <h5>Unemployment Rate</h5>
+            <div id='unemp-chart' className='jobs-plot'>
+              <svg></svg>
+            </div>
+          </div>
+        </div>
+        <div className={'row'}>
+          <div id='jobs-panel' className={'col-lg-9 col-md-9 col-xs-9 col-lg-offset-1 col-md-offset-1 jobs-chart-panel'}>
+            <h5>Number of Jobs</h5>
+            <div id='jobs-chart' className='jobs-plot'>
+              <svg></svg>
+            </div>
+          </div>
+        </div>
+        <div className={'row-fluid row-eq-height'}>
+          <div className={'real_estate dashboard-label col-lg-1 col-md-1 col-xs-1 '}>
             <div className={'image-holder'}>
-              <div className={'real-estate-overlay'}></div>
+              <div className={'real-estate-overlay label-overlay'}></div>
               <div className={'title'}>
                 <h4>REAL ESTATE </h4>
               </div>
@@ -104,8 +240,8 @@ export default class DashboardView extends React.Component {
             {realEstateBoxes}
           </div>
         </div>
-        <div className={'source col-lg-offset-3 col-md-offset-3'}>
-          {realEstateData.source}
+        <div className={'source col-lg-offset-1 col-md-offset-1'}>
+          {this.state.realEstateData.source}
         </div>
       </div>
     )

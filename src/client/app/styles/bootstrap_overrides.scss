@@ -1,0 +1,6 @@
+
+// change padding between columns
+[class^='col-'], [class*=' col-'] {
+  padding-right: 1px;
+  padding-left: 0;
+}

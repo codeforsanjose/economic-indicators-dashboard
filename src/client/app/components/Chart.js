@@ -21,7 +21,7 @@ type Props = {
   clickHandler: PropTypes.func
 };
 
-export var Box = React.createClass({
+export var Chart = React.createClass({
   propTypes: {
     boxType: React.PropTypes.string.isRequired,
     headline: React.PropTypes.string,

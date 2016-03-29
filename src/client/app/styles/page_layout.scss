@@ -1,0 +1,34 @@
+.outline {
+  border: solid, white, 2px;
+  text-align: center;
+  margin-right: 10px;
+}
+
+.econ-header {
+  background: $primary-green;
+  color: white;
+  font-family: "Noto Sans", "sans-serif";
+
+  .head-title {
+    font-size: 150%;
+    margin-top: 5%;
+  }
+
+  .container {
+    margin-top: 10px;
+  }
+}
+
+.econ-footer {
+  background: $primary-grey;
+  color: white;
+  font-family: "Noto Sans", "sans-serif";
+}
+
+.footer-right {
+  float: right;
+}
+
+#root {
+  margin-top: 300 pxS;
+}
