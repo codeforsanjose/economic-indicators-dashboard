@@ -10,7 +10,8 @@
       "date": "Dec 2015",
       "trend": "none",
       "trend_label": "",
-      "value_type": "percent"
+      "value_type": "percent",
+      "id": "unemp-rate"
     },
     {
       "title": "Total Jobs",
@@ -19,7 +20,8 @@
       "date": "Q1 2015",
       "trend": "up",
       "trend_label": "41,400",
-      "value_type": "number"
+      "value_type": "number",
+      "id": "total-jobs"
     },
     {
       "title": "Patents Awarded",
@@ -28,7 +30,8 @@
       "date": "",
       "trend": "",
       "trend_label": "",
-      "value_type": ""
+      "value_type": "",
+      "id": "patents"
     },
     {
       "title": "Venture Capital Dollars",
@@ -37,7 +40,8 @@
       "date": "Q1 2015",
       "trend": "",
       "trend_label": "",
-      "value_type": ""
+      "value_type": "",
+      "id": "vc-money"
     },
     {
       "title": "TBD",
@@ -46,7 +50,8 @@
       "date": "",
       "trend": "",
       "trend_label": "",
-      "value_type": ""
+      "value_type": "",
+      "id":"jobs-tbd"
     }
   ]
 }
