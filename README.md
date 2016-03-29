@@ -19,13 +19,19 @@ See the [wiki](https://github.com/codeforsanjose/economic-indicators-dashboard/w
 
   * [Goals](#goals)
   * [Target Audience](#target-audience)
+  * [Related Sites](#related-sites)
+  * [Data Sources](#data-sources)
+  * [Example Sites](#data-sources)
+  * [Minimum Viable Product](#data-sources)
+  * [Stack](#stack)
   * [Getting Started](#getting-started)
+  * [Structure](#structure)
 
 #### Goals
 1. Elected officials, policymakers, businesses, nonprofits and community members have access to accurate, recent data on San Jose economy.
 2. Reduce OED staff time spent servicing one-off data requests. 
 
-#### How will progress toward goals be measured?
+##### How will progress toward goals be measured?
 1. Site traffic analytics
 2. Reduction in number of individual data requests to OED staff
 3. Use of dashboard in discussions about San Jose economy (Committee and Council meetings, public meetings, etc)
@@ -39,12 +45,12 @@ See the [wiki](https://github.com/codeforsanjose/economic-indicators-dashboard/w
 * People looking to live in San Jose
 * Current San Jose residents
 
-#### Usage Frequency
+##### Usage Frequency
 * As needed for reports, articles, etc (infrequently)
 * Monthly Community and Economic Development Committee meetings
 * Quarterly updates 
 
-#### Roles
+##### Roles
 * Viewers
 * Users of the data (e.g. journalists, analysts, researchers)
 * Data entry (back-end)
@@ -54,12 +60,12 @@ See the [wiki](https://github.com/codeforsanjose/economic-indicators-dashboard/w
 #### Related Sites
 [San Jose Office of Economic Development](http://sjeconomy.com/) - Current San Jose site done in wordpress
 
-### Data Sources
+### Data Sources - Currently data is stored in the data folder of the gh-pages branch of this repo
 |Data  | Description |Link |Rough size|Update frequency|Access (API, manual)|
 | ------------- | ------------- |-----|----|----|----|
 |  | |||||
 
-### Integrations
+#### Integrations
 (List any existing city or external systems that should be integrated with this site.)
 Ideally the indicators would be populated from the [City of San Jose's open data portal](http://data.sanjoseca.gov/home)
 
@@ -70,13 +76,47 @@ Ideally the indicators would be populated from the [City of San Jose's open data
 
 [California Center for Jobs & the Economy](http://www.centerforjobs.org/data-tool/#santa_clara)
 
-#### Time goals
+#### Minimum Viable Product (MVP) description
+* Static webpage showing key numbers for current quarter and change from previous year (no interactive charts)
+* Look-and-feel is consistent with SJeconomy.com website (doesn't have to be perfect match, but passable)
+
+##### Release targets
 * Share alpha version with Office of Economic Development staff in early April
 * Launch beta version to San Jose elected officials at April 25, 2016 Community and Economic Development Committee meeting 
 
-#### General minimum viable product (mvp) description
-* Static webpage showing key numbers for current quarter and change from previous year (no interactive charts)
-* Look-and-feel is consistent with SJeconomy.com website (doesn't have to be perfect match, but passable)
+#### Stack
+See the package.json for the full set of libraries/tools used
+
+###### Front end
+* React - https://facebook.github.io/react/
+  * All styles are set and maintained in external files. All tags, classnames, ids are set in jsx. 
+* React-redux - http://redux.js.org/
+* scss - http://sass-lang.com/
+* Bootstrap - http://getbootstrap.com/
+* nvd3 - http://nvd3.org/
+  * D3 - https://d3js.org/
+
+###### Server 
+The server is simply for development to support hot module replacement
+* Koa - http://koajs.com/
+
+###### Build
+If there are any eslint errors, the build will fail.
+
+* npm - https://www.npmjs.com/
+* better-npm-run - https://www.npmjs.com/package/better-npm-run
+* babel - https://babeljs.io/
+* webpack - https://webpack.github.io/
+* travis (github integration) - https://travis-ci.org/
+
+###### Quality checks
+* eslint - http://eslint.org/ 
+  * Uses the standard rules (http://standardjs.com/rules.html) via https://www.npmjs.com/package/eslint-config-standard
+* phantomjs - http://phantomjs.org/
+* sinon - http://sinonjs.org/
+* chai - http://chaijs.com/
+* codecov - https://codecov.io/
+* karma - https://karma-runner.github.io/0.13/index.html
 
 #### Getting started
 
@@ -123,8 +163,7 @@ Great, now that introductions have been made here's everything in full detail:
 
 **NOTE:** Deploying to a specific environment? Make sure to specify your target `NODE_ENV` so webpack will use the correct configuration. For example: `NODE_ENV=production npm run compile` will compile your application with `~/build/webpack/_production.js`.
 
-Structure
----------
+#### Structure
 
 The folder structure provided is only meant to serve as a guide, it is by no means prescriptive. It is something that has worked very well for me and my team, but use only what makes sense to you.
 
