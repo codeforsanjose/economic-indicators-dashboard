@@ -19,7 +19,7 @@ See the [wiki](https://github.com/codeforsanjose/economic-indicators-dashboard/w
 
   * [Goals](#goals)
   * [Target Audience](#target-audience)
-  * [Create a Dashboard](#create-a-dashboard)
+  * [Getting Started](#getting-started)
 
 #### Goals
 1. Elected officials, policymakers, businesses, nonprofits and community members have access to accurate, recent data on San Jose economy.
