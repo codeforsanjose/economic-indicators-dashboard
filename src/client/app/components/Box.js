@@ -1,5 +1,6 @@
 /* @flow */
 /*eslint no-unused-vars: [2, { "varsIgnorePattern": "Props" }]*/
+/*eslint max-len: [2, 200, 4]*/ // extend the maximum allowed characters
 
 import React, { PropTypes } from 'react'
 
@@ -49,12 +50,11 @@ export var Box = React.createClass({
       iconName = 'images/up_arrow.svg'
       trendIcon = (<img src={iconName}/>)
     }
-    /*eslint max-len: [2, 150, 4]*/ // maximum length of 150 characters
     var footerOut = (<div className={'footerBox-' + boxType + ' dashboard-footer'}><div className={'trend_icon'}>{trendIcon}</div>{footer}</div>)
 
     return (
       <div>
-        <div id={idName} className={boxType + ' dashboardBox col-lg-2 col-md-2 col-sm-2'} onClick={this.props.clickHandler}>
+        <div id={idName} className={boxType + ' dashboardBox col-lg-2 col-md-2 col-sm-2'} onClick={this.props.clickHandler} onTouchStart={this.props.clickHandler}>
           <div className={'headlineBox-' + boxType + ' dashboard-headline'}>
             {headline}
           </div>
