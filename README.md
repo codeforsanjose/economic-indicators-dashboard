@@ -8,7 +8,7 @@ Econonomic Indicators Dashboard
 [![devDependency Status](https://david-dm.org/codeforsanjose/economic-indicators-dashboard/dev-status.svg)](https://david-dm.org/codeforsanjose/economic-indicators-dashboard#info=devDependencies)
 [![js-standard-style](https://img.shields.io/badge/code%20style-standard-brightgreen.svg)](http://standardjs.com/)
 
-[![Backlog Stories](https://badge.waffle.io/codeforsanjose/economic-indicators-dashboard.svg?title=Backlog)](http://waffle.io/codeforsanjose/economic-indicators-dashboard)
+[![Backlog Stories](https://badge.waffle.io/codeforsanjose/economic-indicators-dashboard.svg)](http://waffle.io/codeforsanjose/economic-indicators-dashboard)
 [![Stories in Ready](https://badge.waffle.io/codeforsanjose/economic-indicators-dashboard.svg?label=ready&title=Ready)](http://waffle.io/codeforsanjose/economic-indicators-dashboard)
 
 See the [wiki](https://github.com/codeforsanjose/economic-indicators-dashboard/wiki) for a more complete overview
