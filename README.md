@@ -95,9 +95,12 @@ See the package.json for the full set of libraries/tools used
 * nvd3 - http://nvd3.org/
   * D3 - https://d3js.org/
 
-###### Server 
+###### Server  
 The server is simply for development to support hot module replacement
 * Koa - http://koajs.com/
+
+###### Backend
+Currently there is not a backend.  In the future if one needs to be created, node will be used so that code can be shared between the front and back ends.
 
 ###### Build
 If there are any eslint errors, the build will fail.
@@ -163,8 +166,6 @@ Great, now that introductions have been made here's everything in full detail:
 **NOTE:** Deploying to a specific environment? Make sure to specify your target `NODE_ENV` so webpack will use the correct configuration. For example: `NODE_ENV=production npm run compile` will compile your application with `~/build/webpack/_production.js`.
 
 #### Structure
-
-The folder structure provided is only meant to serve as a guide, it is by no means prescriptive. It is something that has worked very well for me and my team, but use only what makes sense to you.
 
 ```
 .
