@@ -20,7 +20,7 @@ See the [wiki](https://github.com/codeforsanjose/economic-indicators-dashboard/w
   * [Target Audience](#target-audience)
   * [Related Sites](#related-sites)
   * [Data Sources](#data-sources)
-  * [Example Sites](#data-sources)
+  * [Example Sites](#example-sites)
   * [Minimum Viable Product](#data-sources)
   * [Stack](#stack)
   * [Getting Started](#getting-started)
