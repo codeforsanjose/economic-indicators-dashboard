@@ -6,3 +6,5 @@ export var real_estate_data_url = 'https://raw.githubusercontent.com/codeforsanj
   'estate.json'
 
 export var unemployment_data_url = 'https://raw.githubusercontent.com/codeforsanjose/economic-indicators-dashboard/gh-pages/data/sjmetro_employment_monthly.csv'
+
+export var sector_data_url = 'https://raw.githubusercontent.com/codeforsanjose/economic-indicators-dashboard/gh-pages/data/sanjose_jobs_by_sector_'

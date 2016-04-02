@@ -225,6 +225,10 @@ export default class DashboardView extends React.Component {
             <div id='jobs-chart' className='jobs-plot'>
               <svg></svg>
             </div>
+            <div id='sector-title' className='sector-title'></div>
+            <div id='sector-chart' className='sector-plot'>
+              <svg></svg>
+            </div>
           </div>
         </div>
         <div className={'row-fluid row-eq-height'}>

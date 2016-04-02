@@ -10,11 +10,15 @@
   font-family: "Noto Sans", "sans-serif";
 
   .head-title {
-    font-size: 150%;
-    margin-top: 5%;
+    font-size: 200%;
   }
 
   .container {
+    margin-top: 10px;
+  }
+
+  .head-title-right {
+    margin-right: 30px;
     margin-top: 10px;
   }
 }
@@ -23,6 +27,10 @@
   background: $primary-grey;
   color: white;
   font-family: "Noto Sans", "sans-serif";
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  height: 40px;
 }
 
 .footer-right {
@@ -30,5 +38,5 @@
 }
 
 #root {
-  margin-top: 300 pxS;
+  margin-top: 5%;
 }

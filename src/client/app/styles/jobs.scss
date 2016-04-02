@@ -1,19 +1,21 @@
 .jobs {
+  outline: 1px solid $secondary-red;
 
   .headlineBox-jobs {
-    background-color: $secondary-yellow;
+    background-color: $secondary-red;
+
   }
 
   .contentBox-jobs {
-    background-color: $primary-grey-50;
+    background-color: white;
   }
 
   .footerBox-jobs {
-    background-color: $primary-grey-25;
+    background-color: white;
     color: darkgray;
   }
 }
 
 .jobs-overlay {
-  background-color: $secondary-yellow;
+  background-color: $secondary-red;
 }

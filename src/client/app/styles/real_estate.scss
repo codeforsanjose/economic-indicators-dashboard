@@ -1,16 +1,19 @@
 .real_estate {
 
+  border: 1px solid $primary-green;
+
   .headlineBox-real_estate {
     background-color: $primary-green;
   }
 
   .contentBox-real_estate {
-    background-color: $primary-grey-50;
+    background-color: white;
+    color: darkgray;
   }
 
   .footerBox-real_estate {
-    background-color: $primary-grey-25;
-    color: darkgray;
+    background-color: white;
+    color: black;
   }
 }
 

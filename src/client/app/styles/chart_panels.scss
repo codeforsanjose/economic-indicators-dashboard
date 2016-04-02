@@ -2,7 +2,6 @@
 .jobs-chart-panel {
   margin-bottom: 10px;
   background-color: white;
-  border: solid 2px $secondary-yellow;
   border-radius: 10px;
   display: none;
 }
@@ -13,6 +12,14 @@
 
 #jobs-panel {
   text-align: center;
+}
+
+#jobs-chart {
+  height: 300px;
+}
+
+#sector-chart {
+  height:500px;
 }
 
 .jobs-plot {

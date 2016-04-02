@@ -2,11 +2,8 @@
 
 export function addBarChart (inputOptions) {
   nv.addGraph(function () {
-    var chart = nv.models.multiBarChart()
-      .margin({top: 30, right: 20, bottom: 50, left: 90})
-      .reduceXTicks(true)   // If 'false', every single x-axis tick label will be rendered.
-      .showControls(inputOptions.showControls)   // Allow user to switch between 'Grouped' and 'Stacked' mode.
-      .groupSpacing(0.3)    // Distance between each group of bars.
+    var chart = nv.models.discreteBarChart()
+      .margin({top: 50, right: 20, bottom: 150, left: 120})
       .x(function (d) { return d.label })    // Specify the data accessors.
       .y(function (d) { return d.value })
 
