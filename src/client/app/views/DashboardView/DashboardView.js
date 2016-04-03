@@ -86,25 +86,25 @@ export default class DashboardView extends React.Component {
 
   // Retrieve the data for the dashboard
   componentDidMount () {
+    // Get the talent data
     this.serverRequest = $.get(talent_data_url, function (result) {
       this.setState({
         talentData: JSON.parse(result)
       })
-      console.log('got talentData')
     }.bind(this))
 
+    // Get the jobs data
     this.serverRequest = $.get(jobs_data_url, function (result) {
       this.setState({
         jobsData: JSON.parse(result)
       })
-      console.log('got jobsData')
     }.bind(this))
 
+    // Get the real estate data
     this.serverRequest = $.get(real_estate_data_url, function (result) {
       this.setState({
         realEstateData: JSON.parse(result)
       })
-      console.log('got realEstateData')
     }.bind(this))
   }
 
@@ -178,7 +178,7 @@ export default class DashboardView extends React.Component {
     return (
       <div>
         <div className={'row-fluid row-eq-height'}>
-          <div className={'talent dashboard-label col-lg-1 col-md-1 col-xs-1 '}>
+          <div className={'talent dashboard-label  col-xs-1 '}>
             <div className={'image-holder'}>
               <div className={'talent-overlay label-overlay'}></div>
               <div className={'title'}>
@@ -194,7 +194,7 @@ export default class DashboardView extends React.Component {
           {this.state.talentData.source}
         </div>
         <div className={'row-fluid row-eq-height'}>
-          <div className={'jobs dashboard-label col-lg-1 col-md-1 col-xs-1 '}>
+          <div className={'jobs dashboard-label  col-xs-1 '}>
             <div className={'image-holder'}>
               <div className={'jobs-overlay label-overlay'}></div>
               <div className={'title'}>
@@ -212,7 +212,7 @@ export default class DashboardView extends React.Component {
           </div>
         </div>
         <div className={'row'}>
-          <div id='unemp-panel' className={'col-lg-9 col-md-9 col-xs-9 col-lg-offset-1 col-md-offset-1 jobs-chart-panel '}>
+          <div id='unemp-panel' className={'col-xs-11  jobs-chart-panel '}>
             <h5>Unemployment Rate</h5>
             <div id='unemp-chart' className='jobs-plot'>
               <svg></svg>
@@ -220,7 +220,7 @@ export default class DashboardView extends React.Component {
           </div>
         </div>
         <div className={'row'}>
-          <div id='jobs-panel' className={'col-lg-9 col-md-9 col-xs-9 col-lg-offset-1 col-md-offset-1 jobs-chart-panel'}>
+          <div id='jobs-panel' className={'col-xs-11  jobs-chart-panel'}>
             <h5>Number of Jobs</h5>
             <div id='jobs-chart' className='jobs-plot'>
               <svg></svg>
@@ -232,7 +232,7 @@ export default class DashboardView extends React.Component {
           </div>
         </div>
         <div className={'row-fluid row-eq-height'}>
-          <div className={'real_estate dashboard-label col-lg-1 col-md-1 col-xs-1 '}>
+          <div className={'real_estate dashboard-label col-xs-1'}>
             <div className={'image-holder'}>
               <div className={'real-estate-overlay label-overlay'}></div>
               <div className={'title'}>

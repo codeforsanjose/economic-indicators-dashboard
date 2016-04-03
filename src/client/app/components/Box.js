@@ -54,7 +54,7 @@ export var Box = React.createClass({
 
     return (
       <div>
-        <div id={idName} className={boxType + ' dashboardBox col-lg-2 col-md-2 col-sm-2'} onClick={this.props.clickHandler} onTouchEnd={this.props.clickHandler}>
+        <div id={idName} className={boxType + ' dashboardBox col-xs-2'} onClick={this.props.clickHandler}>
           <div className={'headlineBox-' + boxType + ' dashboard-headline'}>
             {headline}
           </div>

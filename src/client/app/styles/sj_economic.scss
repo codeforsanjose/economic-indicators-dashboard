@@ -35,18 +35,130 @@
   clear: both;
 }
 
+// Trend icon
 .trend_icon {
   img {
     width: 15px;
     height: 15px;
     margin-right: 2px;
-
   }
 
+  // Color for the svg icon
   path {
     fill: darkgray;
   }
   display: inline;
+}
+
+@media only screen
+and (max-width: 519px) {
+  /* Single Fluid Width Column (iPhone) */
+
+  .dashboard-label {
+    min-height: 100px;
+    font-size: 80%;
+  }
+
+  .dashboardBox {
+    margin-bottom: 2px;
+
+    .dashboard-headline {
+      min-height: 60px;
+      font-size: 60%;
+    }
+
+    .dashboard-content {
+      min-height: 60px;
+      font-size: 110%;
+    }
+
+    .dashboard-footer {
+      min-height: 50px;
+    }
+  }
+}
+
+@media only screen
+and (min-width: 520px)
+and (max-width: 759px) {
+  /* Single Fixed Width Column */
+  .dashboard-label {
+    min-height: 100px;
+    font-size: 100%;
+  }
+
+  .dashboardBox {
+    margin-bottom: 2px;
+
+    .dashboard-headline {
+      min-height: 60px;
+      font-size: 80%;
+    }
+
+    .dashboard-content {
+      min-height: 60px;
+      font-size: 150%;
+    }
+
+    .dashboard-footer {
+      min-height: 50px;
+    }
+  }
+}
+
+@media only screen
+and (min-width: 760px)
+and (max-width: 959px) {
+  /* Two Fixed Width Columns, Medium Padding (iPad) */
+  .dashboard-label {
+    min-height: 100px;
+    font-size: 100%;
+  }
+
+  .dashboardBox {
+    margin-bottom: 2px;
+
+    .dashboard-headline {
+      min-height: 60px;
+      font-size: 100%;
+    }
+
+    .dashboard-content {
+      min-height: 60px;
+      font-size: 200%;
+    }
+
+    .dashboard-footer {
+      min-height: 50px;
+    }
+  }
+}
+
+@media only screen
+and (min-width: 960px) {
+  /* Two Fixed Width Columns, Large Padding (Desktop) */
+  .dashboard-label {
+    min-height: 100px;
+    font-size: 150%;
+  }
+
+  .dashboardBox {
+    margin-bottom: 2px;
+
+    .dashboard-headline {
+      min-height: 60px;
+      font-size: 110%;
+    }
+
+    .dashboard-content {
+      min-height: 60px;
+      font-size: 250%;
+    }
+
+    .dashboard-footer {
+      min-height: 50px;
+    }
+  }
 }
 
 
