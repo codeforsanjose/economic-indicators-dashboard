@@ -6,7 +6,7 @@
   "data": [
     {
       "title": "Unemployment Rate",
-      "value": "4.2% (Dec 2015)",
+      "value": "4.2%",
       "date": "Dec 2015",
       "trend": "none",
       "trend_label": "",
@@ -15,7 +15,7 @@
     },
     {
       "title": "Total Jobs",
-      "value": "392,600 (Q1 2015)",
+      "value": "392,600",
       "value_desc": "(Q1 2015)",
       "date": "Q1 2015",
       "trend": "up",
