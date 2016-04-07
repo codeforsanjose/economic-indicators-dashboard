@@ -24,16 +24,6 @@
       "id": "total-jobs"
     },
     {
-      "title": "Patents Awarded",
-      "value": "12,899",
-      "value_desc": "2013",
-      "date": "",
-      "trend": "",
-      "trend_label": "",
-      "value_type": "",
-      "id": "patents"
-    },
-    {
       "title": "Venture Capital Dollars",
       "value": "6,883,22",
       "value_desc": "(Q1 2015)",
@@ -42,16 +32,6 @@
       "trend_label": "",
       "value_type": "",
       "id": "vc-money"
-    },
-    {
-      "title": "TBD",
-      "value": "TBD",
-      "value_desc": "",
-      "date": "",
-      "trend": "",
-      "trend_label": "",
-      "value_type": "",
-      "id":"jobs-tbd"
     }
   ]
 }
