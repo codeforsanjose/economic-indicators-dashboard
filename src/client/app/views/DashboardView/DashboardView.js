@@ -5,6 +5,7 @@
 
 import React from 'react'
 import {Box} from '../../components/Box'
+import {RowLabel} from '../../components/RowLabel'
 // import {loadJSON} from '../../redux/utils/fetchData'
 import {generateUUID} from '../../redux/utils/generateUUID'
 import {showChart} from '../../charts/chartUtilities'
@@ -163,7 +164,7 @@ export default class DashboardView extends React.Component {
     var realEstateBoxes = this.state.realEstateData.data.map((item) => {
       var uuid = generateUUID()
       return (
-        <Box boxType={'real_estate'}
+        <Box boxType={'real-estate'}
           headline={item.title}
           content={item.value}
           footer={item.trend_label}
@@ -176,51 +177,37 @@ export default class DashboardView extends React.Component {
     })
 
     return (
-      <div>
-        <div className={'row-fluid row-eq-height'}>
-          <div className={'talent dashboard-label  col-xs-1 '}>
-            <div className={'image-holder'}>
-              <div className={'talent-overlay label-overlay'}></div>
-              <div className={'title'}>
-                <h4>TALENT </h4>
-              </div>
-            </div>
-          </div>
-          <div>
-            {talentBoxes}
+      <div className='container-fluid'>
+        <div className='row-fluid row-eq-height'>
+          <RowLabel
+            labelClass={'talent'}
+            labelTitle={'TALENT'}
+          />
+          {talentBoxes}
+        </div>
+        <div className='row-fluid '>
+          <div className='data-source-description col-xs-12 col-sm-11 col-sm-offset-1'>
+            {this.state.talentData.source}
           </div>
         </div>
-        <div className={'source col-lg-offset-1 col-md-offset-1'}>
-          {this.state.talentData.source}
+
+        <div className='row-fluid row-eq-height'>
+          <RowLabel
+            labelClass={'jobs'}
+            labelTitle={'JOBS'}
+          />
+          {jobsBoxes}
         </div>
-        <div className={'row-fluid row-eq-height'}>
-          <div className={'jobs dashboard-label  col-xs-1 '}>
-            <div className={'image-holder'}>
-              <div className={'jobs-overlay label-overlay'}></div>
-              <div className={'title'}>
-                <h4>JOBS </h4>
-              </div>
-            </div>
-          </div>
-          <div>
-            {jobsBoxes}
-          </div>
-        </div>
-        <div className={'row-fluid'}>
-          <div className={'source col-lg-offset-1 col-md-offset-1'}>
-            {this.state.jobsData.source}
-          </div>
-        </div>
-        <div className={'row'}>
-          <div id='unemp-panel' className={'col-xs-11  jobs-chart-panel '}>
+        <div className='row'>
+          <div id='unemp-panel' className='col-xs-11  jobs-chart-panel '>
             <h5>Unemployment Rate</h5>
             <div id='unemp-chart' className='jobs-plot'>
               <svg></svg>
             </div>
           </div>
         </div>
-        <div className={'row'}>
-          <div id='jobs-panel' className={'col-xs-11  jobs-chart-panel'}>
+        <div className='row'>
+          <div id='jobs-panel' className='col-xs-11 jobs-chart-panel'>
             <h5>Number of Jobs</h5>
             <div id='jobs-chart' className='jobs-plot'>
               <svg></svg>
@@ -231,21 +218,23 @@ export default class DashboardView extends React.Component {
             </div>
           </div>
         </div>
-        <div className={'row-fluid row-eq-height'}>
-          <div className={'real_estate dashboard-label col-xs-1'}>
-            <div className={'image-holder'}>
-              <div className={'real-estate-overlay label-overlay'}></div>
-              <div className={'title'}>
-                <h4>REAL ESTATE </h4>
-              </div>
-            </div>
-          </div>
-          <div>
-            {realEstateBoxes}
+        <div className='row-fluid'>
+          <div className='data-source-description col-xs-12 col-sm-11 col-sm-offset-1'>
+            {this.state.jobsData.source}
           </div>
         </div>
-        <div className={'source col-lg-offset-1 col-md-offset-1'}>
-          {this.state.realEstateData.source}
+
+        <div className='row-fluid row-eq-height'>
+          <RowLabel
+            labelClass={'real-estate'}
+            labelTitle={'REAL ESTATE'}
+          />
+          {realEstateBoxes}
+        </div>
+        <div className='row-fluid'>
+          <div className='data-source-description col-xs-12 col-sm-11 col-sm-offset-1'>
+            {this.state.realEstateData.source}
+          </div>
         </div>
       </div>
     )
