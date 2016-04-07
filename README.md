@@ -63,8 +63,7 @@ Yes, ongoing data services provided by Office of Economic Development staff.
 ### General Impressions hoping to convey
 * Economic strength
 * Competitive growth compared to other areas
-* Vibrant, thriving citypment Committee meetings
-* Quarterly updates 
+* Vibrant, thriving city
 
 ##### Roles
 * Viewers
