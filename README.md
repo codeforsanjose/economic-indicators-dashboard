@@ -26,16 +26,27 @@ See the [wiki](https://github.com/codeforsanjose/economic-indicators-dashboard/w
   * [Getting Started](#getting-started)
   * [Structure](#structure)
 
-#### Goals
+### Goals
 1. Elected officials, policymakers, businesses, nonprofits and community members have access to accurate, recent data on San Jose economy.
 2. Reduce OED staff time spent servicing one-off data requests. 
 
-##### How will progress toward goals be measured?
-1. Site traffic analytics
+### How will progress toward goals be measured?
+1. Use of dashboard in discussions about San Jose economy (Committee and Council meetings, public meetings, etc)
 2. Reduction in number of individual data requests to OED staff
-3. Use of dashboard in discussions about San Jose economy (Committee and Council meetings, public meetings, etc)
+3. Site traffic analytics
 
-#### Target audience
+### What is the 10 second test?  
+In 10 seconds a user should be able to get a sense of whether the SJ economy is growing, shrinking, or staying the same. 
+
+In 30 seconds a user should be able to find a specific statistic that he/she is looking for (or determine that it is not listed on the page). E.g. number of jobs in San Jose. 
+
+### Does this replace/supplement an existing site?  If so, what are key improvements that are being sought?
+No
+
+### Does this map to an existing city initiative?
+Yes, ongoing data services provided by Office of Economic Development staff. 
+
+### Target audience
 * San Jose elected officials, policy makers and other local government staff
 * Real estate developers, brokers and investors
 * Nonprofit organizations that make advocate on specific policy issues (urbanism, housing, business climate)
@@ -44,9 +55,15 @@ See the [wiki](https://github.com/codeforsanjose/economic-indicators-dashboard/w
 * People looking to live in San Jose
 * Current San Jose residents
 
-##### Usage Frequency
+### Usage Frequency
 * As needed for reports, articles, etc (infrequently)
 * Monthly Community and Economic Development Committee meetings
+* Quarterly updates 
+
+### General Impressions hoping to convey
+* Economic strength
+* Competitive growth compared to other areas
+* Vibrant, thriving citypment Committee meetings
 * Quarterly updates 
 
 ##### Roles
@@ -59,10 +76,23 @@ See the [wiki](https://github.com/codeforsanjose/economic-indicators-dashboard/w
 #### Related Sites
 [San Jose Office of Economic Development](http://sjeconomy.com/) - Current San Jose site done in wordpress
 
-### Data Sources - Currently data is stored in the data folder of the gh-pages branch of this repo
-|Data  | Description |Link |Rough size|Update frequency|Access (API, manual)|
-| ------------- | ------------- |-----|----|----|----|
-|  | |||||
+### Data Sources
+Each indicator should be compared to value from prior year.  
+
+|Category | Name  | Description |Link |Update frequency|Time Lag|Show Historical Detail?|
+| -------|------------- | ------------- |-----|----|----|----|---| 
+| Jobs | Unemployment Rate | % of SJ residents in the labor force but not employed |TBD|Monthly|1-2 Months|Yes|
+| Jobs | Number of Jobs | Number of jobs in the City of San Jose | TBD | Every 3 months | 9 months |Yes|
+| Jobs | Number of Tech Jobs | Number of jobs in industries classified as "tech" | TBD | Every 3 months | 9 months |Yes| Manual | 
+| Real Estate | Citywide Office Vacancy |
+| Real Estate | Citywide R&D Vacancy |
+| Real Estate | Citywide Industrial Vacancy |
+| Talent | Labor Force | # SJ residents employed or available for work | TBD | Monthly | 1-2 months | Yes|
+| Talent | 
+
+Data wishlist for future versions
+* Sq.ft. and value of commercial construction within the City to date (Requires data from Planning dept)
+* Net number of businesses over 10 employees in the City? (Requires data from Finance dept)
 
 #### Integrations
 (List any existing city or external systems that should be integrated with this site.)
