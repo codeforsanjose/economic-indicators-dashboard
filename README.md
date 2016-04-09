@@ -135,6 +135,7 @@ Ideally the indicators would be populated from the [City of San Jose's open data
 * Launch beta version to San Jose elected officials at April 25, 2016 Community and Economic Development Committee meeting 
 
 #### Longer term vision for site
+TBD
 
 ### Stack
 See the package.json for the full set of libraries/tools used
