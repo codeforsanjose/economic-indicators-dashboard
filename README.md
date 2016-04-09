@@ -75,7 +75,7 @@ Yes, ongoing data services provided by Office of Economic Development staff.
 * Data entry (back-end)
 * Developers
 * Analysts looking at visit analytics
-* 
+
 ### Website attributes
 |Attributes  | Required |Notes |
 | ------------- | ------------- |-----|
