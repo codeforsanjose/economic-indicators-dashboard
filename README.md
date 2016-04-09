@@ -71,6 +71,16 @@ Yes, ongoing data services provided by Office of Economic Development staff.
 * Data entry (back-end)
 * Developers
 * Analysts looking at visit analytics
+* 
+### Website attributes
+|Attributes  | Required |Notes |
+| ------------- | ------------- |-----|
+| Accessibility  | ||
+| Device support  |   | Web, Mobile, Tablets (verify touch events), (not watches) |
+| Browser support  |   | Chrome, Firefox, Safari, IE (IE 10+)|
+| Languages  |   |Current site supports many languages|
+| Analytics  |   ||
+
 
 #### Related Sites
 [San Jose Office of Economic Development](http://sjeconomy.com/) - Current San Jose site done in wordpress
@@ -97,6 +107,10 @@ Data wishlist for future versions
 (List any existing city or external systems that should be integrated with this site.)
 Ideally the indicators would be populated from the [City of San Jose's open data portal](http://data.sanjoseca.gov/home)
 
+### Any Standards
+[ISO 37120](http://www.iso.org/iso/catalogue_detail?csnumber=62436) - Not widely adopted yet.
+  * [ISO 37120 Data Portal](http://open.dataforcities.org/) - Select Data Portal menu
+
 #### Example sites
 [Denver's economic indicators](http://www.metrodenver.org/research-reports/monthly-economic-indicators/)
 
@@ -108,6 +122,10 @@ Ideally the indicators would be populated from the [City of San Jose's open data
 
 [Montgomery County's dashboard](https://reports.data.montgomerycountymd.gov/countystat/objective/economy)
 
+### Time goals
+* Share alpha version with Office of Economic Development staff in early April
+* Launch beta version to San Jose elected officials at April 25, 2016 Community and Economic Development Committee meeting 
+* 
 #### Minimum Viable Product (MVP) description
 * Static webpage showing key numbers for current quarter and change from previous year (no interactive charts)
 * Look-and-feel is consistent with SJeconomy.com website (doesn't have to be perfect match, but passable)
@@ -116,7 +134,9 @@ Ideally the indicators would be populated from the [City of San Jose's open data
 * Share alpha version with Office of Economic Development staff in early April
 * Launch beta version to San Jose elected officials at April 25, 2016 Community and Economic Development Committee meeting 
 
-#### Stack
+### Longer term vision for site
+
+### Stack
 See the package.json for the full set of libraries/tools used
 
 ###### Front end
