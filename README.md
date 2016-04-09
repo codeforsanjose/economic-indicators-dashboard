@@ -17,33 +17,37 @@ See the [wiki](https://github.com/codeforsanjose/economic-indicators-dashboard/w
 ## Table of contents
 
   * [Goals](#goals)
+    * [10 Second Test](#10-second-test) 
   * [Target Audience](#target-audience)
-  * [Related Sites](#related-sites)
-  * [Data Sources](#data-sources)
-  * [Example Sites](#example-sites)
+    * [Usage Frequency](#usage-frequency) 
+    * [Roles](#roles)
+  * [Website Attributes](#website-attributes) 
+   * [Related Sites](#related-sites)
+   * [Data Sources](#data-sources)
+   * [Example Sites](#example-sites)
   * [Minimum Viable Product](#data-sources)
   * [Stack](#stack)
-  * [Getting Started](#getting-started)
-  * [Structure](#structure)
+   * [Getting Started](#getting-started)
+   * [Structure](#structure)
 
 ### Goals
 1. Elected officials, policymakers, businesses, nonprofits and community members have access to accurate, recent data on San Jose economy.
 2. Reduce OED staff time spent servicing one-off data requests. 
 
-### How will progress toward goals be measured?
+#### How will progress toward goals be measured?
 1. Use of dashboard in discussions about San Jose economy (Committee and Council meetings, public meetings, etc)
 2. Reduction in number of individual data requests to OED staff
 3. Site traffic analytics
 
-### What is the 10 second test?  
+#### 10 second test?  
 In 10 seconds a user should be able to get a sense of whether the SJ economy is growing, shrinking, or staying the same. 
 
 In 30 seconds a user should be able to find a specific statistic that he/she is looking for (or determine that it is not listed on the page). E.g. number of jobs in San Jose. 
 
-### Does this replace/supplement an existing site?  If so, what are key improvements that are being sought?
+#### Does this replace/supplement an existing site?  If so, what are key improvements that are being sought?
 No
 
-### Does this map to an existing city initiative?
+#### Does this map to an existing city initiative?
 Yes, ongoing data services provided by Office of Economic Development staff. 
 
 ### Target audience
@@ -55,17 +59,17 @@ Yes, ongoing data services provided by Office of Economic Development staff.
 * People looking to live in San Jose
 * Current San Jose residents
 
-### Usage Frequency
+#### Usage Frequency
 * As needed for reports, articles, etc (infrequently)
 * Monthly Community and Economic Development Committee meetings
 * Quarterly updates 
 
-### General Impressions hoping to convey
+#### General Impressions hoping to convey
 * Economic strength
 * Competitive growth compared to other areas
 * Vibrant, thriving city
 
-##### Roles
+#### Roles
 * Viewers
 * Users of the data (e.g. journalists, analysts, researchers)
 * Data entry (back-end)
@@ -85,7 +89,7 @@ Yes, ongoing data services provided by Office of Economic Development staff.
 #### Related Sites
 [San Jose Office of Economic Development](http://sjeconomy.com/) - Current San Jose site done in wordpress
 
-### Data Sources
+#### Data Sources
 Each indicator should be compared to value from prior year.  
 
 |Category | Name  | Description |Link |Update frequency|Time Lag|Show Historical Detail?|
@@ -107,7 +111,7 @@ Data wishlist for future versions
 (List any existing city or external systems that should be integrated with this site.)
 Ideally the indicators would be populated from the [City of San Jose's open data portal](http://data.sanjoseca.gov/home)
 
-### Any Standards
+#### Standards
 [ISO 37120](http://www.iso.org/iso/catalogue_detail?csnumber=62436) - Not widely adopted yet.
   * [ISO 37120 Data Portal](http://open.dataforcities.org/) - Select Data Portal menu
 
@@ -122,11 +126,7 @@ Ideally the indicators would be populated from the [City of San Jose's open data
 
 [Montgomery County's dashboard](https://reports.data.montgomerycountymd.gov/countystat/objective/economy)
 
-### Time goals
-* Share alpha version with Office of Economic Development staff in early April
-* Launch beta version to San Jose elected officials at April 25, 2016 Community and Economic Development Committee meeting 
-* 
-#### Minimum Viable Product (MVP) description
+### Minimum Viable Product (MVP) description
 * Static webpage showing key numbers for current quarter and change from previous year (no interactive charts)
 * Look-and-feel is consistent with SJeconomy.com website (doesn't have to be perfect match, but passable)
 
@@ -134,12 +134,12 @@ Ideally the indicators would be populated from the [City of San Jose's open data
 * Share alpha version with Office of Economic Development staff in early April
 * Launch beta version to San Jose elected officials at April 25, 2016 Community and Economic Development Committee meeting 
 
-### Longer term vision for site
+#### Longer term vision for site
 
 ### Stack
 See the package.json for the full set of libraries/tools used
 
-###### Front end
+#### Front end
 * React - https://facebook.github.io/react/
   * All styles are set and maintained in external files. All tags, classnames, ids are set in jsx. 
 * React-redux - http://redux.js.org/
@@ -148,14 +148,14 @@ See the package.json for the full set of libraries/tools used
 * nvd3 - http://nvd3.org/
   * D3 - https://d3js.org/
 
-###### Server  
+#### Server  
 The server is simply for development to support hot module replacement
 * Koa - http://koajs.com/
 
-###### Backend
+#### Backend
 Currently there is not a backend.  In the future if one needs to be created, node will be used so that code can be shared between the front and back ends.
 
-###### Build
+#### Build
 If there are any eslint errors, the build will fail.
 
 * npm - https://www.npmjs.com/
