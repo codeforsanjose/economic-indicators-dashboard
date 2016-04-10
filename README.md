@@ -188,6 +188,9 @@ $ npm start                     # Compile and launch
 ```
 
 To deploy to gh-pages
+
+Note:  data is temporarily hosted on gh-pages and will eventually be hosted at a location TBD
+
 ```shell
 # In the economic-indicators-dashboard folder, run the following
 $ npm clean                     # Remove the dist folder which contains the compiled pieces
