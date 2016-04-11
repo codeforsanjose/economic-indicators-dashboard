@@ -1,4 +1,4 @@
-Econonomic Indicators Dashboard 
+Economic Indicators Dashboard 
 ===============================
 
 
@@ -64,11 +64,6 @@ Yes, ongoing data services provided by Office of Economic Development staff.
 * Monthly Community and Economic Development Committee meetings
 * Quarterly updates 
 
-#### General Impressions hoping to convey
-* Economic strength
-* Competitive growth compared to other areas
-* Vibrant, thriving city
-
 #### Roles
 * Viewers
 * Users of the data (e.g. journalists, analysts, researchers)
@@ -90,7 +85,30 @@ Yes, ongoing data services provided by Office of Economic Development staff.
 [San Jose Office of Economic Development](http://sjeconomy.com/) - Current San Jose site done in wordpress
 
 #### Data Sources
-Each indicator should be compared to value from prior year.  
+Each indicator should be compared to value from the prior year (Year-over-Year). Where relevant, historical graphs with data going farther back will be revealed as detail. 
+
+Here are list of indicators for our MVP.
+
+* Jobs
+   * # of Jobs
+     * Detailed line chart: Jobs over time 
+     * Detailed bar chart: Jobs by sector
+   * Unemployment Rate
+     * Detailed line chart: Unemployment over time
+   * Patents Per Year
+     * Detailed line chart: Patents per year over time 
+* Talent
+  * Labor Force
+    * Detail: Line chart showing size of labor force over time  
+    * Detail: Bar chart showing age of labor force
+  * % Pop with Bachelor's degree or Higher
+    * Detail: Bar chart showing breakout by educational level 
+  * % Pop born outside US
+    * Detail: Bar chart showing race/ethnicity and country of origin  
+* Real Estate
+  * Office Vacancy Rate 
+  * R&D Vacancy Rate
+  * Industrial Vacancy Rate
 
 |Category | Name  | Description |Link |Update frequency|Time Lag|Show Historical Detail?|
 | -------|------------- | ------------- |-----|----|----|----|---| 
