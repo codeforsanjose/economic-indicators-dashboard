@@ -110,17 +110,6 @@ Here are list of indicators for our MVP.
   * R&D Vacancy Rate
   * Industrial Vacancy Rate
 
-|Category | Name  | Description |Link |Update frequency|Time Lag|Show Historical Detail?|
-| -------|------------- | ------------- |-----|----|----|----|---| 
-| Jobs | Unemployment Rate | % of SJ residents in the labor force but not employed |TBD|Monthly|1-2 Months|Yes|
-| Jobs | Number of Jobs | Number of jobs in the City of San Jose | TBD | Every 3 months | 9 months |Yes|
-| Jobs | Number of Tech Jobs | Number of jobs in industries classified as "tech" | TBD | Every 3 months | 9 months |Yes| Manual | 
-| Real Estate | Citywide Office Vacancy |
-| Real Estate | Citywide R&D Vacancy |
-| Real Estate | Citywide Industrial Vacancy |
-| Talent | Labor Force | # SJ residents employed or available for work | TBD | Monthly | 1-2 months | Yes|
-| Talent | 
-
 Data wishlist for future versions
 * Sq.ft. and value of commercial construction within the City to date (Requires data from Planning dept)
 * Net number of businesses over 10 employees in the City? (Requires data from Finance dept)
