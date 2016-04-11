@@ -1,18 +1,12 @@
 .jobs {
-  outline: 1px solid $secondary-red;
-
-  .headlineBox-jobs {
-    background-color: $secondary-red;
-
-  }
+  // outline: 1px solid $secondary-red;
 
   .contentBox-jobs {
     background-color: white;
   }
 
-  .footerBox-jobs {
-    background-color: white;
-    color: darkgray;
+  &.dashboardBox .dashboard-headline {
+    border-color: $secondary-red;
   }
 }
 

@@ -1,38 +1,61 @@
 
-.dashboard-label {
-  min-height: 100px;
-  font-size: 150%;
-  text-align: right;
-  font-weight: bold;
+.row-eq-height{
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+
+  clear: both;
+  -webkit-flex-wrap: wrap;
+  -ms-flex-wrap: wrap;
+  flex-wrap: wrap;
+}
+
+.chart-col {
+  -webkit-flex-wrap: wrap;
+  -ms-flex-wrap: wrap;
+  flex-wrap: wrap;
+
+  div:first-child {
+    align-self: flex-end;
+    -webkit-align-self: flex-end;
+  }
 }
 
 .dashboardBox {
-  text-align: center;
+  border: 1px solid $primary-grey-50;
+  border-radius: 3px;
+  margin: 0 0 10px 2.5rem;
   font-weight: bold;
-  margin-bottom: 2px;
+  padding: 10px 10px 5px;
+  text-align: center;
 
   .dashboard-headline {
-    color: white;
-    min-height: 60px;
-    font-size: 110%;
+    border-bottom: 2px solid $primary-grey-50;
+    color: $primary-grey;
+    font-size: 1.5rem;
+    min-height: 7rem;
+    padding-bottom: 1rem;
   }
 
   .dashboard-content {
-    min-height: 60px;
-    font-size: 250%;
-    color: darkgray;
+    // min-height: 60px;
+    font-size: 2.5rem;
+    color: $primary-grey;
   }
 
   .dashboard-footer {
     min-height: 50px;
-    color: white;
+    color: $primary-grey-50;
     vertical-align: middle;
   }
 }
 
-.source {
-  margin-bottom: 20px;
-  clear: both;
+.data-source-description {
+  background-color: $light-grey;
+  font-size: 1rem;
+  margin-bottom: 4rem;
+  padding: 1rem;
 }
 
 // Trend icon
@@ -51,114 +74,13 @@
 }
 
 @media only screen
-and (max-width: 519px) {
-  /* Single Fluid Width Column (iPhone) */
-
-  .dashboard-label {
-    min-height: 100px;
-    font-size: 80%;
-  }
-
+and (min-width: 768px) {
   .dashboardBox {
-    margin-bottom: 2px;
+    margin: 0 5px 10px 5px;
 
     .dashboard-headline {
-      min-height: 60px;
-      font-size: 60%;
-    }
-
-    .dashboard-content {
-      min-height: 60px;
-      font-size: 110%;
-    }
-
-    .dashboard-footer {
-      min-height: 50px;
+      font-size: 1.3rem;
     }
   }
 }
-
-@media only screen
-and (min-width: 520px)
-and (max-width: 759px) {
-  /* Single Fixed Width Column */
-  .dashboard-label {
-    min-height: 100px;
-    font-size: 100%;
-  }
-
-  .dashboardBox {
-    margin-bottom: 2px;
-
-    .dashboard-headline {
-      min-height: 60px;
-      font-size: 80%;
-    }
-
-    .dashboard-content {
-      min-height: 60px;
-      font-size: 150%;
-    }
-
-    .dashboard-footer {
-      min-height: 50px;
-    }
-  }
-}
-
-@media only screen
-and (min-width: 760px)
-and (max-width: 959px) {
-  /* Two Fixed Width Columns, Medium Padding (iPad) */
-  .dashboard-label {
-    min-height: 100px;
-    font-size: 100%;
-  }
-
-  .dashboardBox {
-    margin-bottom: 2px;
-
-    .dashboard-headline {
-      min-height: 60px;
-      font-size: 100%;
-    }
-
-    .dashboard-content {
-      min-height: 60px;
-      font-size: 200%;
-    }
-
-    .dashboard-footer {
-      min-height: 50px;
-    }
-  }
-}
-
-@media only screen
-and (min-width: 960px) {
-  /* Two Fixed Width Columns, Large Padding (Desktop) */
-  .dashboard-label {
-    min-height: 100px;
-    font-size: 150%;
-  }
-
-  .dashboardBox {
-    margin-bottom: 2px;
-
-    .dashboard-headline {
-      min-height: 60px;
-      font-size: 110%;
-    }
-
-    .dashboard-content {
-      min-height: 60px;
-      font-size: 250%;
-    }
-
-    .dashboard-footer {
-      min-height: 50px;
-    }
-  }
-}
-
 

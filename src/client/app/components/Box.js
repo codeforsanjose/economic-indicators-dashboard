@@ -53,8 +53,8 @@ export var Box = React.createClass({
     var footerOut = (<div className={'footerBox-' + boxType + ' dashboard-footer'}><div className={'trend_icon'}>{trendIcon}</div>{footer}</div>)
 
     return (
-      <div>
-        <div id={idName} className={boxType + ' dashboardBox col-xs-2'} onClick={this.props.clickHandler}>
+      <div className={boxType + ' dashboardBox chart-col col-xs-5 col-sm-2 col-sm-offset-0'}>
+        <div id={idName} onClick={this.props.clickHandler}>
           <div className={'headlineBox-' + boxType + ' dashboard-headline'}>
             {headline}
           </div>

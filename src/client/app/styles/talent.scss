@@ -1,20 +1,8 @@
 .talent {
-
-  .headlineBox-talent {
-    background-color: $secondary-blue;
-  }
-
-  .contentBox-talent {
-    background-color: $primary-grey-50;
-    color: white;
-  }
-
-  .footerBox-talent {
-    background-color: $primary-grey-25;
-    color: darkgray;
+  &.dashboardBox .dashboard-headline {
+    border-color: $secondary-blue;
   }
 }
-
 
 .talent-overlay {
   background: $secondary-blue;

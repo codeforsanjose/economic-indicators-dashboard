@@ -8,9 +8,10 @@
   background: $primary-green;
   color: white;
   font-family: "Noto Sans", "sans-serif";
+  padding: 1.5rem .25rem;
 
   .head-title {
-    font-size: 200%;
+    font-size: 3rem;
   }
 
   .container {
@@ -24,19 +25,13 @@
 }
 
 .econ-footer {
-  background: $primary-grey;
-  color: white;
+  background: $light-grey;
+  color: $medium-grey;
   font-family: "Noto Sans", "sans-serif";
-  position: fixed;
-  bottom: 0;
+  padding: 1.5rem .25rem;
   width: 100%;
-  height: 40px;
 }
 
 .footer-right {
   float: right;
-}
-
-#root {
-  margin-top: 5%;
 }
