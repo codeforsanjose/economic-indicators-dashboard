@@ -32,7 +32,13 @@ export var Box = React.createClass({
     idName: React.PropTypes.string,
     clickHandler: React.PropTypes.func
   },
-
+  renderDetailsButton () {
+    if (this.props.headline === 'Total Jobs') {
+      return (
+        <div className={'trend_icon dashboard-box__more-details'}><span>More details </span></div>
+      )
+    }
+  },
   render: function () {
     var boxType = this.props.boxType
     var headline = this.props.headline
@@ -64,6 +70,10 @@ export var Box = React.createClass({
           <div>
             {footerOut}
           </div>
+
+        </div>
+        <div>
+          {this.renderDetailsButton()}
         </div>
       </div>
     )
