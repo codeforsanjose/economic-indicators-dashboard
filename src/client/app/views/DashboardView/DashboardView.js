@@ -36,8 +36,6 @@ panelStates['jobs-panel'] = {
 export default class DashboardView extends React.Component {
 
   handleBoxClick (event) {
-    console.log('handleUnemploymentRateClick (' + event.currentTarget.id + ')')
-
     var panelID = null
     var chartID = null
     // Get the current id from the element
