@@ -30,6 +30,7 @@ export var Box = React.createClass({
     footer: React.PropTypes.string,
     trend: React.PropTypes.string,
     idName: React.PropTypes.string,
+    date: React.PropTypes.string,
     clickHandler: React.PropTypes.func
   },
   renderDetailsButton () {
@@ -46,6 +47,7 @@ export var Box = React.createClass({
     var footer = this.props.footer
     var trend = this.props.trend
     var idName = this.props.idName
+    var date = this.props.date
 
     var trendIcon = ''
     var iconName = ''
@@ -59,13 +61,16 @@ export var Box = React.createClass({
     var footerOut = (<div className={'footerBox-' + boxType + ' dashboard-footer'}><div className={'trend_icon'}>{trendIcon}</div>{footer}</div>)
 
     return (
-      <div className={boxType + ' dashboardBox chart-col col-xs-5 col-sm-2 col-sm-offset-0'}>
+      <div className={boxType + ' dashboardBox chart-col col-xs-5 col-sm-3 col-sm-offset-0'}>
         <div id={idName} onClick={this.props.clickHandler}>
           <div className={'headlineBox-' + boxType + ' dashboard-headline'}>
             {headline}
           </div>
           <div className={'contentBox-' + boxType + ' dashboard-content'}>
             {content}
+          </div>
+          <div className={'dateBox-' + boxType + ' dashboard-date'}>
+            ( {date} )
           </div>
           <div>
             {footerOut}

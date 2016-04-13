@@ -137,6 +137,7 @@ export default class DashboardView extends React.Component {
           trend={item.trend}
           key={uuid}
           idName={item.id}
+          date={item.date}
           clickHandler={this.handleBoxClick}
         />
       )
@@ -153,6 +154,7 @@ export default class DashboardView extends React.Component {
           trend={item.trend}
           key={uuid}
           idName={item.id}
+          date={item.date}
           clickHandler={this.handleBoxClick}
         />
       )
@@ -169,6 +171,7 @@ export default class DashboardView extends React.Component {
           trend={item.trend}
           key={uuid}
           idName={item.id}
+          date={item.date}
           clickHandler={this.handleBoxClick}
         />
       )
@@ -176,18 +179,6 @@ export default class DashboardView extends React.Component {
 
     return (
       <div className='container-fluid'>
-        <div className='row-fluid row-eq-height'>
-          <RowLabel
-            labelClass={'talent'}
-            labelTitle={'TALENT'}
-          />
-          {talentBoxes}
-        </div>
-        <div className='row-fluid '>
-          <div className='data-source-description col-xs-12 col-sm-11 col-sm-offset-1'>
-            {this.state.talentData.source}
-          </div>
-        </div>
 
         <div className='row-fluid row-eq-height'>
           <RowLabel
@@ -222,6 +213,18 @@ export default class DashboardView extends React.Component {
           </div>
         </div>
 
+        <div className='row-fluid row-eq-height'>
+          <RowLabel
+            labelClass={'talent'}
+            labelTitle={'TALENT'}
+          />
+          {talentBoxes}
+        </div>
+        <div className='row-fluid '>
+          <div className='data-source-description col-xs-12 col-sm-11 col-sm-offset-1'>
+            {this.state.talentData.source}
+          </div>
+        </div>
         <div className='row-fluid row-eq-height'>
           <RowLabel
             labelClass={'real-estate'}
