@@ -4,32 +4,33 @@
   "source": "California Employment Development Department",
   "sourc_url": "",
   "data": [
-    {
-      "title": "Unemployment Rate",
-      "value": "4.2%",
-      "date": "Dec 2015",
-      "trend": "none",
-      "trend_label": "",
-      "value_type": "percent",
-      "id": "unemp-rate"
-    },
-    {
+     {
       "title": "Total Jobs",
-      "value": "392,600",
+      "value": "397,831",
       "value_desc": "(Q1 2015)",
-      "date": "Q1 2015",
+      "date": "June 2015",
       "trend": "up",
-      "trend_label": "41,400 since 2010",
+      "trend_label": "3.3%",
       "value_type": "number",
       "id": "total-jobs"
     },
     {
-      "title": "Venture Capital Dollars",
-      "value": "6,883,22",
+      "title": "Unemployment Rate",
+      "value": "4.2%",
+      "date": "Jan 2016",
+      "trend": "down",
+      "trend_label": "-1.0%",
+      "value_type": "percent",
+      "id": "unemp-rate"
+    },
+   
+    {
+      "title": "Annual Patents",
+      "value": "9,367",
       "value_desc": "(Q1 2015)",
       "date": "Q1 2015",
-      "trend": "",
-      "trend_label": "",
+      "trend": "down",
+      "trend_label": "-1.5%",
       "value_type": "",
       "id": "vc-money"
     }
