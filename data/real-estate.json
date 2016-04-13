@@ -5,33 +5,24 @@
   "sourc_url": "",
   "data": [
     {
-      "title": "Downtown class A Office Vacancy",
-      "value": "10.1%",
-      "value_type": "percent",
-      "id":"downtown-vac"
-    },
-    {
-      "title": "Citywide Office Vacancy",
+      "title": "Office Vacancy",
       "value": "10.7%",
+      "date": "Q4 2015",
       "value_type": "percent",
       "id":"city-office-vac"
     },
     {
-      "title": "North San jose R&D Vacancy",
-      "value": "10.0%",
+      "title": "R&D Vacancy",
+      "value": "10.3%",
+      "date": "Q4 2015",
       "value_type": "percent",
       "id":"nsj-rd-vac"
     },
     {
-      "title": "Citywide R&D Vacancy",
-      "value": "10.3%",
-      "value_type": "percent",
-      "id":"city-rd-vac"
-    },
-    {
-      "title": "Citywide Industrial Vacancy",
+      "title": "Industrial Vacancy",
       "value": "2.3%",
       "value_type": "percent",
+      "date": "Q4 2015",
       "id":"city-indus-vac"
     }
   ]
