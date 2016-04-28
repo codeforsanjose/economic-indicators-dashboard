@@ -44,6 +44,7 @@
   font-weight: bold;
   padding: 5px 10px 0px;
   text-align: center;
+  z-index: 1;
 
   .dashboard-headline {
     border-bottom: 2px solid $primary-grey-50;
@@ -72,17 +73,25 @@
 }
 
 .dashboard-box__more-details {
-  background-color: $primary-green;
+  background-color: $light-grey;
+  border: 1px solid $primary-grey-25;
   border-radius: 3px;
-  bottom: .5rem;
-  color: $primary-white;
+  bottom: .35rem;
+  color: $primary-grey;
   float: right;
   font-size: 1rem;
   font-family: 'Bell Gothic W01 Bold 691903';
   position: absolute;
-  padding: .5rem 1.5rem;
-  right: .5rem;
+  padding: .15rem .75rem;
+  right: .20rem;
   z-index: -1;
+
+  .glyphicon {
+    position: relative;
+    right: -.25rem;
+    top: .25rem;
+    z-index: -1;
+  }
 }
 
 .data-source-description {
@@ -98,11 +107,11 @@ and (min-width: 768px) {
     margin: 0 5px 5px 5px;
 
     .dashboard-headline {
-      font-size: 1.5rem;
-      min-height: 5.5rem;
+      font-size: 1.75rem;
+      min-height: 6rem;
     }
     .dashboard-footer {
-      min-height: 5rem;
+      min-height: 3rem;
     }
   }
 }
