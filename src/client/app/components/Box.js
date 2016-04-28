@@ -70,7 +70,7 @@ export var Box = React.createClass({
             {content}
           </div>
           <div className={'dateBox-' + boxType + ' dashboard-date'}>
-            ( {date} )
+            as of {date}
           </div>
           <div>
             {footerOut}
