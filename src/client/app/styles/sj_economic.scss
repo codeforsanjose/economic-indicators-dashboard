@@ -54,15 +54,19 @@
   }
 
   .dashboard-content {
-    // min-height: 60px;
     font-size: 2.5rem;
     color: $primary-grey;
   }
 
+  .dashboard-date {
+    font-size: 1.1rem;
+  }
+
   .dashboard-footer {
-    min-height: 5.75rem;
     color: $primary-grey-50;
-    font-size: 1.25rem;
+    font-size: 1.5rem;
+    margin-top: 1rem;
+    min-height: 5rem;
     vertical-align: middle;
   }
 }
