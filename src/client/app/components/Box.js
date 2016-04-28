@@ -36,7 +36,7 @@ export var Box = React.createClass({
   renderDetailsButton () {
     if (this.props.headline === 'Total Jobs') {
       return (
-        <div className={'trend_icon dashboard-box__more-details'}><span>More details </span></div>
+        <div className={'dashboard-box__more-details'}><span className='dashboard-box__more-details-copy'>see more </span><span className='glyphicon glyphicon-triangle-bottom'></span></div>
       )
     }
   },
@@ -75,10 +75,9 @@ export var Box = React.createClass({
           <div>
             {footerOut}
           </div>
-
-        </div>
-        <div>
-          {this.renderDetailsButton()}
+          <div>
+            {this.renderDetailsButton()}
+          </div>
         </div>
       </div>
     )

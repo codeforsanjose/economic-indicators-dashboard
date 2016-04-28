@@ -70,15 +70,24 @@ export default class DashboardView extends React.Component {
 
       // handle the selected panel id
       var id = '#' + panelID
+      var $seeMoreIcon = $('.dashboardBox.' + selectedPanelItem.group).find('.dashboard-box__more-details .glyphicon')
       if (selectedPanelItem.state === 'hidden') {
         showChart(chartID)
         $(id).slideDown()
         selectedPanelItem.state = 'shown'
         currentShownPanelID = panelID
+        // toggle see more icon direction and copy
+        $seeMoreIcon.removeClass('glyphicon-triangle-bottom')
+        $seeMoreIcon.addClass('glyphicon-triangle-top')
+        $seeMoreIcon.siblings('.dashboard-box__more-details-copy').text('see less')
       } else {
         $(id).slideUp()
         selectedPanelItem.state = 'hidden'
         currentShownPanelID = null
+        // toggle see more icon direction copy
+        $seeMoreIcon.removeClass('glyphicon-triangle-top')
+        $seeMoreIcon.addClass('glyphicon-triangle-bottom')
+        $seeMoreIcon.siblings('.dashboard-box__more-details-copy').text('see more')
       }
     }
   }
