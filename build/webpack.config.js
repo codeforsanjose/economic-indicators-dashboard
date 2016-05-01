@@ -155,6 +155,7 @@ const PATHS_TO_TREAT_AS_CSS_MODULES = [
 ]
 
 // If config has CSS modules enabled, treat this project's styles as CSS modules.
+//*eslint no-useless-escape: 0*/
 if (config.compiler_css_modules) {
   PATHS_TO_TREAT_AS_CSS_MODULES.push(
     paths.base(config.dir_client).replace(/[\^\$\.\*\+\-\?\=\!\:\|\\\/\(\)\[\]\{\}\,]/g, '\\$&')
