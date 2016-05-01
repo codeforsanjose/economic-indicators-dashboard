@@ -40,6 +40,20 @@ export var Box = React.createClass({
       )
     }
   },
+
+  handleMouseOver () {
+    console.log('mouse enter ' + this.props.content.source)
+  },
+
+  handleMouseOut () {
+    console.log('mouse exit ' + this.props.content.source)
+  },
+
+  renderInfoButton () {
+    return (
+      <div className={'dashboard-box__info'}><span className='glyphicon glyphicon-info-sign info' onClick={this.handleMouseOver} onMouseOut={this.handleMouseOut}></span></div>
+    )
+  },
   render: function () {
     var boxType = this.props.boxType
     var headline = this.props.headline
@@ -53,15 +67,31 @@ export var Box = React.createClass({
     var iconName = ''
     if (trend === 'down') {
       iconName = 'images/down_arrow.svg'
-      trendIcon = (<img src={iconName}/>)
+      trendIcon = (<img src={iconName} />)
     } else if (trend === 'up') {
       iconName = 'images/up_arrow.svg'
-      trendIcon = (<img src={iconName}/>)
+      trendIcon = (<img src={iconName} />)
     }
+
+    var boxClassNames = ' dashboardBox chart-col '
+
+    var maxBoxes = 4
+
+    switch (maxBoxes) {
+      case 3:
+        boxClassNames += ' col-xs-5 col-sm-3 col-sm-offset-0 '
+        break
+      case 4:
+        boxClassNames += ' col-xs-5 col-sm-2 col-sm-offset-0 '
+        break
+      default:
+        break
+    }
+
     var footerOut = (<div className={'footerBox-' + boxType + ' dashboard-footer'}><div className={'trend_icon'}>{trendIcon}</div>{footer}</div>)
 
     return (
-      <div className={boxType + ' dashboardBox chart-col col-xs-5 col-sm-3 col-sm-offset-0'}>
+      <div className={boxType + boxClassNames}>
         <div id={idName} onClick={this.props.clickHandler}>
           <div className={'headlineBox-' + boxType + ' dashboard-headline'}>
             {headline}
@@ -74,6 +104,9 @@ export var Box = React.createClass({
           </div>
           <div>
             {footerOut}
+          </div>
+          <div>
+            {this.renderInfoButton()}
           </div>
           <div>
             {this.renderDetailsButton()}

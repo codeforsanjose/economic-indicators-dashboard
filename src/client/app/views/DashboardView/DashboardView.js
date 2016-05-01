@@ -4,12 +4,16 @@
 /*eslint max-len: [2, 200, 4]*/ // extend the maximum allowed characters
 
 import React from 'react'
+
 import {Box} from '../../components/Box'
 import {RowLabel} from '../../components/RowLabel'
 // import {loadJSON} from '../../redux/utils/fetchData'
 import {generateUUID} from '../../redux/utils/generateUUID'
 import {showChart} from '../../charts/chartUtilities'
-import {talent_data_url, jobs_data_url, real_estate_data_url} from '../../config/dataURLs'
+import {rootDataURL, latestIndicatorsURL} from '../../config/dataURLs'
+
+import {convertIndicatorsToJSON} from '../../utilities/csvtojson'
+import {dataTags} from '../../config/constants'
 
 // We can use Flow (http://flowtype.org/) to type our component's props
 // and state. For convenience we've included both regular propTypes and
@@ -95,30 +99,23 @@ export default class DashboardView extends React.Component {
   // Retrieve the data for the dashboard
   componentDidMount () {
     // Get the talent data
-    this.serverRequest = $.get(talent_data_url, function (result) {
-      this.setState({
-        talentData: JSON.parse(result)
-      })
-    }.bind(this))
+    this.serverRequest = $.get(latestIndicatorsURL, (result) => {
+      var dataURL = rootDataURL + '/' + result
 
-    // Get the jobs data
-    this.serverRequest = $.get(jobs_data_url, function (result) {
-      this.setState({
-        jobsData: JSON.parse(result)
+      this.serverRequest = $.get(dataURL, (csvdata) => {
+        var indicators = convertIndicatorsToJSON(csvdata)
+        this.setState({
+          indicators: indicators
+        })
+        this.forceUpdate()
       })
-    }.bind(this))
-
-    // Get the real estate data
-    this.serverRequest = $.get(real_estate_data_url, function (result) {
-      this.setState({
-        realEstateData: JSON.parse(result)
-      })
-    }.bind(this))
+    })
   }
 
   // don't update if the data hasn't finished being retrieved
   shouldComponentUpdate () {
     var returnStatus = true
+
     if (!this.state) {
       returnStatus = false
     }
@@ -129,20 +126,21 @@ export default class DashboardView extends React.Component {
   render () {
     // If the data isn't defined - just show loading
     if (this.state === null ||
-        this.state.talentData === undefined ||
-        this.state.jobsData === undefined ||
-        this.state.realEstateData === undefined) {
+        this.state.indicators.Talent === undefined ||
+        this.state.indicators.Jobs === undefined ||
+        this.state.indicators.Housing === undefined ||
+        this.state.indicators['Real Estate'] === undefined) {
       return (<h1>Loading data</h1>)
     }
 
     // Create the collection of talent boxes
-    var talentBoxes = this.state.talentData.data.map((item) => {
+    var talentBoxes = this.state.indicators.Talent.map((item) => {
       var uuid = generateUUID()
       return (
         <Box boxType={'talent'}
-          headline={item.title}
+          headline={item.name}
           content={item.value}
-          footer={item.trend_label}
+          footer={item[dataTags.changeFromPrevYear]}
           trend={item.trend}
           key={uuid}
           idName={item.id}
@@ -153,13 +151,29 @@ export default class DashboardView extends React.Component {
     })
 
     // Create the collection of jobs boxes
-    var jobsBoxes = this.state.jobsData.data.map((item) => {
+    var jobsBoxes = this.state.indicators.Jobs.map((item) => {
       var uuid = generateUUID()
       return (
         <Box boxType={'jobs'}
-          headline={item.title}
+          headline={item.name}
           content={item.value}
-          footer={item.trend_label}
+          footer={item[dataTags.changeFromPrevYear]}
+          trend={item.trend}
+          key={uuid}
+          idName={item.id}
+          date={item.date}
+          clickHandler={this.handleBoxClick}
+        />
+      )
+    })
+       // Create the collection of real estate boxes
+    var realEstateBoxes = this.state.indicators['Real Estate'].map((item) => {
+      var uuid = generateUUID()
+      return (
+        <Box boxType={'real-estate'}
+          headline={item.name}
+          content={item.value}
+          footer={item[dataTags.changeFromPrevYear]}
           trend={item.trend}
           key={uuid}
           idName={item.id}
@@ -169,14 +183,14 @@ export default class DashboardView extends React.Component {
       )
     })
 
-    // Create the collection of real estate boxes
-    var realEstateBoxes = this.state.realEstateData.data.map((item) => {
+    // Create the collection of housing boxes
+    var housingBoxes = this.state.indicators.Housing.map((item) => {
       var uuid = generateUUID()
       return (
-        <Box boxType={'real-estate'}
-          headline={item.title}
+        <Box boxType={'housing'}
+          headline={item.name}
           content={item.value}
-          footer={item.trend_label}
+          footer={item[dataTags.changeFromPrevYear]}
           trend={item.trend}
           key={uuid}
           idName={item.id}
@@ -216,11 +230,6 @@ export default class DashboardView extends React.Component {
             </div>
           </div>
         </div>
-        <div className='row-fluid'>
-          <div className='data-source-description col-xs-12 col-sm-11 col-sm-offset-1'>
-            {this.state.jobsData.source}
-          </div>
-        </div>
 
         <div className='row-fluid row-eq-height'>
           <RowLabel
@@ -229,11 +238,6 @@ export default class DashboardView extends React.Component {
           />
           {talentBoxes}
         </div>
-        <div className='row-fluid '>
-          <div className='data-source-description col-xs-12 col-sm-11 col-sm-offset-1'>
-            {this.state.talentData.source}
-          </div>
-        </div>
         <div className='row-fluid row-eq-height'>
           <RowLabel
             labelClass={'real-estate'}
@@ -241,10 +245,12 @@ export default class DashboardView extends React.Component {
           />
           {realEstateBoxes}
         </div>
-        <div className='row-fluid'>
-          <div className='data-source-description col-xs-12 col-sm-11 col-sm-offset-1'>
-            {this.state.realEstateData.source}
-          </div>
+        <div className='row-fluid row-eq-height'>
+          <RowLabel
+            labelClass={'housing'}
+            labelTitle={'HOUSING'}
+          />
+          {housingBoxes}
         </div>
       </div>
     )

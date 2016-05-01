@@ -4,7 +4,7 @@ import {addLineChart} from './lineChart'
 import {addBarChart} from './barChart'
 // import {addScatterChart} from './scatterChart'
 
-import {unemployment_data_url, sector_data_url} from '../config/dataURLs'
+import {unemploymentDataURL, sectorDataURL} from '../config/dataURLs'
 
 function addJobsChart (chartID) {
   function processSectorResults (result, year) {
@@ -15,11 +15,11 @@ function addJobsChart (chartID) {
 
     values.map(function (item) {
       var items = item.split(',')
-      var test = items[0].replace(/\,/g, '')
+      var test = items[0].replace(/,/g, '')
       test = test.trim()
 
       if (test.length > 0) {
-        var jobNum = parseInt(items[1].replace(/\,/g, ''))
+        var jobNum = parseInt(items[1].replace(/,/g, ''))
         dataValues.push({
           label: test,
           value: jobNum
@@ -53,7 +53,7 @@ function addJobsChart (chartID) {
 
     var labelArray = label.split('-')
     var year = '20' + labelArray[1]
-    var url = sector_data_url + year + '.csv'
+    var url = sectorDataURL + year + '.csv'
     console.log(url)
     $.get(url, function (result) {
       processSectorResults(result, year)
@@ -71,7 +71,7 @@ function addJobsChart (chartID) {
     var maxY = 0
     values.map(function (item) {
       var items = item.split('"')
-      var test = items[0].replace(/\,/g, '')
+      var test = items[0].replace(/,/g, '')
       test = test.trim()
 
       if (test.length === 0) {
@@ -79,7 +79,7 @@ function addJobsChart (chartID) {
       }
 
       if (!done) {
-        var empNum = parseInt(items[1].replace(/\,/g, ''))
+        var empNum = parseInt(items[1].replace(/,/g, ''))
         dataValues.push({
           label: index,
           value: empNum
@@ -113,7 +113,7 @@ function addJobsChart (chartID) {
     addLineChart(inputParams)
   }
 
-  $.get(unemployment_data_url, function (result) {
+  $.get(unemploymentDataURL, function (result) {
     processResults(result)
   })
 }

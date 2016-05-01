@@ -1,0 +1,9 @@
+.housing {
+  &.dashboardBox .dashboard-headline {
+    border-color: $secondary-magenta;
+  }
+}
+
+.housing-overlay {
+  background: $secondary-magenta;
+}
