@@ -44,10 +44,10 @@ export var Chart = React.createClass({
     var iconName = ''
     if (trend === 'down') {
       iconName = 'images/down_arrow.svg'
-      trendIcon = (<img src={iconName}/>)
+      trendIcon = (<img src={iconName} />)
     } else if (trend === 'up') {
       iconName = 'images/up_arrow.svg'
-      trendIcon = (<img src={iconName}/>)
+      trendIcon = (<img src={iconName} />)
     }
     /*eslint max-len: [2, 150, 4]*/ // maximum length of 150 characters
     var footerOut = (<div className={'footerBox-' + boxType + ' dashboard-footer'}><div className={'trend_icon'}>{trendIcon}</div>{footer}</div>)
