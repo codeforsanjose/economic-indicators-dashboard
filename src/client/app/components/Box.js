@@ -62,6 +62,7 @@ export var Box = React.createClass({
     var trend = this.props.trend
     var idName = this.props.idName
     var date = this.props.date
+    var maxBoxes = this.props.maxBoxes
 
     var trendIcon = ''
     var iconName = ''
@@ -74,8 +75,6 @@ export var Box = React.createClass({
     }
 
     var boxClassNames = ' dashboardBox chart-col '
-
-    var maxBoxes = 4
 
     switch (maxBoxes) {
       case 3:

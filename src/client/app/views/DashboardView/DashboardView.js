@@ -7,7 +7,6 @@ import React from 'react'
 
 import {Box} from '../../components/Box'
 import {RowLabel} from '../../components/RowLabel'
-// import {loadJSON} from '../../redux/utils/fetchData'
 import {generateUUID} from '../../redux/utils/generateUUID'
 import {showChart} from '../../charts/chartUtilities'
 import {rootDataURL, latestIndicatorsURL} from '../../config/dataURLs'
@@ -133,6 +132,9 @@ export default class DashboardView extends React.Component {
       return (<h1>Loading data</h1>)
     }
 
+    // ToDo - dynamically calculate from the input data
+    var maxBoxes = 3
+
     // Create the collection of talent boxes
     var talentBoxes = this.state.indicators.Talent.map((item) => {
       var uuid = generateUUID()
@@ -146,6 +148,8 @@ export default class DashboardView extends React.Component {
           idName={item.id}
           date={item.date}
           clickHandler={this.handleBoxClick}
+          details={item.detail1}
+          maxBoxes={maxBoxes}
         />
       )
     })
@@ -163,6 +167,8 @@ export default class DashboardView extends React.Component {
           idName={item.id}
           date={item.date}
           clickHandler={this.handleBoxClick}
+          details={item.detail1}
+          maxBoxes={maxBoxes}
         />
       )
     })
@@ -179,6 +185,8 @@ export default class DashboardView extends React.Component {
           idName={item.id}
           date={item.date}
           clickHandler={this.handleBoxClick}
+          details={item.detail1}
+          maxBoxes={maxBoxes}
         />
       )
     })
@@ -196,6 +204,8 @@ export default class DashboardView extends React.Component {
           idName={item.id}
           date={item.date}
           clickHandler={this.handleBoxClick}
+          details={item.detail1}
+          maxBoxes={maxBoxes}
         />
       )
     })
@@ -209,14 +219,6 @@ export default class DashboardView extends React.Component {
             labelTitle={'JOBS'}
           />
           {jobsBoxes}
-        </div>
-        <div className='row'>
-          <div id='unemp-panel' className='col-xs-11  jobs-chart-panel '>
-            <h5>Unemployment Rate</h5>
-            <div id='unemp-chart' className='jobs-plot'>
-              <svg></svg>
-            </div>
-          </div>
         </div>
         <div className='row'>
           <div id='jobs-panel' className='col-xs-11 jobs-chart-panel'>

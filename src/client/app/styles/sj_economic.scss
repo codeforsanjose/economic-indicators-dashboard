@@ -73,9 +73,9 @@
 }
 
 .dashboard-box__more-details {
-  background-color: $light-grey;
-  border: 1px solid $primary-grey-25;
-  border-radius: 3px;
+  /* background-color: $light-grey; */
+  /* border: 1px solid $primary-grey-25; */
+  /* border-radius: 3px; */
   bottom: .35rem;
   color: $primary-grey;
   float: right;
@@ -87,6 +87,7 @@
   z-index: -1;
 
   .glyphicon {
+    color: $primary-grey;
     position: relative;
     right: -.25rem;
     top: .25rem;
@@ -102,15 +103,16 @@
 }
 
 .info {
-  
+  float: left;
+  padding-bottom: .75rem;
+
 }
 
 .glyphicon {
     position: relative;
-    right: 7rem;
     top: .25rem;
     z-index: -1;
-    color: lightgray;
+    color: $primary-grey-50;
   }
 
 @media only screen
