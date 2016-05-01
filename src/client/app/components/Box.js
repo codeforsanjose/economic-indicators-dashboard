@@ -31,7 +31,8 @@ export var Box = React.createClass({
     trend: React.PropTypes.string,
     idName: React.PropTypes.string,
     date: React.PropTypes.string,
-    clickHandler: React.PropTypes.func
+    clickHandler: React.PropTypes.func,
+    maxBoxes: React.PropTypes.number
   },
   renderDetailsButton () {
     if (this.props.headline === 'Total Jobs') {
