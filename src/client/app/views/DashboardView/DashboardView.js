@@ -150,6 +150,7 @@ export default class DashboardView extends React.Component {
           clickHandler={this.handleBoxClick}
           details={item.detail1}
           maxBoxes={maxBoxes}
+          source={item.source}
         />
       )
     })
@@ -169,6 +170,7 @@ export default class DashboardView extends React.Component {
           clickHandler={this.handleBoxClick}
           details={item.detail1}
           maxBoxes={maxBoxes}
+          source={item.source}
         />
       )
     })
@@ -187,6 +189,7 @@ export default class DashboardView extends React.Component {
           clickHandler={this.handleBoxClick}
           details={item.detail1}
           maxBoxes={maxBoxes}
+          source={item.source}
         />
       )
     })
@@ -206,6 +209,7 @@ export default class DashboardView extends React.Component {
           clickHandler={this.handleBoxClick}
           details={item.detail1}
           maxBoxes={maxBoxes}
+          source={item.source}
         />
       )
     })

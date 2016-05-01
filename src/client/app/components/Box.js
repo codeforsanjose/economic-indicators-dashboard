@@ -19,7 +19,10 @@ type Props = {
   source: PropTypes.string,
   trend: PropTypes.string,
   idName: PropTypes.string,
-  clickHandler: PropTypes.func
+  date: PropTypes.string,
+  clickHandler: PropTypes.func,
+  maxBoxes: PropTypes.number,
+  source: PropTypes.string
 };
 
 export var Box = React.createClass({
@@ -32,7 +35,8 @@ export var Box = React.createClass({
     idName: React.PropTypes.string,
     date: React.PropTypes.string,
     clickHandler: React.PropTypes.func,
-    maxBoxes: React.PropTypes.number
+    maxBoxes: React.PropTypes.number,
+    source: React.PropTypes.string
   },
   renderDetailsButton () {
     if (this.props.headline === 'Total Jobs') {
@@ -42,17 +46,10 @@ export var Box = React.createClass({
     }
   },
 
-  handleMouseOver () {
-    console.log('mouse enter ' + this.props.content.source)
-  },
-
-  handleMouseOut () {
-    console.log('mouse exit ' + this.props.content.source)
-  },
-
   renderInfoButton () {
+    var tooltipText = 'Source: ' + this.props.source
     return (
-      <div className={'dashboard-box__info'}><span className='glyphicon glyphicon-info-sign info' onClick={this.handleMouseOver} onMouseOut={this.handleMouseOut}></span></div>
+      <div className={'dashboard-box__info'}><p className='tooltip--info' data-tooltip={tooltipText}><span className='glyphicon glyphicon-info-sign info'></span></p></div>
     )
   },
   render: function () {
