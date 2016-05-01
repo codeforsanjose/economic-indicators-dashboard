@@ -1,3 +1,1 @@
-San Jose economic indicators dashboard provides a snapshot of the current health of the city's economy.
-<br>
-All data trends represent the change from the previous year.
+San Jose economic indicators dashboard provides a snapshot of the current health of the city's economy. All data trends represent the change from the previous year.
