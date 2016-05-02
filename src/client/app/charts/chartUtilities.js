@@ -50,6 +50,7 @@ function addChart (chartID, dataURL) {
 
   function handleChartEvents (label, value) {
     console.log('(' + label + ') , (' + value + ')')
+    var sectorDataURL
 
     var labelArray = label.split('-')
     var year = '20' + labelArray[1]
@@ -61,16 +62,18 @@ function addChart (chartID, dataURL) {
   }
 
   function processResults (result) {
-    var values = result.split('\n')
+    var values = result.split('\r\n')
     var dataValues = []
     var xTickLabels = []
+
+    var header = values[0].split(',')
 
     values.shift() // ignore the header
     var done = false
     var index = 0
     var maxY = 0
     values.map(function (item) {
-      var items = item.split('"')
+      var items = item.split(',')
       var test = items[0].replace(/,/g, '')
       test = test.trim()
 
@@ -79,7 +82,7 @@ function addChart (chartID, dataURL) {
       }
 
       if (!done) {
-        var empNum = parseInt(items[1].replace(/,/g, ''))
+        var empNum = parseInt(items[1].replace(/,/g, ''). replace(/"/g,''))
         dataValues.push({
           label: index,
           value: empNum
@@ -96,7 +99,7 @@ function addChart (chartID, dataURL) {
     var chartData = []
 
     chartData.push({
-      key: 'Number of Jobs',
+      key: header[1],
       values: dataValues
     })
 
@@ -112,8 +115,8 @@ function addChart (chartID, dataURL) {
 
     addLineChart(inputParams)
   }
+
   $.get(dataURL, function (result) {
-    console.log(result)
     processResults(result)
   })
 }

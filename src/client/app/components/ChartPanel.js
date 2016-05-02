@@ -41,10 +41,10 @@ export var ChartPanel = React.createClass({
     var chartClassName = 'chart-hidden chart-panel col-sm-offset-1 '
     var sectorClassName = 'sector-title '
 
-    var chartWidthClass = 'col-width-sm-11'
+    var chartWidthClass = 'col-sm-8'
     if (this.props.hasSector) {
-      chartWidthClass = 'col-width-sm-5'
-      sectorClassName += 'col-width-sm-5'
+      chartWidthClass = 'col-sm-3'
+      sectorClassName += 'col-sm-3'
     }
 
     chartClassName += chartWidthClass
@@ -53,9 +53,11 @@ export var ChartPanel = React.createClass({
       <div id={panelID} className={chartClassName}>
         <div id={chartTitleID} className={'chart-title'}></div>
         <div id={chartID} className={'chart'}>
+          <svg></svg>
         </div>
         <div id={sectorTitleID} className={sectorClassName}></div>
         <div id={sectorChartID} className={'sector-chart'}>
+          <svg></svg>
         </div>
       </div>
     )

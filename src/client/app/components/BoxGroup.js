@@ -87,7 +87,7 @@ export var BoxGroup = React.createClass({
           />
           {boxes}
         </div>
-        <div className='row-fluid row-eq-height'>
+        <div className='row'>
           {chartPanels}
         </div>
       </div>
