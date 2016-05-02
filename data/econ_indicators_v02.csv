@@ -1,5 +1,5 @@
 category,name,value,date,prev_year,change_from_prev_year,source,detail1
-Jobs,Total Jobs,"397,831","""June 2015""",,3.30%,California Employment Development Department,monthly_jobs_by_sector_june2015.csv
+Jobs,Total Jobs,"397,831","""June 2015""",,3.30%,California Employment Development Department,monthly_jobs_june2015.csv
 Jobs,Unemployment Rate,4.20%,"""March 2016""",,-1.00%,California Employment Development Department,monthly_unemployment_mar2016.csv
 Jobs,Annual Patents,9367,"""2015""",9513,-1.50%,US Patent and Trademark Office,TBD
 Talent,Labor Force,"552,300","""March 2016""",537500,2.80%,"US Census Bureau, American Community Survey 1-year Estimates",monthly_laborforce_mar2016.csv
