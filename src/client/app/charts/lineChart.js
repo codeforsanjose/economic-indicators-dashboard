@@ -34,7 +34,7 @@ export function addLineChart (inputOptions) {
       }
     })
 
-    chart.xAxis.rotateLabels(-45);
+    chart.xAxis.rotateLabels(-45)
 
     chart.lines.dispatch.on('elementClick', function (e) {
       inputOptions.chartEvents(inputOptions.xTickLabels[e[0].point.label], e[0].point.value)

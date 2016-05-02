@@ -82,7 +82,7 @@ function addChart (chartID, dataURL) {
       }
 
       if (!done) {
-        var empNum = parseInt(items[1].replace(/,/g, ''). replace(/"/g,''))
+        var empNum = parseInt(items[1].replace(/,/g, '').replace(/"/g, ''))
         dataValues.push({
           label: index,
           value: empNum
