@@ -95,25 +95,18 @@
   }
 }
 
+.intro-text-content {
+  width: 80%;
+  margin: 1%;
+  font-size: 2.0rem;
+}
+
 .data-source-description {
   background-color: $light-grey;
   font-size: 1rem;
   margin-bottom: 3rem;
   padding: 1rem;
 }
-
-.info {
-  float: left;
-  padding-bottom: .75rem;
-
-}
-
-.glyphicon {
-    position: relative;
-    top: .25rem;
-    z-index: -1;
-    color: $primary-grey-50;
-  }
 
 @media only screen
 and (min-width: 768px) {

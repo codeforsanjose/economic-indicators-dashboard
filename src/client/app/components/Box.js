@@ -1,8 +1,11 @@
 /* @flow */
+/*global $:true*/
 /*eslint no-unused-vars: [2, { "varsIgnorePattern": "Props" }]*/
-/*eslint max-len: [2, 200, 4]*/ // extend the maximum allowed characters
+/*eslint max-len: [2, 250, 4]*/ // extend the maximum allowed characters
 
 import React, { PropTypes } from 'react'
+import ReactTooltip from 'react-tooltip'
+import {showChart} from '../charts/chartUtilities'
 
 // We can use Flow (http://flowtype.org/) to type our component's props
 // and state. For convenience we've included both regular propTypes and
@@ -20,10 +23,30 @@ type Props = {
   trend: PropTypes.string,
   idName: PropTypes.string,
   date: PropTypes.string,
-  clickHandler: PropTypes.func,
   maxBoxes: PropTypes.number,
-  source: PropTypes.string
-};
+  source: PropTypes.string,
+  details: PropTypes.string
+}
+
+export function getPanelID (id) {
+  return id + '-chart-panel'
+}
+
+export function getChartID (id) {
+  return id + '-chart'
+}
+
+export function getChartTitleID (id) {
+  return id + '-chart-title'
+}
+
+export function getSectorTitleID (id) {
+  return id + '-sector-title'
+}
+
+export function getSectorID (id) {
+  return id + '-sector'
+}
 
 export var Box = React.createClass({
   propTypes: {
@@ -34,24 +57,64 @@ export var Box = React.createClass({
     trend: React.PropTypes.string,
     idName: React.PropTypes.string,
     date: React.PropTypes.string,
-    clickHandler: React.PropTypes.func,
     maxBoxes: React.PropTypes.number,
-    source: React.PropTypes.string
+    source: React.PropTypes.string,
+    details: React.PropTypes.string
   },
   renderDetailsButton () {
-    if (this.props.headline === 'Total Jobs') {
+    if (this.props.details !== undefined && this.props.details.length > 0) {
       return (
-        <div className={'dashboard-box__more-details'}><span className='dashboard-box__more-details-copy'>see more </span><span className='glyphicon glyphicon-triangle-bottom'></span></div>
+        <div className={'dashboard-box__more-details'} id={this.props.idName + '-more-details'}><span className='dashboard-box__more-details-copy'>see more </span><span className='glyphicon glyphicon-chevron-down'></span></div>
       )
     }
   },
 
   renderInfoButton () {
     var tooltipText = 'Source: ' + this.props.source
+    var tooltipID = this.props.idName + '-info-tooltip'
+
     return (
-      <div className={'dashboard-box__info'}><p className='tooltip--info' data-tooltip={tooltipText}><span className='glyphicon glyphicon-info-sign info'></span></p></div>
+      <div className='tooltip-box'>
+        <a data-tip data-for={tooltipID}> <span className='glyphicon glyphicon-info-sign info'></span></a>
+        <ReactTooltip place='top' type='dark' effect='float' id={tooltipID}>
+          <div className={'tooltip-content'}>
+            <span>{tooltipText}</span>
+          </div>
+        </ReactTooltip>
+      </div>
     )
   },
+
+  clickHandler (event) {
+    var panelID = getPanelID(event.currentTarget.id)
+    var chartID = getChartID(event.currentTarget.id)
+
+    // handle the selected panel id
+    var id = '#' + panelID
+    var $seeMoreIcon = $('#' + event.currentTarget.id).find('.dashboard-box__more-details .glyphicon')
+    if ($(id).hasClass('chart-hidden')) {
+      showChart(chartID, this.props.details)
+      $(id).slideDown()
+      // toggle see more icon direction and copy
+      $seeMoreIcon.removeClass('glyphicon-chevron-down')
+      $seeMoreIcon.addClass('glyphicon-chevron-up')
+      $seeMoreIcon.siblings('.dashboard-box__more-details-copy').text('see less')
+
+      $(id).removeClass('chart-hidden')
+      $(id).addClass('chart-visible')
+    } else {
+      $(id).slideUp()
+
+      // toggle see more icon direction copy
+      $seeMoreIcon.removeClass('glyphicon-chevron-up')
+      $seeMoreIcon.addClass('glyphicon-chevron-down')
+      $seeMoreIcon.siblings('.dashboard-box__more-details-copy').text('see more')
+
+      $(id).removeClass('chart-visible')
+      $(id).addClass('chart-hidden')
+    }
+  },
+
   render: function () {
     var boxType = this.props.boxType
     var headline = this.props.headline
@@ -89,7 +152,7 @@ export var Box = React.createClass({
 
     return (
       <div className={boxType + boxClassNames}>
-        <div id={idName} onClick={this.props.clickHandler}>
+        <div id={idName} onClick={this.clickHandler}>
           <div className={'headlineBox-' + boxType + ' dashboard-headline'}>
             {headline}
           </div>

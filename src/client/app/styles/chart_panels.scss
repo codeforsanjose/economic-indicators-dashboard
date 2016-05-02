@@ -1,29 +1,33 @@
 
-.jobs-chart-panel {
+.chart-panel {
   margin-bottom: 10px;
   background-color: white;
   border-radius: 10px;
-  display: none;
+  display:none;
 }
 
-#unemp-panel {
-  text-align: center;
+.chart-hidden {
+  visibility: hidden
 }
 
-#jobs-panel {
-  text-align: center;
+.chart-shown {
+  visiblity: visible
 }
 
-#jobs-chart {
-  height: 300px;
+.chart {
+  
+
 }
 
-#sector-chart {
-  height:500px;
+.chart-title {
+  
 }
 
-.jobs-plot {
-  padding-left: 35px;
+.sector-panel {
+  
 }
 
+.sector-title {
+  
+}
 

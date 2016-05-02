@@ -4,9 +4,9 @@ import {addLineChart} from './lineChart'
 import {addBarChart} from './barChart'
 // import {addScatterChart} from './scatterChart'
 
-import {unemploymentDataURL, sectorDataURL} from '../config/dataURLs'
+import {rootDataURL} from '../config/dataURLs'
 
-function addJobsChart (chartID) {
+function addChart (chartID, dataURL) {
   function processSectorResults (result, year) {
     var dataValues = []
 
@@ -112,18 +112,13 @@ function addJobsChart (chartID) {
 
     addLineChart(inputParams)
   }
-
-  $.get(unemploymentDataURL, function (result) {
+  $.get(dataURL, function (result) {
+    console.log(result)
     processResults(result)
   })
 }
 
-export function showChart (chartID) {
-  switch (chartID) {
-    case 'unemp-chart':
-      break
-    case 'jobs-chart':
-      addJobsChart(chartID)
-      break
-  }
+export function showChart (chartID, fileName) {
+  var dataURL = rootDataURL + '/' + fileName
+  addChart(chartID, dataURL)
 }

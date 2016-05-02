@@ -1,45 +1,23 @@
-/* Copied from http://codepen.io/mildrenben/pen/rVBrpK */
 
+.tooltip-box {
 
-$cubic: cubic-bezier(.64,.09,.08,1);
-
-[class^="tooltip"] {
-  position: relative;
-  &:after {
-    opacity: 0;
-    visibility: hidden;
-    position: absolute;
-    content: attr(data-tooltip);
-    padding: 6px 10px;
-    top: 1.4em;
-    left: 50%;
-    transform: translateX(-50%) translateY(-2px);
-    background: grey;
-    color: white;
-    white-space: nowrap;
-    z-index: 2;
-    border-radius: 2px;
-    transition: opacity 0.2s $cubic, transform 0.2s $cubic;
-  }
-  &:hover {
-    &:after {
-      display: block;
-      opacity: 1;
-      visibility: visible;
-      transform: translateX(-50%) translateY(0);
-    }
+  .glyphicon {
+    position: relative;
+    top: .25rem;
+    z-index: -1;
+    color: $primary-grey-50;
   }
 }
 
-.tooltip--info {
-   &:after {
-    top: -4px;
-    left: -5%;
-    transform: translateX(12%) translateY(0);
-  }
-  &:hover {
-    &:after {
-      transform: translateX(10%) translateY(0);
-    }
-  }
+.tooltip-content {
+  
+
 }
+
+
+.info {
+  float: left;
+  padding-bottom: .75rem;
+}
+
+
