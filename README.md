@@ -22,3 +22,4 @@
 * The values in the economic indicators file is all treated as string text
 * The values in the data files for the charts are treated as numbers.  Currently commas in the values results in parsing errors.
 * If an indicator has two chart data sets, list the file names in separate columns.
+* Needed to replace newlines in data files to parse correctly.
