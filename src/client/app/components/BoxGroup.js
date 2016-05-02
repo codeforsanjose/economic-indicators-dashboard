@@ -51,6 +51,7 @@ export var BoxGroup = React.createClass({
           details={item.detail1}
           maxBoxes={this.props.maxBoxes}
           source={item.source}
+          sector={item.sector}
         />
       )
     })
@@ -63,6 +64,10 @@ export var BoxGroup = React.createClass({
         var chartTitleID = getChartTitleID(item.id)
         var sectorTitleID = getSectorTitleID(item.id)
         var uuid = generateUUID()
+        var hasSector = false
+        if (item.sector !== undefined && item.sector.length > 0) {
+          hasSector = true
+        }
 
         return (
           <ChartPanel
@@ -72,7 +77,7 @@ export var BoxGroup = React.createClass({
             chartID={chartID}
             sectorTitleID={sectorTitleID}
             sectorChartID={sectorChartID}
-            hasSector={false}
+            hasSector={hasSector}
           />
         )
       }

@@ -6,59 +6,70 @@ import {addBarChart} from './barChart'
 
 import {rootDataURL} from '../config/dataURLs'
 
-function addChart (chartID, dataURL) {
-  function processSectorResults (result, year) {
-    var dataValues = []
+function addChart (chartID, dataURL, sectorID, sectorURL, sectorTitleID) {
+  var sectorResults
+
+  function processSectorResults (result) {
+    sectorResults = {}
 
     var values = result.split('\n')
-    values.shift() // ignore the header
 
-    values.map(function (item) {
-      var items = item.split(',')
-      var test = items[0].replace(/,/g, '')
-      test = test.trim()
+    var cols = values[0].split(',')
+    var numCols = cols.length
 
-      if (test.length > 0) {
-        var jobNum = parseInt(items[1].replace(/,/g, ''))
-        dataValues.push({
-          label: test,
-          value: jobNum
-        })
+    var temp = []
+
+    for (var j = 0; j < values.length; j++) {
+      temp.push(values[j].split(','))
+    }
+
+    for (var i = 1; i < numCols; i++) {
+      var dataValues = []
+
+      for (var k = 1; k < values.length; k++) {
+        if (temp[k][0].trim().length > 0) {
+          dataValues.push({
+            label: temp[k][0],
+            value: parseInt(temp[k][i])
+          })
+        }
       }
-    })
 
+      sectorResults[cols[i]] = dataValues
+    }
+  }
+
+  function displaySectorResults (label, sectorTitleID) {
     var chartData = []
 
     chartData.push({
-      key: 'Jobs By Sector - ' + year,
-      values: dataValues
+      key: label,
+      values: sectorResults[label]
     })
 
     var inputParams = {
       yAxisLabel: '',
       xAxisLabel: '',
       data: chartData,
-      id: 'sector-chart'
+      id: sectorID,
+      title: label
     }
 
-    // Add title
+    var id = '#' + sectorTitleID
 
-    var title = 'Jobs by Sector - ' + year
-    document.getElementById('sector-title').innerHTML = title
+    $(id).text(label)
     addBarChart(inputParams)
   }
 
   function handleChartEvents (label, value) {
-    console.log('(' + label + ') , (' + value + ')')
-    var sectorDataURL
-
-    var labelArray = label.split('-')
-    var year = '20' + labelArray[1]
-    var url = sectorDataURL + year + '.csv'
-    console.log(url)
-    $.get(url, function (result) {
-      processSectorResults(result, year)
-    })
+    if (sectorResults === undefined) {
+      $.get(sectorURL, function (result) {
+        processSectorResults(result)
+        displaySectorResults(label, sectorTitleID)
+      })
+    } else {
+      displaySectorResults(label, sectorTitleID)
+    }
   }
 
   function processResults (result) {
@@ -121,7 +132,8 @@ function addChart (chartID, dataURL) {
   })
 }
 
-export function showChart (chartID, fileName) {
+export function showChart (chartID, fileName, sectorID, sectorFile, sectorTitleID) {
   var dataURL = rootDataURL + '/' + fileName
-  addChart(chartID, dataURL)
+  var sectorDataURL = rootDataURL + '/' + sectorFile
+  addChart(chartID, dataURL, sectorID, sectorDataURL, sectorTitleID)
 }

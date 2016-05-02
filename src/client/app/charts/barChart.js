@@ -16,6 +16,19 @@ export function addBarChart (inputOptions) {
 
     chart.rotateLabels(-45)
 
+    var maxY = 0
+
+    for (var i = 0; i < inputOptions.data[0].values.length; i++) {
+      var newY = inputOptions.data[0].values[i].value
+
+      if (newY > maxY) {
+        maxY = newY
+      }
+    }
+
+    chart.forceY([0, maxY + (maxY * 0.1)])
+    chart.yAxis.scale().domain([0, maxY + (maxY * 0.1)])
+
     d3.select('#' + inputOptions.id + ' svg')
       .datum(inputOptions.data)
       .call(chart)
