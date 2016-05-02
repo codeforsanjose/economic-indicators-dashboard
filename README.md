@@ -3,6 +3,9 @@
 1. Add the latest indicators.csv file to the data folder
 2. Change the name in the file data/latest_indicators.csv to be the name of the indicators file uploaded in step 1.
 
+###To update the intro text
+1. Edit the data/introText.txt file
+
 ####Notes
 
 * Any changes to the indicator headings will require corresponding changes to the code (e.g category, name, value, etc.)
@@ -14,3 +17,8 @@
 * It may take a few minutes before the new dashboard reflects any data changes as Github refresh is not always immediate.  If after five minutes, the dashboard does not reflect the latest changes, try the following:
   * Verify that the latest_indicators.csv was updated correctly. 
   * Using the developer tools, see if there were any errors.
+* Drill down data
+ * The labels should match between the related data sets
+* The values in the economic indicators file is all treated as string text
+* The values in the data files for the charts are treated as numbers.  Currently commas in the values results in parsing errors.
+* If an indicator has two chart data sets, list the file names in separate columns.
