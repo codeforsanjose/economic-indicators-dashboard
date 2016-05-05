@@ -73,21 +73,17 @@
 }
 
 .dashboard-box__more-details {
-  /* background-color: $light-grey; */
-  /* border: 1px solid $primary-grey-25; */
-  /* border-radius: 3px; */
   bottom: .35rem;
   color: $primary-grey;
   float: right;
-  font-size: 1rem;
-  font-family: 'Bell Gothic W01 Bold 691903';
+  font-size: 1.1rem;
   position: absolute;
   padding: .15rem .75rem;
   right: .20rem;
   z-index: -1;
 
   .glyphicon {
-    color: $primary-grey;
+    color: $primary-grey-70;
     position: relative;
     right: -.25rem;
     top: .25rem;
