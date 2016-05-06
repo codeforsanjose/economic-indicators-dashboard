@@ -73,7 +73,9 @@ function addChart (chartID, dataURL, sectorID, sectorURL, sectorTitleID) {
   }
 
   function processResults (result) {
-    var values = result.split('\r\n')
+    // var values = result.split('\r\n')
+    var values = result.replace(/(\r\n|\n|\r)/gm,"~foo~").split('~foo~')
+
     var dataValues = []
     var xTickLabels = []
 

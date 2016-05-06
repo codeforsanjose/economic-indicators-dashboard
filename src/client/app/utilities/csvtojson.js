@@ -42,7 +42,8 @@ export function convertIndicatorsToJSON (csvData) {
     var indicatorItem = convertRow(row, indicatorSet[0])
 
     if (indicatorItem.data['name'] !== undefined) {
-      indicatorItem.data['id'] = indicatorItem.data['name'].toLowerCase().replace(/ /g, '-')
+      indicatorItem.data['id'] = indicatorItem.data['name'].toLowerCase().replace(/[`~!@#$%^&*()_|+\-=?;:'",.<>\{\}\[\]\\\/ ]/gi, '-')
+      console.log(indicatorItem.data['id'])
     }
 
     if (indicatorsJSON.hasOwnProperty(indicatorItem.key)) {
