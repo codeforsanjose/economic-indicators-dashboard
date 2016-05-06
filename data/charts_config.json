@@ -1,54 +1,49 @@
 {
+	"Jobs": {
+		"Total Jobs": {
+			"detail1": {
+				"title": "San Jose Employment Over Time",
+				"plotstyle": "line",
+				"y-title": "jobs",
+				"y-min": 300000,
+				"y-precision": 0,
+				"legend": "no"
+			},
+			"detail2": {
+				"plotstyle": "horizontal-bar-chart",
+				"title": "San Jose Jobs by Sector",
+				"x-title": "Number of jobs",
+				"x-max": 80000,
+				"x-precision": 0
 
-
- "Jobs" : {
-    "Total Jobs": {
-      "detail1": {
-      "title": "San Jose Employment Over Time",
-      "plotstyle": "line",
-      "y-title": "jobs",
-      "y-min":300000,
-      "y-precision": 0,
-      "legend": "no"       
-    },
-    
-      "detail2": {
-      "plotstyle": "horizontal-bar-chart",
-      "title": "San Jose Jobs by Sector",
-      "x-title": "Number of jobs",
-      "x-max":80000,
-      "x-precision":0
-
-    }
-  },
-    "Unemployment Rate": {
-      "detail1": {
-      "title": "San Jose Unemployment Rate Over Time",
-      "plotstyle": "line",
-      "y-title": "%",
-      "y-precision": 0.0    
-    },
-    "Labor Force": {
-      "detail1": {
-      "title": "Age Distribution of San Jose Labor Force (as of 2014)",
-      "plotstyle": "horizontal-bar-chart",
-      "x-title": "number in labor force",
-      "x-precision": 0,  
-      "y-title": "age"
-      }
-    },
-
-
-
-
- "Talent" : {
-    "Population with Bachelor's Degree": {
-      "detail1": {
-      "title": "Educational Attainment of San Jose Residents Over 25",
-      "plotstyle": "horizontal-bar-chart",
-      "x-title": "Number of residents",
-      "y-precision": 0
-      }
-    }
-  }
+			}
+		},
+		"Unemployment Rate": {
+			"detail1": {
+				"title": "San Jose Unemployment Rate Over Time",
+				"plotstyle": "line",
+				"y-title": "%",
+				"y-precision": 0.0
+			}
+		},
+		"Labor Force": {
+			"detail1": {
+				"title": "Age Distribution of San Jose Labor Force (as of 2014)",
+				"plotstyle": "horizontal-bar-chart",
+				"x-title": "number in labor force",
+				"x-precision": 0,
+				"y-title": "age"
+			}
+		}
+	},
+	"Talent": {
+		"Population with Bachelor's Degree": {
+			"detail1": {
+				"title": "Educational Attainment of San Jose Residents Over 25",
+				"plotstyle": "horizontal-bar-chart",
+				"x-title": "Number of residents",
+				"y-precision": 0
+			}
+		}
+	}
 }
