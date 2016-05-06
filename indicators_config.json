@@ -1,0 +1,18 @@
+{
+
+  "Jobs" : {
+    "Total Jobs": {
+      "detail1": {
+      "plotstyle": "line",
+      "max_y": 100000,
+      "precision": 0,
+      "title": "Total Jobs"
+    
+    },
+    
+   "detail2": {
+      "plotstyle": "horizontal",
+      "title": "Sector - "
+    }
+  },
+}
