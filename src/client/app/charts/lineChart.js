@@ -21,9 +21,15 @@ export function addLineChart (inputOptions) {
     chart.xAxis
       .axisLabel(inputOptions.xAxisLabel)
 
-    chart.yAxis
-      .tickFormat(d3.format(',.1f'))
-      .axisLabel(inputOptions.yAxisLabel)
+    if (inputOptions.maxY < 100) {
+      chart.yAxis
+        .tickFormat(d3.format(',.1f'))
+        .axisLabel(inputOptions.yAxisLabel)
+    } else {
+      chart.yAxis
+        .tickFormat(d3.format(',.0d'))
+        .axisLabel(inputOptions.yAxisLabel)
+    }
 
     chart.forceY([0, inputOptions.maxY + (inputOptions.maxY * 0.1)])
     chart.yAxis.scale().domain([0, inputOptions.maxY + (inputOptions.maxY * 0.1)])
@@ -37,12 +43,21 @@ export function addLineChart (inputOptions) {
     chart.xAxis.rotateLabels(-45)
 
     chart.lines.dispatch.on('elementClick', function (e) {
+      console.log('label = ' + e[0].point.label)
+      console.log('value = ' + e[0].point.value)
       inputOptions.chartEvents(inputOptions.xTickLabels[e[0].point.label], e[0].point.value)
+      chart.lines.clearHighlights()
+      chart.lines.highlightPoint(inputOptions.xTickLabels[e[0].point.label], e[0].point.value, true)
     })
+
+    // chart.interactiveLayer.dispatch.on('elementMouseout.name', function (e) {
+    // })
 
     d3.select('#' + inputOptions.id + ' svg')
       .datum(inputOptions.data)
       .call(chart)
+
+    d3.selectAll('.nv-axisMax-y').remove()
 
     nv.utils.windowResize(chart.update)
 

@@ -2,32 +2,36 @@
 
 export function addBarChart (inputOptions) {
   nv.addGraph(function () {
-    var chart = nv.models.discreteBarChart()
-      .margin({top: 50, right: 20, bottom: 150, left: 120})
+    var chart = nv.models.multiBarHorizontalChart()
+      .margin({top: 50, right: 40, bottom: 150, left: 200})
       .x(function (d) { return d.label })    // Specify the data accessors.
       .y(function (d) { return d.value })
+      .showControls(false)
 
     chart.xAxis
       .axisLabel(inputOptions.xAxisLabel)
 
-    chart.yAxis
-      .tickFormat(d3.format(',.1f'))
-      .axisLabel(inputOptions.yAxisLabel)
+    var maxY = 100000
 
-    chart.rotateLabels(-45)
-
-    var maxY = 0
-
-    for (var i = 0; i < inputOptions.data[0].values.length; i++) {
-      var newY = inputOptions.data[0].values[i].value
-
-      if (newY > maxY) {
-        maxY = newY
-      }
+    if (maxY < 100) {
+      chart.yAxis
+        .tickFormat(d3.format(',.1f'))
+        .axisLabel(inputOptions.yAxisLabel)
+    } else {
+      chart.yAxis
+        .tickFormat(d3.format(',.0d'))
+        .axisLabel(inputOptions.yAxisLabel)
     }
 
-    chart.forceY([0, maxY + (maxY * 0.1)])
-    chart.yAxis.scale().domain([0, maxY + (maxY * 0.1)])
+    // chart.rotateLabels(-45)
+
+    chart.barColor(function (d, i) {
+      var colors = d3.scale.category20().range()
+      return colors[i % colors.length - 1]
+    })
+
+    chart.forceY([0, maxY])
+    chart.yAxis.scale().domain([0, maxY])
 
     d3.select('#' + inputOptions.id + ' svg')
       .datum(inputOptions.data)

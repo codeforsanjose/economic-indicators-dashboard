@@ -108,6 +108,10 @@
   padding: 1rem;
 }
 
+.dashboard-label {
+  z-index: -1;
+}
+
 @media only screen
 and (min-width: 768px) {
   .dashboardBox {

@@ -78,7 +78,7 @@ export var Box = React.createClass({
     return (
       <div className='tooltip-box'>
         <a data-tip data-for={tooltipID}> <span className='glyphicon glyphicon-info-sign info'></span></a>
-        <ReactTooltip place='top' type='dark' effect='float' id={tooltipID}>
+        <ReactTooltip place='right' type='dark' effect='solid' data-class={'info-tooltip'} id={tooltipID}>
           <div className={'tooltip-content'}>
             <span>{tooltipText}</span>
           </div>

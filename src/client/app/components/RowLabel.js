@@ -28,7 +28,7 @@ export var RowLabel = React.createClass({
 
     return (
       <div className='col-xs-12 col-sm-1'>
-        <div className={labelClass + ' dashboard-label'}>
+        <div className={labelClass + ' dashboard-label dashboard-label'}>
           <div className='image-holder'>
             <div className={labelClass + '-overlay label-overlay'}></div>
             <div className='title'>

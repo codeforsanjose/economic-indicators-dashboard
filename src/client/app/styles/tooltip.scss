@@ -4,9 +4,12 @@
   .glyphicon {
     position: relative;
     top: .25rem;
-    z-index: -1;
     color: $primary-grey-50;
   }
+}
+
+.info-tooltip {
+  z-index: 20 !important;
 }
 
 .tooltip-content {
