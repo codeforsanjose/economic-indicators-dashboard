@@ -1,0 +1,15 @@
+category,name,value,date,prev_year,change_from_prev_year,source,detail1,sector
+Jobs,Total Jobs,"397,831",June 2015,,3.3%,California Employment Development Department,monthly_jobs_june2015.csv,monthly_jobs_by_sector_june2015_v02.csv
+Jobs,Unemployment Rate,4.2%,March 2016,5.2%,-1.0%,California Employment Development Department,monthly_unemployment_march2016.csv
+Jobs,Labor Force,"552300",March 2016,537500,2.8%,"US Census Bureau American Community Survey 1-year Estimates,monthly_laborforce_march2016.csv
+Talent,Population with Bachelor's Degree ,40%,2014,,TBD,"US Census Bureau, American Community Survey 1-year Estimates",edu_attainment_2014.csv
+Talent,Foreign Born Population,40%,2014,38%,1.7%,"US Census Bureau, American Community Survey 1-year Estimates",
+Talent,Tech Worker Residents,73200,2014,62200,11000,"US Census Bureau, American Community Survey 1-year Estimates",TBD
+Real Estate,Office Vacancy,11.3%,Q1 2016,,TBD,Colliers,TBD
+Real Estate,R&D Vacancy,14.0%,Q1 2016,,TBD,CBRE MarketView,TBD
+Real Estate,Industrial Vacancy,2.0%,Q1 2016,,TBD,CBRE MarketView,TBD
+Housing,Average Apartment Rent,$2436,Q4 2015,$2227,9%,realAnswers,TBD
+Housing,Apartment Vacancy Rate,5.4%,Q4 2015,3.3%,-0.9%,realAnswers,TBD
+Housing,Median Sales Price - Single Family Home," $911,000 ",March 2016,$801000,14%,Santa Clara County Association of Realtors,TBD
+Jobs,Number of Businesses,32188,June 2015,,4.7%,California Employment Development Department,businesses_by_size_june2015.csv
+Innovation,Annual Patents,9367,2015,9513,-1.5%,US Patent and Trademark Office,TBD
