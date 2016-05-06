@@ -1,3 +1,5 @@
+/*eslint max-len: [2, 200, 4]*/ // extend the maximum allowed characters
+
 import Papa from 'papaparse'
 import {dataTags} from '../config/constants'
 

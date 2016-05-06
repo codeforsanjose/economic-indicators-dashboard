@@ -51,7 +51,7 @@ export var BoxGroup = React.createClass({
           details={item.detail1}
           maxBoxes={this.props.maxBoxes}
           source={item.source}
-          sector={item.sector}
+          sector={item.detail2}
         />
       )
     })
