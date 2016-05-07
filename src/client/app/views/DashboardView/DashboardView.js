@@ -130,7 +130,7 @@ export default class DashboardView extends React.Component {
         <div>
           <footer className='econ-footer'>
             <div className='container'>
-              <span className='footer-right' id='footer-right-content'>{this.renderFooterRight()}</span>
+              <span className='footer-subtext' id='footer-right-content'>{this.renderFooterRight()}</span>
             </div>
           </footer>
         </div>
