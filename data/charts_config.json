@@ -6,6 +6,7 @@
 				"plotstyle": "line",
 				"y-title": "jobs",
 				"y-min": 300000,
+				"y-max": 500000,
 				"y-precision": 0,
 				"legend": "no"
 			},
