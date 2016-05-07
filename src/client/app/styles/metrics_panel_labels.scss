@@ -15,8 +15,14 @@
 
 .image-holder {
   background: url(http://sjeconomy.com/wp-content/uploads/highlight-example.png);
-  overflow: hidden;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+
+  background-repeat: no-repeat;
+  background-size: cover;
   box-sizing: border-box;
+  overflow: hidden;
   z-index: 99;
 }
 
@@ -70,9 +76,8 @@
 .dashboard-label {
   font-size: 150%;
   font-weight: bold;
-  margin-bottom: 1rem;
   min-height: 100px;
-  padding: .5rem;
+  padding: 0 .35rem;
   text-align: right;
 }
 
@@ -93,13 +98,28 @@ and (min-width: 768px) {
 
   .real-estate, .jobs {
     .title h4 {
-      margin: 5.5rem 0;
+      margin: 6.5rem 0;
     }
   }
 
-  .image-holder,
+  .talent {
+    .title h4 {
+      margin: 8.25rem 0;
+    }
+  }
+
+  .housing {
+    .title h4 {
+      margin: 9rem 0;
+    }
+  }
+
+  .image-holder {
+    height: 17.75rem;
+  }
+
   .label-overlay {
-    height: 16rem;
+    height: 18rem;
   }
 }
 
