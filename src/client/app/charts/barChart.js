@@ -36,6 +36,11 @@ export function addBarChart (inputOptions, config, title) {
     chart.forceY([0, inputOptions.yMax])
     chart.yAxis.scale().domain([0, inputOptions.yMax])
 
+    if (config['x-max']) {
+      chart.forceY([0, config['x-max']])
+      chart.yAxis.scale().domain([0, config['x-max']])
+    }
+
     var id = '#' + inputOptions.id
 
     d3.select(id + ' svg')
