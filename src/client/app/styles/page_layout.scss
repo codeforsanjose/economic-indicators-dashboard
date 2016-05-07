@@ -25,13 +25,11 @@
 }
 
 .econ-footer {
-  background: $light-grey;
-  color: $medium-grey;
+  background: $primary-green;
+  color: $primary-white;
   font-family: "Noto Sans", "sans-serif";
+  margin-top: 2rem;
   padding: 1.5rem .25rem;
+  text-align: center;
   width: 100%;
-}
-
-.footer-right {
-  float: right;
 }
