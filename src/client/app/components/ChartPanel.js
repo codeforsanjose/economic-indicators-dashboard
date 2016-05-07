@@ -17,8 +17,9 @@ type Props = {
   chartTitleID: PropTypes.string,
   chartID: PropTypes.string,
   sectorTitleID: PropTypes.string,
-  sectorChartID: PropType.string,
-  hasSector: PropType.bool
+  sectorChartID: PropTypes.string,
+  hasSector: PropTypes.bool,
+  chartsConfig: PropTypes.object
 }
 
 export var ChartPanel = React.createClass({
@@ -28,7 +29,8 @@ export var ChartPanel = React.createClass({
     chartID: PropTypes.string,
     sectorTitleID: PropTypes.string,
     sectorChartID: PropTypes.string,
-    hasSector: PropTypes.bool
+    hasSector: PropTypes.bool,
+    chartsConfig: PropTypes.object
   },
 
   render: function () {

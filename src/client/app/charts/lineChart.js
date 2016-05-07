@@ -1,6 +1,6 @@
 /*global nv, d3:true*/
 
-export function addLineChart (inputOptions) {
+export function addLineChart (inputOptions, config) {
   nv.addGraph(function () {
     var chart = nv.models.lineChart()
       .x(function (d) {
@@ -13,26 +13,46 @@ export function addLineChart (inputOptions) {
           return d.value
         }
       })
-      .margin({top: 30, right: 10, bottom: 60, left: 90})
+      .margin({top: 30, right: 10, bottom: 60, left: 100})
       .useInteractiveGuideline(true)
       .showYAxis(true)
       .showXAxis(true)
+      .showLegend(false)
 
     chart.xAxis
       .axisLabel(inputOptions.xAxisLabel)
 
-    if (inputOptions.maxY < 100) {
+    if (inputOptions.yMax < 100) {
       chart.yAxis
         .tickFormat(d3.format(',.1f'))
-        .axisLabel(inputOptions.yAxisLabel)
     } else {
       chart.yAxis
         .tickFormat(d3.format(',.0d'))
-        .axisLabel(inputOptions.yAxisLabel)
     }
 
-    chart.forceY([0, inputOptions.maxY + (inputOptions.maxY * 0.1)])
-    chart.yAxis.scale().domain([0, inputOptions.maxY + (inputOptions.maxY * 0.1)])
+    chart.yAxis
+        .axisLabel(config['y-title'])
+        .axisLabelDistance(config['y-title-offset'])
+
+    chart.xAxis
+        .axisLabel(config['x-title'])
+        .axisLabelDistance(config['x-title-offset'])
+
+    var yMin = 0
+    var yMax = 100000
+
+    if (config.hasOwnProperty(['y-min'])) {
+      yMin = config['y-min']
+    }
+
+    if (config.hasOwnProperty('y-max')) {
+      yMax = config['y-max']
+    } else if (inputOptions.hasOwnProperty('yMax')) {
+      yMax = inputOptions.yMax
+    }
+
+    chart.forceY([yMin, yMax])
+    chart.yAxis.scale().domain([yMin, yMax])
 
     chart.xAxis.tickFormat(function (d, index) {
       if (d) {
@@ -50,14 +70,20 @@ export function addLineChart (inputOptions) {
       chart.lines.highlightPoint(inputOptions.xTickLabels[e[0].point.label], e[0].point.value, true)
     })
 
-    // chart.interactiveLayer.dispatch.on('elementMouseout.name', function (e) {
-    // })
+    var id = '#' + inputOptions.id
 
-    d3.select('#' + inputOptions.id + ' svg')
+    d3.select(id + ' svg')
       .datum(inputOptions.data)
       .call(chart)
 
     d3.selectAll('.nv-axisMax-y').remove()
+
+    d3.select(id + ' svg')
+      .append('text')
+      .attr('x', config['title-offset'])
+      .attr('y', 20)
+      .attr('text-anchor', 'middle')
+      .text(config['title'])
 
     nv.utils.windowResize(chart.update)
 

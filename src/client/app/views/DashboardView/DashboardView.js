@@ -105,6 +105,7 @@ export default class DashboardView extends React.Component {
             data={item}
             maxBoxes={maxBoxes}
             key={uuid}
+            chartsConfig={this.state.chartsConfig}
           />
         )
       }

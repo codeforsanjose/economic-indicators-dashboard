@@ -22,7 +22,8 @@ type Props = {
   labelClass: PropTypes.string,
   labelTitle: PropTypes.string,
   maxBoxes: PropTypes.number,
-  data: PropTypes.array
+  data: PropTypes.array,
+  chartsConfig: PropTypes.object
 }
 
 export var BoxGroup = React.createClass({
@@ -30,15 +31,29 @@ export var BoxGroup = React.createClass({
     labelClass: PropTypes.string,
     labelTitle: PropTypes.string,
     maxBoxes: PropTypes.number,
-    data: PropTypes.array
+    data: PropTypes.array,
+    chartsConfig: PropTypes.object
   },
 
   render: function () {
     var title = this.props.labelTitle
     title = title.toUpperCase()
 
+    var chartsConfig = this.props.chartsConfig
+
     var boxes = this.props.data.map((item) => {
       var uuid = generateUUID()
+
+      var chartsConfigData = {}
+
+      if (chartsConfig !== null && chartsConfig !== undefined) {
+        if (chartsConfig.hasOwnProperty(item.category)) {
+          if (chartsConfig[item.category].hasOwnProperty(item.name)) {
+            chartsConfigData = chartsConfig[item.category][item.name]
+          }
+        }
+      }
+
       return (
         <Box boxType={this.props.labelClass}
           headline={item.name}
@@ -52,6 +67,7 @@ export var BoxGroup = React.createClass({
           maxBoxes={this.props.maxBoxes}
           source={item.source}
           sector={item.detail2}
+          chartsConfig={chartsConfigData}
         />
       )
     })

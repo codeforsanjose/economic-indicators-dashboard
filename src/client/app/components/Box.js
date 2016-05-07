@@ -26,7 +26,8 @@ type Props = {
   maxBoxes: PropTypes.number,
   source: PropTypes.string,
   details: PropTypes.string,
-  sector: PropTypes.string
+  sector: PropTypes.string,
+  chartsConfig: React.PropTypes.object
 }
 
 export function getPanelID (id) {
@@ -61,8 +62,10 @@ export var Box = React.createClass({
     maxBoxes: React.PropTypes.number,
     source: React.PropTypes.string,
     details: React.PropTypes.string,
-    sector: React.PropTypes.string
+    sector: React.PropTypes.string,
+    chartsConfig: React.PropTypes.object
   },
+
   renderDetailsButton () {
     if (this.props.details !== undefined && this.props.details.length > 0) {
       return (
@@ -97,7 +100,7 @@ export var Box = React.createClass({
     var id = '#' + panelID
     var $seeMoreIcon = $('#' + event.currentTarget.id).find('.dashboard-box__more-details .glyphicon')
     if ($(id).hasClass('chart-hidden')) {
-      showChart(chartID, this.props.details, sectorChartID, this.props.sector, sectorTitleID)
+      showChart(chartID, this.props.details, sectorChartID, this.props.sector, sectorTitleID, this.props.chartsConfig)
       $(id).slideDown()
       // toggle see more icon direction and copy
       $seeMoreIcon.removeClass('glyphicon-chevron-down')

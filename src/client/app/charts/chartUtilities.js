@@ -1,36 +1,34 @@
 /*global $:true*/
 
+import Papa from 'papaparse'
+
 import {addLineChart} from './lineChart'
 import {addBarChart} from './barChart'
 // import {addScatterChart} from './scatterChart'
 
 import {rootDataURL} from '../config/dataURLs'
 
-function addChart (chartID, dataURL, sectorID, sectorURL, sectorTitleID) {
+function addChart (chartID, dataURL, sectorID, sectorURL, sectorTitleID, chartsConfig) {
   var sectorResults
 
   function processSectorResults (result) {
     sectorResults = {}
+
+    var sectorVals = Papa.parse(result)
 
     var values = result.split('\n')
 
     var cols = values[0].split(',')
     var numCols = cols.length
 
-    var temp = []
-
-    for (var j = 0; j < values.length; j++) {
-      temp.push(values[j].split(','))
-    }
-
     for (var i = 1; i < numCols; i++) {
       var dataValues = []
 
-      for (var k = 1; k < values.length; k++) {
-        if (temp[k][0].trim().length > 0) {
+      for (var k = 1; k < sectorVals.data.length; k++) {
+        if (sectorVals.data[k][0].trim().length > 0) {
           dataValues.push({
-            label: temp[k][0],
-            value: parseInt(temp[k][i])
+            label: sectorVals.data[k][0],
+            value: parseFloat(sectorVals.data[k][i])
           })
         }
       }
@@ -39,7 +37,7 @@ function addChart (chartID, dataURL, sectorID, sectorURL, sectorTitleID) {
     }
   }
 
-  function displaySectorResults (label, sectorTitleID) {
+  function displaySectorResults (label, sectorTitleID, configData) {
     var chartData = []
 
     chartData.push({
@@ -48,8 +46,6 @@ function addChart (chartID, dataURL, sectorID, sectorURL, sectorTitleID) {
     })
 
     var inputParams = {
-      yAxisLabel: '',
-      xAxisLabel: '',
       data: chartData,
       id: sectorID,
       title: label
@@ -58,17 +54,17 @@ function addChart (chartID, dataURL, sectorID, sectorURL, sectorTitleID) {
     var id = '#' + sectorTitleID
 
     $(id).text(label)
-    addBarChart(inputParams)
+    addBarChart(inputParams, configData)
   }
 
   function handleChartEvents (label, value) {
     if (sectorResults === undefined) {
       $.get(sectorURL, function (result) {
         processSectorResults(result)
-        displaySectorResults(label, sectorTitleID)
+        displaySectorResults(label, sectorTitleID, chartsConfig['detail2'])
       })
     } else {
-      displaySectorResults(label, sectorTitleID)
+      displaySectorResults(label, sectorTitleID, chartsConfig['detail2'])
     }
   }
 
@@ -84,7 +80,7 @@ function addChart (chartID, dataURL, sectorID, sectorURL, sectorTitleID) {
     values.shift() // ignore the header
     var done = false
     var index = 0
-    var maxY = 0
+    var yMax = 0
     values.map(function (item) {
       var items = item.split(',')
       var test = items[0].replace(/,/g, '')
@@ -95,17 +91,23 @@ function addChart (chartID, dataURL, sectorID, sectorURL, sectorTitleID) {
       }
 
       if (!done) {
-        var empNum = parseInt(items[1].replace(/,/g, '').replace(/"/g, ''))
+        var empNum = parseFloat(items[1].replace(/,/g, '').replace(/"/g, ''))
+
+        var labelVal = index
+        if (chartsConfig['detail1'].plotstyle === 'horizontal-bar-chart') {
+          labelVal = items[0]
+        }
+
         dataValues.push({
-          label: index,
+          label: labelVal,
           value: empNum
         })
         xTickLabels.push(test)
         index++
 
         // Track the maximum y value
-        if (empNum > maxY) {
-          maxY = empNum
+        if (empNum > yMax) {
+          yMax = empNum
         }
       }
     })
@@ -116,17 +118,24 @@ function addChart (chartID, dataURL, sectorID, sectorURL, sectorTitleID) {
       values: dataValues
     })
 
-    var inputParams = {
-      yAxisLabel: '',
-      xAxisLabel: '',
-      data: chartData,
-      id: chartID,
-      xTickLabels: xTickLabels,
-      maxY: maxY,
-      chartEvents: handleChartEvents
-    }
+    var inputParams = []
 
-    addLineChart(inputParams)
+    if (chartsConfig['detail1'].plotstyle === 'line') {
+      inputParams = {
+        data: chartData,
+        id: chartID,
+        xTickLabels: xTickLabels,
+        chartEvents: handleChartEvents,
+        yMax: yMax
+      }
+      addLineChart(inputParams, chartsConfig['detail1'])
+    } else if (chartsConfig['detail1'].plotstyle === 'horizontal-bar-chart') {
+      inputParams = {
+        data: chartData,
+        id: chartID
+      }
+      addBarChart(inputParams, chartsConfig['detail1'])
+    }
   }
 
   $.get(dataURL, function (result) {
@@ -134,8 +143,9 @@ function addChart (chartID, dataURL, sectorID, sectorURL, sectorTitleID) {
   })
 }
 
-export function showChart (chartID, fileName, sectorID, sectorFile, sectorTitleID) {
+export function showChart (chartID, fileName, sectorID, sectorFile, sectorTitleID, chartsConfig) {
   var dataURL = rootDataURL + '/' + fileName
   var sectorDataURL = rootDataURL + '/' + sectorFile
-  addChart(chartID, dataURL, sectorID, sectorDataURL, sectorTitleID)
+
+  addChart(chartID, dataURL, sectorID, sectorDataURL, sectorTitleID, chartsConfig)
 }
