@@ -76,11 +76,13 @@ export function addLineChart (inputOptions, config) {
       .datum(inputOptions.data)
       .call(chart)
 
+    var titleOffset = document.getElementById(inputOptions.id).offsetWidth / 2
+
     d3.selectAll('.nv-axisMax-y').remove()
 
     d3.select(id + ' svg')
       .append('text')
-      .attr('x', config['title-offset'])
+      .attr('x', titleOffset)
       .attr('y', 20)
       .attr('text-anchor', 'middle')
       .text(config['title'])

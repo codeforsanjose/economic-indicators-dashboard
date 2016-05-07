@@ -9,9 +9,6 @@ export function addBarChart (inputOptions, config, title) {
       .showControls(false)
       .showLegend(false)
 
-    chart.xAxis
-      .axisLabel(inputOptions.xAxisLabel)
-
     if (inputOptions.yMax < 100) {
       chart.yAxis
         .tickFormat(d3.format(',.1f'))
@@ -20,25 +17,37 @@ export function addBarChart (inputOptions, config, title) {
         .tickFormat(d3.format(',.0d'))
     }
 
+    // Set yAxis
     chart.yAxis
-        .axisLabel(config['y-title'])
-        .axisLabelDistance(config['y-title-offset'])
+        .axisLabel(config['x-title'])
+
+    var yTitleOffset = config['x-title-offset']
+
+    if (yTitleOffset) {
+      chart.yAxis.axisLabelDistance(yTitleOffset)
+    }
 
     chart.xAxis
-        .axisLabel(config['x-title'])
-        .axisLabelDistance(config['x-title-offset'])
+        .axisLabel(config['y-title'])
+
+    var xTitleOffset = config['y-title-offset']
+
+    if (xTitleOffset) {
+      chart.xAxis.axisLabelDistance(xTitleOffset)
+    }
 
     chart.barColor(function (d, i) {
       var colors = d3.scale.category20().range()
       return colors[i % colors.length - 1]
     })
 
-    chart.forceY([0, inputOptions.yMax])
-    chart.yAxis.scale().domain([0, inputOptions.yMax])
-
+    // Set max and min for the y axis
     if (config['x-max']) {
       chart.forceY([0, config['x-max']])
       chart.yAxis.scale().domain([0, config['x-max']])
+    } else {
+      chart.forceY([0, inputOptions.yMax])
+      chart.yAxis.scale().domain([0, inputOptions.yMax])
     }
 
     var id = '#' + inputOptions.id
@@ -54,14 +63,13 @@ export function addBarChart (inputOptions, config, title) {
       titleToUse = title
     }
 
-    console.log(title)
-    console.log(titleToUse)
-    console.log(inputOptions.id)
     d3.select(id + '-sector').remove()
+
+    var titleOffset = document.getElementById(inputOptions.id).offsetWidth / 2
 
     d3.select(id + ' svg')
       .append('text')
-      .attr('x', config['title-offset'])
+      .attr('x', titleOffset)
       .attr('y', 20)
       .attr('text-anchor', 'middle')
       .attr('id', inputOptions.id + '-sector')
