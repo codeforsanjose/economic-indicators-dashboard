@@ -50,6 +50,10 @@ export function getSectorID (id) {
   return id + '-sector'
 }
 
+export function getPanelSectorID (id) {
+  return id + '-sector-panel'
+}
+
 export var Box = React.createClass({
   propTypes: {
     boxType: React.PropTypes.string.isRequired,
@@ -90,35 +94,65 @@ export var Box = React.createClass({
     )
   },
 
+  toggleSectorPanel (sectorID) {
+    if ($(sectorID).hasClass('chart-hidden')) {
+      $(sectorID).slideDown()
+      $(sectorID).removeClass('chart-hidden')
+      $(sectorID).addClass('chart-visible')
+    } else {
+      $(sectorID).slideUp()
+      $(sectorID).removeClass('chart-visible')
+      $(sectorID).addClass('chart-hidden')
+    }
+  },
+
+  toggleChartPanel (show, id) {
+    if (show) {
+      $(id).slideDown()
+      $(id).removeClass('chart-hidden')
+      $(id).addClass('chart-visible')
+    } else {
+      $(id).slideUp()
+      $(id).removeClass('chart-visible')
+      $(id).addClass('chart-hidden')
+    }
+  },
+
   clickHandler (event) {
     var panelID = getPanelID(event.currentTarget.id)
     var chartID = getChartID(event.currentTarget.id)
     var sectorChartID = getSectorID(event.currentTarget.id)
     var sectorTitleID = getSectorTitleID(event.currentTarget.id)
+    var sectorPanelID = getPanelSectorID(event.currentTarget.id)
 
     // handle the selected panel id
     var id = '#' + panelID
+    var sectorID = '#' + sectorPanelID
     var $seeMoreIcon = $('#' + event.currentTarget.id).find('.dashboard-box__more-details .glyphicon')
     if ($(id).hasClass('chart-hidden')) {
       showChart(chartID, this.props.details, sectorChartID, this.props.sector, sectorTitleID, this.props.chartsConfig)
-      $(id).slideDown()
+
+      this.toggleChartPanel(true, id)
+
       // toggle see more icon direction and copy
       $seeMoreIcon.removeClass('glyphicon-chevron-down')
       $seeMoreIcon.addClass('glyphicon-chevron-up')
       $seeMoreIcon.siblings('.dashboard-box__more-details-copy').text('see less')
 
-      $(id).removeClass('chart-hidden')
-      $(id).addClass('chart-visible')
+      if (this.props.sector) {
+        this.toggleSectorPanel(sectorID)
+      }
     } else {
-      $(id).slideUp()
+      this.toggleChartPanel(false, id)
 
       // toggle see more icon direction copy
       $seeMoreIcon.removeClass('glyphicon-chevron-up')
       $seeMoreIcon.addClass('glyphicon-chevron-down')
       $seeMoreIcon.siblings('.dashboard-box__more-details-copy').text('see more')
 
-      $(id).removeClass('chart-visible')
-      $(id).addClass('chart-hidden')
+      if (this.props.sector) {
+        this.toggleSectorPanel(sectorID)
+      }
     }
   },
 

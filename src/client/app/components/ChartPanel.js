@@ -19,7 +19,8 @@ type Props = {
   sectorTitleID: PropTypes.string,
   sectorChartID: PropTypes.string,
   hasSector: PropTypes.bool,
-  chartsConfig: PropTypes.object
+  chartsConfig: PropTypes.object,
+  sectorPanelID: PropTypes.string
 }
 
 export var ChartPanel = React.createClass({
@@ -30,7 +31,8 @@ export var ChartPanel = React.createClass({
     sectorTitleID: PropTypes.string,
     sectorChartID: PropTypes.string,
     hasSector: PropTypes.bool,
-    chartsConfig: PropTypes.object
+    chartsConfig: PropTypes.object,
+    sectorPanelID: PropTypes.string
   },
 
   render: function () {
@@ -39,6 +41,7 @@ export var ChartPanel = React.createClass({
     var chartID = this.props.chartID
     var sectorTitleID = this.props.sectorTitleID
     var sectorChartID = this.props.sectorChartID
+    var sectorPanelID = this.props.sectorPanelID
 
     var chartClassName = 'chart-hidden chart-panel col-sm-offset-1 '
     var sectorClassName = 'sector-title '
@@ -52,15 +55,19 @@ export var ChartPanel = React.createClass({
     chartClassName += chartWidthClass
 
     return (
-      <div id={panelID} className={chartClassName}>
-        <div id={chartTitleID} className={'chart-title'}></div>
-        <div id={chartID} className={'chart'}>
-          <svg></svg>
+      <div>
+        <div id={panelID} className={chartClassName}>
+          <div id={chartTitleID} className={'chart-title'}></div>
+          <div id={chartID} className={'chart'}>
+            <svg></svg>
+          </div>
         </div>
-        <hr />
-        <div id={sectorTitleID} className={sectorClassName}></div>
-        <div id={sectorChartID} className={'sector-chart'}>
-          <svg></svg>
+        <div id={sectorPanelID} className={chartClassName}>
+          <hr />
+          <div id={sectorTitleID} className={sectorClassName}></div>
+          <div id={sectorChartID} className={'sector-chart'}>
+            <svg></svg>
+          </div>
         </div>
       </div>
     )

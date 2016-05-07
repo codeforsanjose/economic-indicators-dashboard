@@ -5,7 +5,7 @@
 
 import React, { PropTypes } from 'react'
 
-import {Box, getPanelID, getChartID, getChartTitleID, getSectorTitleID, getSectorID} from './Box'
+import {Box, getPanelID, getChartID, getChartTitleID, getSectorTitleID, getSectorID, getPanelSectorID} from './Box'
 import {ChartPanel} from './ChartPanel'
 import {RowLabel} from './RowLabel'
 import {generateUUID} from '../redux/utils/generateUUID'
@@ -79,6 +79,7 @@ export var BoxGroup = React.createClass({
         var sectorChartID = getSectorID(item.id)
         var chartTitleID = getChartTitleID(item.id)
         var sectorTitleID = getSectorTitleID(item.id)
+        var sectorPanelID = getPanelSectorID(item.id)
         var uuid = generateUUID()
         var hasSector = false
         if (item.sector !== undefined && item.sector.length > 0) {
@@ -94,6 +95,7 @@ export var BoxGroup = React.createClass({
             sectorTitleID={sectorTitleID}
             sectorChartID={sectorChartID}
             hasSector={hasSector}
+            sectorPanelID={sectorPanelID}
           />
         )
       }
