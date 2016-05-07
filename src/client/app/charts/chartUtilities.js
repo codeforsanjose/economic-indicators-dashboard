@@ -51,10 +51,9 @@ function addChart (chartID, dataURL, sectorID, sectorURL, sectorTitleID, chartsC
       title: label
     }
 
-    var id = '#' + sectorTitleID
+    var newTitle = configData.title + ' - ' + label
 
-    $(id).text(label)
-    addBarChart(inputParams, configData)
+    addBarChart(inputParams, configData, newTitle)
   }
 
   function handleChartEvents (label, value) {

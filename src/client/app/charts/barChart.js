@@ -1,6 +1,6 @@
 /*global nv, d3:true*/
 
-export function addBarChart (inputOptions, config) {
+export function addBarChart (inputOptions, config, title) {
   nv.addGraph(function () {
     var chart = nv.models.multiBarHorizontalChart()
       .margin({top: 50, right: 40, bottom: 50, left: 200})
@@ -42,12 +42,25 @@ export function addBarChart (inputOptions, config) {
       .datum(inputOptions.data)
       .call(chart)
 
+    // Consruct title
+    var titleToUse = config['title']
+
+    if (title) {
+      titleToUse = title
+    }
+
+    console.log(title)
+    console.log(titleToUse)
+    console.log(inputOptions.id)
+    d3.select(id + '-sector').remove()
+
     d3.select(id + ' svg')
       .append('text')
       .attr('x', config['title-offset'])
       .attr('y', 20)
       .attr('text-anchor', 'middle')
-      .text(config['title'])
+      .attr('id', inputOptions.id + '-sector')
+      .text(titleToUse)
 
     nv.utils.windowResize(chart.update)
 
