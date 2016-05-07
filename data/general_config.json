@@ -2,7 +2,11 @@
 
  "intro-text": "This dashboard provides a snapshot of San Jose's economy, including the change from the previous year. All data shown is for the City of San Jose specifically unless otherwise noted.",
 
- "indicator-file": "econ_indicators_q12016_v03.csv"
+ "indicator-file": "econ_indicators_q12016_v03.csv",
+ 
+ "footer-right-text": "/ SAN JOSE ECONOMIC INDICATORS",
+
+"header-right-text": "March 2016"
 
 }
 
