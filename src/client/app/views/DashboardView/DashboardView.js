@@ -8,7 +8,7 @@ import _ from 'lodash'
 import {BoxGroup} from '../../components/BoxGroup'
 import {generateUUID} from '../../redux/utils/generateUUID'
 
-import {rootDataURL, latestIndicatorsURL, introTextURL} from '../../config/dataURLs'
+import {rootDataURL, generalConfig, chartsConfig} from '../../config/dataURLs'
 
 import {convertIndicatorsToJSON} from '../../utilities/csvtojson'
 
@@ -23,22 +23,28 @@ import {convertIndicatorsToJSON} from '../../utilities/csvtojson'
 export default class DashboardView extends React.Component {
   // Retrieve the data for the dashboard
   componentDidMount () {
-    this.serverRequest = $.get(introTextURL, (introText) => {
+    var generalURL = rootDataURL + '/' + generalConfig
+    this.serverRequest = $.get(generalURL, (configData) => {
       this.setState({
-        introText: introText
+        generalConfig: JSON.parse(configData)
       })
-    })
 
-    // Get the talent data
-    this.serverRequest = $.get(latestIndicatorsURL, (result) => {
-      var dataURL = rootDataURL + '/' + result
+      var latestIndicatorsURL = rootDataURL + '/' + this.state.generalConfig['indicator-file']
 
-      this.serverRequest = $.get(dataURL, (csvdata) => {
+      // Get the indicator data
+      this.serverRequest = $.get(latestIndicatorsURL, (csvdata) => {
         var indicators = convertIndicatorsToJSON(csvdata)
         this.setState({
           indicators: indicators
         })
-        this.forceUpdate()
+
+        var chartURL = rootDataURL + '/' + chartsConfig
+        this.serverRequest = $.get(chartURL, (chartsConfigData) => {
+          this.setState({
+            chartsConfig: JSON.parse(chartsConfigData)
+          })
+          this.forceUpdate()
+        })
       })
     })
   }
@@ -55,20 +61,30 @@ export default class DashboardView extends React.Component {
   }
 
   renderIntroText () {
-    if (this.state.introText.length > 0) {
-      return (
-        <div className={'intro-text-content'}>{this.state.introText}</div>
-      )
+    if (this.state.generalConfig['intro-text'].length > 0) {
+      return {
+        __html: this.state.generalConfig['intro-text']
+      }
+    }
+  }
+
+  renderTitleRight () {
+    if (this.state.generalConfig['header-right-text'].length > 0) {
+      return (this.state.generalConfig['header-right-text'])
+    }
+  }
+
+  renderFooterRight () {
+    if (this.state.generalConfig['footer-right-text'].length > 0) {
+      return (this.state.generalConfig['footer-right-text'])
     }
   }
 
   render () {
     // If the data isn't defined - just show loading
     if (this.state === null ||
-        this.state.indicators.Talent === undefined ||
-        this.state.indicators.Jobs === undefined ||
-        this.state.indicators.Housing === undefined ||
-        this.state.indicators['Real Estate'] === undefined) {
+        this.state.indicators === null ||
+        this.state.indicators === undefined) {
       return (<h1>Loading data</h1>)
     }
 
@@ -95,11 +111,28 @@ export default class DashboardView extends React.Component {
     })
 
     return (
-      <div className='container-fluid'>
-        <div className='intro-text-container'>
-            {this.renderIntroText()}
+      <div>
+        <div>
+          <nav className='navbar econ-header'>
+            <div className='container-fluid'>
+              <span className='head-title'><a href='/'>SAN JOSE ECONOMIC INDICATORS</a></span>
+              <span className='nav navbar-nav navbar-right head-title-right'>
+                <span id='header-title-right-content'>{this.renderTitleRight()}</span>
+              </span>
+            </div>
+          </nav>
         </div>
-        {boxGroups}
+        <div className='container-fluid'>
+          <div className='intro-text-container' dangerouslySetInnerHTML={this.renderIntroText()} />
+            {boxGroups}
+        </div>
+        <div>
+          <footer className='econ-footer'>
+            <div className='container'>
+              <span className='footer-right' id='footer-right-content'>{this.renderFooterRight()}</span>
+            </div>
+          </footer>
+        </div>
       </div>
     )
   }
