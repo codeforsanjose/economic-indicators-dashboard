@@ -28,6 +28,7 @@ See the [wiki](https://github.com/codeforsanjose/economic-indicators-dashboard/w
   * [Minimum Viable Product](#data-sources)
   * [Stack](#stack)
    * [Getting Started](#getting-started)
+     * [Publishing the site](#publishing-the-site) 
    * [Structure](#structure)
 
 ### Goals
@@ -140,7 +141,6 @@ Ideally the indicators would be populated from the [City of San Jose's open data
 ##### Release targets
 * Share alpha version with Office of Economic Development staff in early April
 * Launch beta version to San Jose elected officials at April 25, 2016 Community and Economic Development Committee meeting 
-
 #### Longer term vision for site
 TBD
 
@@ -193,7 +193,7 @@ $ cd economic-indicators-dashboard.git
 $ npm install                   # Install Node modules listed in ./package.json (may take a while the first time)
 $ npm start                     # Compile and launch
 ```
-
+##### Publishing the Site
 To deploy to gh-pages
 
 Note:  data is temporarily hosted on gh-pages and will eventually be hosted at a location TBD
@@ -205,10 +205,12 @@ $ npm run deploy                # Generate a clean build in the dist folder
 
 # Clone the gh-pages branch into a different folder (e.g. branches folder)
 $ git clone -b gh-pages https://github.com/codeforsanjose/economic-indicators-dashboard.git 
-$ cd economic-indicators-dashboard.git   # cd into the gh-branches version of economic-indicators-dashboard
+$ cd economic-indicators-dashboard   # cd into the gh-branches version of economic-indicators-dashboard
 $ git rm *.js *.css                      # remove the previous bundles of the css and js
-# copy the bundled *.js, *.css and index.html from the dist folder to the gh-branches folder
-# edit the index.html and prepend '/economic-indicators-dashboard' to the path for the *.js and *.css 
+# copy the bundled *.js, *.css and index.html and about.html from the dist folder to the gh-branches folder
+# edit the index.html and about.html and prepend '/economic-indicators-dashboard' to the path for the *.js and *.css 
+# If the site is hosted under a different url path, substitute that for 'economic-indicators-dashboard'
+# The text at the top of the indicators page may have a link to the about.html.  This text is coming from data/general_config.json hosted on gh-pages.  The path to the about.html may also need to be updated
 # commit the changes to the gh-pages branch
 ```
 Great, now that introductions have been made here's everything in full detail:
