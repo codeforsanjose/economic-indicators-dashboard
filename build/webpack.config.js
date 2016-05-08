@@ -53,7 +53,17 @@ webpackConfig.plugins = [
     filename: 'index.html',
     inject: 'body',
     minify: {
-      collapseWhitespace: true
+      collapseWhitespace: false
+    }
+  }),
+  new HtmlWebpackPlugin({
+    template: paths.client('about.html'),
+    hash: false,
+    favicon: paths.client('static/favicon.ico'),
+    filename: 'about.html',
+    inject: 'body',
+    minify: {
+      collapseWhitespace: false
     }
   })
 ]
