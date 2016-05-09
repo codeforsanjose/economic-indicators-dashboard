@@ -1,10 +1,10 @@
 {
 
- "intro-text": "This dashboard provides a snapshot of San Jose's economy, including the change from the previous year. All data shown is for the City of San Jose specifically unless otherwise noted.<br><a href=\"about.html\">Read more</a>",
+ "intro-text": "This dashboard provides a snapshot of San Jose's economy, including the change from the previous year. Data shown is for the City of San Jose unless noted otherwise.<br><a href=\"about.html\">Read more</a>",
 
  "indicator-file": "econ_indicators_q12016_v03.csv",
  
- "footer-right-text": "A Demonstration Project of the San Jose Office of Economic Development and Code for San Jose",
+ "footer-right-text": "A Demonstration Project of Code for San Jose for the San Jose Office of Economic Development",
 
 "header-right-text": "1st Quarter March 2016"
 
