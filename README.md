@@ -200,18 +200,24 @@ Note:  data is temporarily hosted on gh-pages and will eventually be hosted at a
 
 ```shell
 # In the economic-indicators-dashboard folder, run the following
-$ npm clean                     # Remove the dist folder which contains the compiled pieces
-$ npm run deploy                # Generate a clean build in the dist folder
+$ npm clean                               # Remove the dist folder which contains the compiled pieces
+$ npm run deploy                          # Generate a clean build in the dist folder
 
 # Clone the gh-pages branch into a different folder (e.g. branches folder)
 $ git clone -b gh-pages https://github.com/codeforsanjose/economic-indicators-dashboard.git 
-$ cd economic-indicators-dashboard   # cd into the gh-branches version of economic-indicators-dashboard
-$ git rm *.js *.css                      # remove the previous bundles of the css and js
+$ cd economic-indicators-dashboard        # cd into the gh-branches version of economic-indicators-dashboard
+$ git rm *.js *.css                       # remove the previous bundles of the css and js
+
 # copy the bundled *.js, *.css and index.html and about.html from the dist folder to the gh-branches folder
-# edit the index.html and about.html and prepend '/economic-indicators-dashboard' to the path for the *.js and *.css 
-# If the site is hosted under a different url path, substitute that for 'economic-indicators-dashboard'
 # The text at the top of the indicators page may have a link to the about.html.  This text is coming from data/general_config.json hosted on gh-pages.  The path to the about.html may also need to be updated
-# commit the changes to the gh-pages branch
+
+# add, commit & push the changes to the gh-pages branch
+$ git add *.js *.css *.html                               # Add any other files that changed (e.g. new image files, etc.)
+$ git commit -m "substitute your checkin message here"    # Commit the files 
+$ git push                                                # push the files to github
+
+# Verify the site
+# In a browser window, browse to the url [http://codeforsanjose.github.io/economic-indicators-dashboard/](http://codeforsanjose.github.io/economic-indicators-dashboard)
 ```
 Great, now that introductions have been made here's everything in full detail:
 
