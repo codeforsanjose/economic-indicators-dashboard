@@ -1,0 +1,20 @@
+/* sticky footer method */
+html {
+  position: relative;
+  margin: 0;
+  padding: 0;
+  min-height: 100%;
+  box-sizing: border-box;
+}
+body {
+  /* Margin bottom by footer height */
+  font-family: "Open Sans", "sans-serif";
+  margin-bottom: 5rem;
+}
+
+.econ-footer {
+  bottom: 0;
+  height: 5rem;
+  position: absolute;
+  width: 100%;
+}
