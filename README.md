@@ -10,9 +10,9 @@ Economic Indicators Dashboard
 
 [![Stories in Ready](https://badge.waffle.io/codeforsanjose/economic-indicators-dashboard.svg?label=ready&title=Ready)](http://waffle.io/codeforsanjose/economic-indicators-dashboard)
 
-See the [wiki](https://github.com/codeforsanjose/economic-indicators-dashboard/wiki) for a more complete overview
+See the [wiki](https://github.com/codeforsanjose/economic-indicators-dashboard/wiki) for additional notes on this project. 
 
-[Initial mockup prototype](http://codeforsanjose.github.io/economic-indicators-dashboard/#/?_k=9sa7tb)
+[Initial mockup prototype](http://codeforsanjose.com/indicators)
 
 ## Table of contents
 
@@ -32,8 +32,9 @@ See the [wiki](https://github.com/codeforsanjose/economic-indicators-dashboard/w
    * [Structure](#structure)
 
 ### Goals
-1. Elected officials, policymakers, businesses, nonprofits and community members have access to accurate, recent data on San Jose economy.
-2. Reduce OED staff time spent servicing one-off data requests. 
+1. Elected officials, policymakers, businesses, nonprofits and community members have access to an "at-a-glance" snapshot of how the San Jose economy is doing. 
+2. City staff have a central, standard source of economic data for reporting and policymaking purposes. 
+3. OED staff time spend less time servicing one-off data requests. 
 
 #### How will progress toward goals be measured?
 1. Use of dashboard in discussions about San Jose economy (Committee and Council meetings, public meetings, etc)
@@ -41,12 +42,9 @@ See the [wiki](https://github.com/codeforsanjose/economic-indicators-dashboard/w
 3. Site traffic analytics
 
 #### 10 second test?  
-In 10 seconds a user should be able to get a sense of whether the SJ economy is growing, shrinking, or staying the same. 
+In 10 seconds a user should be able to get a sense of whether the SJ economy is doing well or poorly. 
 
 In 30 seconds a user should be able to find a specific statistic that he/she is looking for (or determine that it is not listed on the page). E.g. number of jobs in San Jose. 
-
-#### Does this replace/supplement an existing site?  If so, what are key improvements that are being sought?
-No
 
 #### Does this map to an existing city initiative?
 Yes, ongoing data services provided by Office of Economic Development staff. 
@@ -70,7 +68,10 @@ Yes, ongoing data services provided by Office of Economic Development staff.
 * Users of the data (e.g. journalists, analysts, researchers)
 * Data entry (back-end)
 * Developers
-* Analysts looking at visit analytics
+
+### Minimum Viable Product (MVP) description
+* Static webpage showing key numbers for current quarter and change from previous year (no interactive charts)
+* Look-and-feel is consistent with SJeconomy.com website (doesn't have to be perfect match, but passable)
 
 ### Website attributes
 |Attributes  | Required |Notes |
@@ -83,45 +84,7 @@ Yes, ongoing data services provided by Office of Economic Development staff.
 
 
 #### Related Sites
-[San Jose Office of Economic Development](http://sjeconomy.com/) - Current San Jose site done in wordpress
-
-#### Data Sources
-Each indicator should be compared to value from the prior year (Year-over-Year). Where relevant, historical graphs with data going farther back will be revealed as detail. 
-
-Here are list of indicators for our MVP.
-
-* Jobs
-   * # of Jobs
-     * Detailed line chart: Jobs over time 
-     * Detailed bar chart: Jobs by sector
-   * Unemployment Rate
-     * Detailed line chart: Unemployment over time
-   * Patents Per Year
-     * Detailed line chart: Patents per year over time 
-* Talent
-  * Labor Force
-    * Detail: Line chart showing size of labor force over time  
-    * Detail: Bar chart showing age of labor force
-  * % Pop with Bachelor's degree or Higher
-    * Detail: Bar chart showing breakout by educational level 
-  * % Pop born outside US
-    * Detail: Bar chart showing race/ethnicity and country of origin  
-* Real Estate
-  * Office Vacancy Rate 
-  * R&D Vacancy Rate
-  * Industrial Vacancy Rate
-
-Data wishlist for future versions
-* Sq.ft. and value of commercial construction within the City to date (Requires data from Planning dept)
-* Net number of businesses over 10 employees in the City? (Requires data from Finance dept)
-
-#### Integrations
-(List any existing city or external systems that should be integrated with this site.)
-Ideally the indicators would be populated from the [City of San Jose's open data portal](http://data.sanjoseca.gov/home)
-
-#### Standards
-[ISO 37120](http://www.iso.org/iso/catalogue_detail?csnumber=62436) - Not widely adopted yet.
-  * [ISO 37120 Data Portal](http://open.dataforcities.org/) - Select Data Portal menu
+[San Jose Office of Economic Development](http://sjeconomy.com/) website done in Wordpress
 
 #### Example sites
 [Denver's economic indicators](http://www.metrodenver.org/research-reports/monthly-economic-indicators/)
@@ -134,15 +97,21 @@ Ideally the indicators would be populated from the [City of San Jose's open data
 
 [Montgomery County's dashboard](https://reports.data.montgomerycountymd.gov/countystat/objective/economy)
 
-### Minimum Viable Product (MVP) description
-* Static webpage showing key numbers for current quarter and change from previous year (no interactive charts)
-* Look-and-feel is consistent with SJeconomy.com website (doesn't have to be perfect match, but passable)
 
 ##### Release targets
-* Share alpha version with Office of Economic Development staff in early April
-* Launch beta version to San Jose elected officials at April 25, 2016 Community and Economic Development Committee meeting 
+* Share alpha version with Office of Economic Development staff in April/May
+* Launch beta version to San Jose elected officials at June 27, 2016 Community and Economic Development Committee meeting 
+*
 #### Longer term vision for site
 TBD
+
+#### Integrations
+(List any existing city or external systems that should be integrated with this site.)
+Ideally the indicators would be populated from the [City of San Jose's open data portal](http://data.sanjoseca.gov/home)
+
+#### Standards
+[ISO 37120](http://www.iso.org/iso/catalogue_detail?csnumber=62436) - Not widely adopted yet.
+  * [ISO 37120 Data Portal](http://open.dataforcities.org/) - Select Data Portal menu
 
 ### Stack
 See the package.json for the full set of libraries/tools used
