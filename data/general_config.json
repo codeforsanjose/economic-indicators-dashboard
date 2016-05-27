@@ -6,7 +6,12 @@
  
  "footer-right-text": "A Demonstration Project of Code for San Jose for the San Jose Office of Economic Development",
 
-"header-right-text": "1st Quarter 2016"
+ "header-right-text": "1st Quarter 2016",
+ 
+ "indicator-guid": "ECONO-INDIC-25622",
+ "open-data-url": "http://api.data.sanjoseca.gov/api/v2/datastreams/",
+ "api-key" : "3d65a481f3bb26ec5e7f5f4756d5b86f753cd790",
+ 
 
 }
 
