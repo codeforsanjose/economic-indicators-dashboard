@@ -8,7 +8,7 @@ import _ from 'lodash'
 import {BoxGroup} from '../../components/BoxGroup'
 import {generateUUID} from '../../redux/utils/generateUUID'
 
-import {rootDataURL, generalConfig, chartsConfig} from '../../config/dataURLs'
+import {constructOpenDataURL} from '../../config/dataURLs'
 
 import {convertIndicatorsToJSON} from '../../utilities/csvtojson'
 
@@ -23,13 +23,18 @@ import {convertIndicatorsToJSON} from '../../utilities/csvtojson'
 export default class DashboardView extends React.Component {
   // Retrieve the data for the dashboard
   componentDidMount () {
-    var generalURL = rootDataURL + '/' + generalConfig
+    // var generalURL = rootDataURL + '/' + generalConfig
+    var rootDiv = document.getElementById('root')
+    var generalURL = rootDiv.getAttribute('data-config')
+
     this.serverRequest = $.get(generalURL, (configData) => {
       this.setState({
         generalConfig: JSON.parse(configData)
       })
 
-      var latestIndicatorsURL = rootDataURL + '/' + this.state.generalConfig['indicator-file']
+      var latestIndicatorsURL = constructOpenDataURL(this.state.generalConfig['open-data-url'],
+                                                      this.state.generalConfig['indicator-guid'],
+                                                      this.state.generalConfig['api-key'])
 
       // Get the indicator data
       this.serverRequest = $.get(latestIndicatorsURL, (csvdata) => {
@@ -38,7 +43,24 @@ export default class DashboardView extends React.Component {
           indicators: indicators
         })
 
-        var chartURL = rootDataURL + '/' + chartsConfig
+        _.forIn(indicators, (set) => {
+          _.forIn(set, (item) => {
+            if (item.detail1) {
+              var newDetail1 = constructOpenDataURL(this.state.generalConfig['open-data-url'],
+                                                      item.detail1,
+                                                      this.state.generalConfig['api-key'])
+              item.dataURL = newDetail1
+            }
+            if (item.detail2) {
+              var newDetail2 = constructOpenDataURL(this.state.generalConfig['open-data-url'],
+                                                      item.detail2,
+                                                      this.state.generalConfig['api-key'])
+              item.sectorDataURL = newDetail2
+            }
+          })
+        })
+
+        var chartURL = this.state.generalConfig['chart-config-file']
         this.serverRequest = $.get(chartURL, (chartsConfigData) => {
           this.setState({
             chartsConfig: JSON.parse(chartsConfigData)

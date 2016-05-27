@@ -27,6 +27,8 @@ type Props = {
   source: PropTypes.string,
   details: PropTypes.string,
   sector: PropTypes.string,
+  dataURL: PropTypes.string,
+  sectorDataURL: PropTypes.string,
   chartsConfig: React.PropTypes.object
 }
 
@@ -67,6 +69,8 @@ export var Box = React.createClass({
     source: React.PropTypes.string,
     details: React.PropTypes.string,
     sector: React.PropTypes.string,
+    dataURL: React.PropTypes.string,
+    sectorDataURL: React.PropTypes.string,
     chartsConfig: React.PropTypes.object
   },
 
@@ -130,7 +134,12 @@ export var Box = React.createClass({
     var sectorID = '#' + sectorPanelID
     var $seeMoreIcon = $('#' + event.currentTarget.id).find('.dashboard-box__more-details .glyphicon')
     if ($(id).hasClass('chart-hidden')) {
-      showChart(chartID, this.props.details, sectorChartID, this.props.sector, sectorTitleID, this.props.chartsConfig)
+      showChart(chartID,
+                this.props.dataURL,
+                sectorChartID,
+                this.props.sectorDataURL,
+                sectorTitleID,
+                this.props.chartsConfig)
 
       this.toggleChartPanel(true, id)
 

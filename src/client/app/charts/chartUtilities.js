@@ -6,8 +6,6 @@ import {addLineChart} from './lineChart'
 import {addBarChart} from './barChart'
 // import {addScatterChart} from './scatterChart'
 
-import {rootDataURL} from '../config/dataURLs'
-
 function addChart (chartID, dataURL, sectorID, sectorURL, sectorTitleID, chartsConfig) {
   var sectorResults
 
@@ -142,9 +140,9 @@ function addChart (chartID, dataURL, sectorID, sectorURL, sectorTitleID, chartsC
   })
 }
 
-export function showChart (chartID, fileName, sectorID, sectorFile, sectorTitleID, chartsConfig) {
-  var dataURL = rootDataURL + '/' + fileName
-  var sectorDataURL = rootDataURL + '/' + sectorFile
+export function showChart (chartID, dataURL, sectorID, sectorDataURL, sectorTitleID, chartsConfig) {
+  console.log(dataURL)
+  console.log(sectorDataURL)
 
   addChart(chartID, dataURL, sectorID, sectorDataURL, sectorTitleID, chartsConfig)
 }

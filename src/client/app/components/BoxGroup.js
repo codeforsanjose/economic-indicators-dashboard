@@ -64,9 +64,11 @@ export var BoxGroup = React.createClass({
           idName={item.id}
           date={item.date}
           details={item.detail1}
+          dataURL={item.dataURL}
           maxBoxes={this.props.maxBoxes}
           source={item.source}
           sector={item.detail2}
+          sectorDataURL={item.sectorDataURL}
           chartsConfig={chartsConfigData}
         />
       )

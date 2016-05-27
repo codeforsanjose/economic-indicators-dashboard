@@ -4,3 +4,8 @@
 export var rootDataURL = 'https://raw.githubusercontent.com/codeforsanjose/economic-indicators-dashboard/gh-pages/data'
 export var generalConfig = 'general_config.json'
 export var chartsConfig = 'charts_config.json'
+
+export function constructOpenDataURL (rootURL, guid, apiKey) {
+  var url = `${rootURL}/${guid}/data.csv/?auth_key=${apiKey}&limit=50`
+  return url
+}
