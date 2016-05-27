@@ -11,8 +11,7 @@
  "indicator-guid": "ECONO-INDIC-25622",
  "open-data-url": "http://api.data.sanjoseca.gov/api/v2/datastreams/",
  "api-key" : "3d65a481f3bb26ec5e7f5f4756d5b86f753cd790",
- 
-
+ "chart-config-file": "https://raw.githubusercontent.com/codeforsanjose/economic-indicators-dashboard/gh-pages/data/charts_config.json"
 }
 
 
