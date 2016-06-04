@@ -11,7 +11,8 @@ function main () {
   // Configure history for react-router
   // Use hashhistory so that it works with github pages
   const hashHistory = useRouterHistory(createHashHistory)({
-    basename: __BASENAME__
+    basename: __BASENAME__,
+    queryKey: false
   })
 
   // Create redux store and sync with react-router-redux. We have installed the
