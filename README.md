@@ -152,7 +152,15 @@ If there are any eslint errors, the build will fail.
 
 #### Getting started
 
-The project uses the [react-reduct-starter-kit](https://github.com/davezuko/react-redux-starter-kit) by [Dave Zukowski](https://github.com/davezuko)
+The project uses the [react-reduct-starter-kit](https://github.com/davezuko/react-redux-starter-kit) by [Dave Zukowski](https://github.com/davezuko).   
+
+This has been run on mac and linux oses.
+
+Prerequisites
+
+[Installer for node.js and npm ](https://nodejs.org/en/)
+* Node.js - Verified with 4.x, and 6.x - Currently node is used for the build process and development server
+* npm - node package manager.
 
 Just clone the repo and install the necessary node modules:
 
