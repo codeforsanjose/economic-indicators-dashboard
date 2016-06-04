@@ -31,7 +31,8 @@ function addChart (chartID, dataURL, sectorID, sectorURL, sectorTitleID, chartsC
         }
       }
 
-      sectorResults[cols[i]] = dataValues
+      var index = cols[i].replace(/"/g, '')
+      sectorResults[index] = dataValues
     }
   }
 
@@ -78,12 +79,14 @@ function addChart (chartID, dataURL, sectorID, sectorURL, sectorTitleID, chartsC
     var done = false
     var index = 0
     var yMax = 0
+
     values.map(function (item) {
       var items = item.split(',')
-      var test = items[0].replace(/,/g, '')
-      test = test.trim()
 
-      if (test.length === 0) {
+      var axisLabel = items[0].replace(/,/g, '')
+      axisLabel = axisLabel.trim().replace(/"/g, '')
+
+      if (axisLabel.length === 0) {
         done = true
       }
 
@@ -92,14 +95,14 @@ function addChart (chartID, dataURL, sectorID, sectorURL, sectorTitleID, chartsC
 
         var labelVal = index
         if (chartsConfig['detail1'].plotstyle === 'horizontal-bar-chart') {
-          labelVal = items[0]
+          labelVal = axisLabel
         }
 
         dataValues.push({
           label: labelVal,
           value: empNum
         })
-        xTickLabels.push(test)
+        xTickLabels.push(axisLabel)
         index++
 
         // Track the maximum y value
