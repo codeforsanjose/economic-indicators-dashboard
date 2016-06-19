@@ -120,21 +120,35 @@ function addChart (chartID, dataURL, sectorID, sectorURL, sectorTitleID, chartsC
 
     var inputParams = []
 
-    if (chartsConfig['detail1'].plotstyle === 'line') {
-      inputParams = {
-        data: chartData,
-        id: chartID,
-        xTickLabels: xTickLabels,
-        chartEvents: handleChartEvents,
-        yMax: yMax
-      }
-      addLineChart(inputParams, chartsConfig['detail1'])
-    } else if (chartsConfig['detail1'].plotstyle === 'horizontal-bar-chart') {
-      inputParams = {
-        data: chartData,
-        id: chartID
-      }
-      addBarChart(inputParams, chartsConfig['detail1'])
+    switch (chartsConfig['detail1'].plotstyle) {
+      case 'line':
+        inputParams = {
+          data: chartData,
+          id: chartID,
+          xTickLabels: xTickLabels,
+          chartEvents: handleChartEvents,
+          yMax: yMax
+        }
+        addLineChart(inputParams, chartsConfig['detail1'])
+        if (sectorURL !== null && (typeof sectorURL !== 'undefined') && sectorURL.length > 0) {
+          $.get(sectorURL, function (result) {
+            processSectorResults(result)
+            const label = xTickLabels[xTickLabels.length / 2]
+            console.log(label)
+            displaySectorResults(label, sectorTitleID, chartsConfig['detail2'])
+          })
+        }
+        break
+      case 'horizontal-bar-chart':
+        inputParams = {
+          data: chartData,
+          id: chartID
+        }
+        addBarChart(inputParams, chartsConfig['detail1'])
+        break
+      case 'doughnut':
+        // TBD
+        break
     }
   }
 
