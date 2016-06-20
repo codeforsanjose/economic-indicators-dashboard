@@ -90,7 +90,7 @@ export var Box = React.createClass({
       <div className='tooltip-box'>
         <a data-tip data-for={tooltipID}> <span className='glyphicon glyphicon-info-sign info'></span></a>
         <ReactTooltip place='right' type='info' effect='solid' className='info-tooltip' id={tooltipID}>
-          <div className={'tooltip-content'}>
+          <div className='tooltip-content'>
             <span>{tooltipText}</span>
           </div>
         </ReactTooltip>
