@@ -50,8 +50,8 @@
   /*    Chrome, Safari, Opera */
   // transform: rotate(270deg);
   color: white !important;
-  font-weight: bold;
-  font-family: Arial;
+  font-weight: normal;
+  font-family: "Bell Gothic W01 Black 691900", "Arial";
   text-align: left;
   padding: 5px;
   margin: .75rem 1rem;
@@ -59,7 +59,7 @@
   height: 100%;
   z-index: 100;
   position: relative;
-  font-size: 3.5rem;
+  font-size: 4rem;
 }
 
 .label-overlay {
