@@ -98,6 +98,47 @@ export var Box = React.createClass({
     )
   },
 
+  hideSectorPanels () {
+    const visibleElements = $.find('.sector-visible')
+    visibleElements.forEach((value) => {
+      $(value).slideUp()
+      $(value).removeClass('sector-visible')
+      $(value).addClass('sector-hidden')
+    })
+  },
+
+  resetSeeMore () {
+    const visibleElements = $.find('.dashboard-box__more-details .glyphicon')
+    visibleElements.forEach((value) => {
+      $(value).removeClass('glyphicon-chevron-up')
+      $(value).addClass('glyphicon-chevron-down')
+      $(value).siblings('.dashboard-box__more-details-copy').text('see more')
+    })
+  },
+
+  hideChartPanels () {
+    const visibleElements = $.find('.chart-visible')
+    visibleElements.forEach((value) => {
+      $(value).slideUp()
+      $(value).removeClass('chart-visible')
+      $(value).addClass('chart-hidden')
+    })
+  },
+
+  /*
+  toggleSectorPanel (sectorID) {
+    if ($(sectorID).hasClass('sector-hidden')) {
+      $(sectorID).slideDown()
+      $(sectorID).removeClass('sector-hidden')
+      $(sectorID).addClass('sector-visible')
+    } else {
+      $(sectorID).slideUp()
+      $(sectorID).removeClass('sector-visible')
+      $(sectorID).addClass('sector-hidden')
+    }
+  },
+  */
+
   toggleSectorPanel (sectorID) {
     if ($(sectorID).hasClass('chart-hidden')) {
       $(sectorID).slideDown()
@@ -133,7 +174,11 @@ export var Box = React.createClass({
     var id = '#' + panelID
     var sectorID = '#' + sectorPanelID
     var $seeMoreIcon = $('#' + event.currentTarget.id).find('.dashboard-box__more-details .glyphicon')
+
     if ($(id).hasClass('chart-hidden')) {
+      this.hideChartPanels()
+      this.hideSectorPanels()
+      this.resetSeeMore()
       showChart(chartID,
                 this.props.dataURL,
                 sectorChartID,

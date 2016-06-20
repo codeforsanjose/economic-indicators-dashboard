@@ -2,14 +2,14 @@
 .chart-panel {
   background-color: white;
   border-radius: 10px;
-  display:none;
+  display: none;
 }
 
 .chart-hidden {
   visibility: hidden
 }
 
-.chart-shown {
+.chart-visible {
   visiblity: visible
 }
 
@@ -23,7 +23,20 @@
 
 .sector-chart {
   height: 300px;
+}
 
+.sector-panel {
+  background-color: white;
+  border-radius: 10px;
+  display: none;
+}
+
+.sector-hidden {
+  visibility: hidden
+}
+
+.sector-visible {
+  visiblity: visible
 }
 
 .sector-title {
@@ -34,6 +47,5 @@
 
 .nv-axisMaxMin text {
   font-weight: 200 !important;
-  
 }
 

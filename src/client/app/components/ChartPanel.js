@@ -44,7 +44,12 @@ export var ChartPanel = React.createClass({
     var sectorPanelID = this.props.sectorPanelID
 
     var chartClassName = 'chart-hidden chart-panel col-sm-offset-1 '
-    var sectorClassName = 'sector-title '
+    // ToDo - figure out why layout is wrong when using sectorClassName
+    //        instead of chartClassName for the sector panel.  When
+    //        using sectorClassName, the sector panel appears to overlap
+    //        the chart panel, but the sector chart draws on top of the
+    //        set of boxes below the opened chart
+    var sectorClassName = 'sector-hidden sector-panel col-sm-offset-1 '
 
     var chartWidthClass = 'col-sm-8'
     if (this.props.hasSector) {
@@ -64,7 +69,7 @@ export var ChartPanel = React.createClass({
         </div>
         <div id={sectorPanelID} className={chartClassName}>
           <hr />
-          <div id={sectorTitleID} className={sectorClassName}></div>
+          <div id={sectorTitleID} className={'sector-title'}></div>
           <div id={sectorChartID} className={'sector-chart'}>
             <svg></svg>
           </div>

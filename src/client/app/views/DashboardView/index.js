@@ -1,2 +1,2 @@
-import HomeView from './DashboardView'
-export default HomeView
+import DashboardView from './DashboardView'
+export default DashboardView
