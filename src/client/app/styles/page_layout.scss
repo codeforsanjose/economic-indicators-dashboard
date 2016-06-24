@@ -16,14 +16,14 @@ code {
   background: $primary-green;
   color: white;
   font-family: "Bell Gothic W01 Bold 691903", "Noto Sans", "sans-serif";
+  font-size: 3rem;
   padding: 0.5rem .25rem;
 
   &.navbar {
     border-radius: 0;
   }
-
+ 
   .head-title {
-    font-size: 3rem;
     font-weight: normal;
   }
 
@@ -33,13 +33,25 @@ code {
 
   .head-title-right {
     margin-right: 30px;
-    margin-top: 10px;
+
+
+  }
+
+/* This is only for font styling consistent with the sjeconomy.com site */ 
+  strong {
+    font-family: "Bell Gothic W01 Black 691900", "Noto Sans", "sans-serif";
+    font-weight: normal;
   }
 
   a {
     color: white;
     text-decoration: none;
   }
+}
+
+body {
+  font-family: "Gill Sans W01 Book", "Open Sans", "sans-serif";
+  font-size: 16px;
 }
 
 .econ-footer {
@@ -51,3 +63,10 @@ code {
   text-align: center;
   width: 100%;
 }
+
+.intro-text-container
+{
+  font-family: "Bell Gothic W01 Light", "Open Sans", "sans-serif";
+  font-size: 16px;
+}
+
