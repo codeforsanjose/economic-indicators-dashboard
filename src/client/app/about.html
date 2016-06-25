@@ -10,6 +10,7 @@
     <!-- Styles -->
    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootswatch/3.3.6/journal/bootstrap.min.css"/>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/2.3.2/css/bootstrap-responsive.min.css"/>
+      <link rel="stylesheet" id="responsive-stylesheet-css" href="http://sjeconomy.com/wp-content/themes/cityofsanjose/css/fonts/fontsdotcom/demo.css" type="text/css" media="all">
     <link href='https://fonts.googleapis.com/css?family=Open+Sans:300italic,300' rel='stylesheet' type='text/css'>
   <link href='https://fonts.googleapis.com/css?family=Noto+Sans:400,700' rel='stylesheet' type='text/css'>
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
@@ -26,7 +27,7 @@
       <span class="head-title"><a href="index.html"><strong>SAN JOSE</strong> ECONOMIC INDICATORS</a></span>
 
       <span class="nav navbar-nav navbar-right head-title-right">
-        FIND YOUR <span class="outline">PLACE</span>
+        About this site
       </span>
   </div>
   
@@ -36,17 +37,33 @@
         <div class='span3'>
 
         </div>
+
         <div class='span8 about'>
-          <h2>About</h2>
-          <p>This dashboard provides an at-a-glance overview of the San Jose economy. The goal is to provide city leaders, businesses and residents with a convenient, reliable source of economic data, enabling informed discussion and decision-making.</p>
+          <p><a href="index.html">&lt&lt Back to dashboard</a></p>
+          <h2>Goal</h2>
+          <p>To provide city leaders, businesses and residents with convenient, centralized access to key data on San Jose's economy, enabling informed discussion and decision-making.</p>
+   
+
+        <h2>How to use the dashboard</h2>
+          <ul>
+            <li>Each indicator box shows the most recent data point available. The date for this data point is listed in small text below the number.
+            </li>
+            <li>Each indicator includes the change in the value over the previous year. The arrow indicators the direction of the change. 
+            </li>
+            <li>Click the 'see more' button to reveal additional charts. Click the 'see less' button to hide the chart.
+            </li>
+            <li>To see the source for each indicator, move your cursor over the information "i" symbol in the bottom left corner of each box.
+            </li>
+          </ul>
           <p>The indicators will be updated on a quarterly basis. To subscribe to announcements about data releases and new features, <a href='mailto:michelle.thong@sanjoseca.gov'>send us an email</a>.</p> 
+        <h2>Download the data</h2>
+        <p>Raw data for all the indicators can be downloaded from the City of San Jose's <a href='http://data.sanjoseca.gov/dashboards/19368/explore-san-jose/'>Open Data Portal</a>.</p>
+        <h2 id='feedback'>Help us improve the dashboard</h2>
+          <p>We are continuously improving this site. Tell us what datasets, information and other features would make this site more useful. Email <a href='mailto:michelle.thong@sanjoseca.gov'>Michelle Thong</a> in the San Jose Office of Economic Development.</p>
+         <p>If you're comfortable using Github, you can also <a href='https://github.com/codeforsanjose/economic-indicators-dashboard/issues'>report bugs and feature requests</a> on our issue tracker.
 
-        <h2 id='feedback'>Help Us Improve The Dashboard</h2>
-          <p>This site is a work in progress. We want to hear what datasets, information and other features would make this site most useful to you. Email <a href='mailto:michelle.thong@sanjoseca.gov'>Michelle Thong</a> in the San Jose Office of Economic Development to share your feedback.</p>
-         <p>If you're comfortable using Github, you can also <a href='https://github.com/codeforsanjose/economic-indicators-dashboard/issues'>report a bug or file a feature request</a> on our issue tracker.
+          <h2 id='who'>How this dashboard was made</h2>
 
-          <h2 id='who'>How This Dashboard Was Made</h2>
-          <p>This dashboard was inspired by similar sites for <a href='http://www.metrodenver.org/research-reports/monthly-economic-indicators/'>Metro Denver</a>, the <a href='http://www.sandiegobusiness.org/research/dashboard'>San Diego region</a> and <a href='http://howsbusinesschicago.org/'>Chicago</a>.
           <p>The design and implementation of the San Jose dashboard was made possible by a partnership between <a href='http://codeforsanjose.com'>Code for San Jose</a> volunteers and the <a href='http://sjeconomy.com'>San Jose Office of Economic Development</a>. The core team consisted of:
 	  <ul>
             <li>
@@ -63,14 +80,15 @@
             </li>
 
           </ul>
-          <p>The indicator data are compiled by the Office of Economic Development using public and private sources. Data sources for each indicator are revealed by positioning a cursor over the information symbol in the bottom left corner of each box.
+          <p>This dashboard was inspired by similar sites for <a href='http://www.metrodenver.org/research-reports/monthly-economic-indicators/'>Metro Denver</a>, the <a href='http://www.sandiegobusiness.org/research/dashboard'>San Diego region</a> and <a href='http://howsbusinesschicago.org/'>Chicago</a>.
+    
 
   
-          <h2 id='make'>Make Your Own Dashboard</h2>
-          <p>The San Jose Economic Indicators dashboard is an example of a civic innovation project that leverages open source code, open data and government-community partnerships.</p> 
+          <h2 id='make'>Want your own dashboard?</h2>
+          <p>The San Jose Economic Indicators dashboard is a civic innovation project that leverages open source code, open data and government-community partnerships.</p> 
 
-          <p>The code is available on <a href='https://github.com/codeforsanjose/economic-indicators-dashboard'>Github</a>, including documentation of the technologies used and how to get started. All data used for this site can be downloaded from the City of San Jose's <a href='http://data.sanjoseca.gov/dashboards/19368/explore-san-jose/'>Open Data Portal</a>.</p>
-          <p>Want your own dashboard? <a href='mailto:michelle.thong@sanjoseca.gov'>Contact us</a> if you'd like to talk about what it would take to adapt this site for your specific needs.</p>
+          <p>The code is available on <a href='https://github.com/codeforsanjose/economic-indicators-dashboard'>Github</a>.</p>
+          <p><a href='mailto:michelle.thong@sanjoseca.gov'>Contact us</a> if you'd like to talk about what it would take to adapt this site for your specific needs.</p>
 
 
           <hr>
@@ -80,7 +98,7 @@
     </div>
   <footer class='econ-footer'>
   <div class='container'>
-      <span class="footer-subtext">/ SAN JOSE OFFICE OF ECONOMIC DEVELOPMENT</span>
+      <span class="footer-subtext">Made by Code for San Jose for the San Jose Office of Economic Development</span>
   </div>
 </footer>
 </div>
