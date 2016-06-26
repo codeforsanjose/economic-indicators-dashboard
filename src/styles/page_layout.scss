@@ -15,7 +15,7 @@ code {
 .econ-header {
   background: $primary-green;
   color: white;
-  font-family: "Bell Gothic W01 Bold 691903", "Noto Sans", "sans-serif";
+  font-family: "Bell Gothic W01 Bold 691903", "Open Sans", "sans-serif";
   font-size: 3rem;
   font-weight: normal;
   padding: 0.5rem .25rem;
@@ -39,8 +39,8 @@ code {
   }
 
 /* This is only for font styling consistent with the sjeconomy.com site */ 
-  strong {
-    font-family: "Bell Gothic W01 Black 691900", "Noto Sans", "sans-serif";
+  .sjeconomy {
+    font-family: "Bell Gothic W01 Black 691900", "Open Sans", "sans-serif";
     font-weight: normal;
   }
 
@@ -53,12 +53,13 @@ code {
 body {
   font-family: "Gill Sans W01 Book", "Open Sans", "sans-serif";
   font-size: 16px;
+
 }
 
 .econ-footer {
   background: $primary-green;
   color: $primary-white;
-  font-family: "Bell Gothic W01 Bold 691903", "Noto Sans", "sans-serif";
+  font-family: "Bell Gothic W01 Bold 691903", "Open Sans", "sans-serif";
   margin-top: 2rem;
   padding: 1.5rem .25rem;
   text-align: center;
@@ -69,5 +70,10 @@ body {
 {
   font-family: "Bell Gothic W01 Light", "Open Sans", "sans-serif";
   font-size: 16px;
+
+  a {
+    color: $primary-green;
+    font-weight: 900 !important;
+  }
 }
 

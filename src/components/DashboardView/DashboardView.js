@@ -139,7 +139,7 @@ export default class DashboardView extends React.Component {
         <div>
           <nav className='navbar econ-header'>
             <div className='container-fluid'>
-              <span className='head-title'><a href='#'><strong>SAN JOSE</strong> ECONOMIC INDICATORS</a></span>
+              <span className='head-title'><span className='sjeconomy'>SJECONOMY</span> INDICATORS</span>
               <span className='nav navbar-nav navbar-right head-title-right'>
                 <span id='header-title-right-content'>{this.renderTitleRight()}</span>
               </span>
