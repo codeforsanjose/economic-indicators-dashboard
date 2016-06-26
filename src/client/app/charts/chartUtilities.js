@@ -258,12 +258,12 @@ function addChart (chartID, dataURL, sectorID, sectorURL, sectorTitleID, chartsC
         break
     }
   }
+*/
 
   $.get(dataURL, function (result) {
     processResultsMultiLines(result)
   })
 }
-*/
 
 export function showChart (chartID, dataURL, sectorID, sectorDataURL, sectorTitleID, chartsConfig) {
   console.log(dataURL)
