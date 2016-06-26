@@ -61,4 +61,51 @@
 			}
 		}
 	}
+	
+	"Housing": {
+		"Average Apartment Rent": {
+			"detail1": {
+				"title": "Average Apartment Rent by Quarter",
+				"plotstyle": "line",
+				"x-title": "quarter",
+				"y-title": "monthly rent",
+				"y-min": 0,
+				"y-max": 3000,
+				"y-precision": 0,
+				"legend": "no",
+				"title-offset": 200,
+				"y-title-offset": 30,
+				"x-title-offiset": 20
+			}
+		},
+		"Apartment Vacancy Rate": {
+			"detail1": {
+				"title": "Apartment Vacancy Rate by Quarter",
+				"plotstyle": "line",
+				"x-title": "quarter",
+				"y-title": "% vacancy",
+				"y-min": 0,
+				"y-max": 15,
+				"y-precision": 0,
+				"legend": "no",
+				"title-offset": 200,
+				"y-title-offset": 30,
+				"x-title-offiset": 20
+			}
+		},
+		"Single-Family Home Median Sales Price": {
+			"detail1": {
+				"title": "Median Sales price",
+				"plotstyle": "line",
+				"x-title": "month",
+				"y-title": "price",
+				"y-min": 0,
+				"y-max": 1000000,
+				"y-precision": 0,
+				"legend": "no",
+				"title-offset": 200,
+				"y-title-offset": 30,
+				"x-title-offiset": 20
+			}
+		}
 }
