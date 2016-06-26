@@ -8,7 +8,7 @@ import React, { PropTypes } from 'react'
 import {Box, getPanelID, getChartID, getChartTitleID, getSectorTitleID, getSectorID, getPanelSectorID} from './Box'
 import {ChartPanel} from './ChartPanel'
 import {RowLabel} from './RowLabel'
-import {generateUUID} from '../redux/utils/generateUUID'
+var shortid = require('shortid')
 import {dataTags} from '../config/constants'
 
 // We can use Flow (http://flowtype.org/) to type our component's props
@@ -42,7 +42,7 @@ export var BoxGroup = React.createClass({
     var chartsConfig = this.props.chartsConfig
 
     var boxes = this.props.data.map((item) => {
-      var uuid = generateUUID()
+      var uuid = shortid.generate()
 
       var chartsConfigData = {}
 
@@ -82,7 +82,7 @@ export var BoxGroup = React.createClass({
         var chartTitleID = getChartTitleID(item.id)
         var sectorTitleID = getSectorTitleID(item.id)
         var sectorPanelID = getPanelSectorID(item.id)
-        var uuid = generateUUID()
+        var uuid = shortid.generate()
         var hasSector = false
         if (item.sector !== undefined && item.sector.length > 0) {
           hasSector = true

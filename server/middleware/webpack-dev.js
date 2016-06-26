@@ -1,7 +1,7 @@
 import WebpackDevMiddleware from 'webpack-dev-middleware'
 import applyExpressMiddleware from '../lib/apply-express-middleware'
 import _debug from 'debug'
-import config from '../../../../config'
+import config from '../../config'
 
 const paths = config.utils_paths
 const debug = _debug('app:server:webpack-dev')
@@ -11,7 +11,7 @@ export default function (compiler, publicPath) {
 
   const middleware = WebpackDevMiddleware(compiler, {
     publicPath,
-    contentBase: paths.base(config.dir_client),
+    contentBase: paths.client(),
     hot: true,
     quiet: config.compiler_quiet,
     noInfo: config.compiler_quiet,

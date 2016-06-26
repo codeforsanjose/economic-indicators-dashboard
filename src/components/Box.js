@@ -258,10 +258,10 @@ export var Box = React.createClass({
             {date}
           </div>
           <div>
-            {footerOut} 
+            {footerOut}
           </div>
-         <div className={'dashboard-date'}>
-           from previous year
+          <div className={'dashboard-date'}>
+            from previous year
           </div>
           <div>
             {this.renderInfoButton()}

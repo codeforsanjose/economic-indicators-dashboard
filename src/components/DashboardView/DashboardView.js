@@ -4,13 +4,14 @@
 
 import React from 'react'
 import _ from 'lodash'
+var shortid = require('shortid')
 
 import {BoxGroup} from '../../components/BoxGroup'
-import {generateUUID} from '../../redux/utils/generateUUID'
 
 import {constructOpenDataURL} from '../../config/dataURLs'
-
 import {convertIndicatorsToJSON} from '../../utilities/csvtojson'
+
+import '../../styles/core.scss'
 
 // We can use Flow (http://flowtype.org/) to type our component's props
 // and state. For convenience we've included both regular propTypes and
@@ -117,7 +118,7 @@ export default class DashboardView extends React.Component {
 
     _.forIn(this.state.indicators, (item, key) => {
       if (item[0] !== undefined && item[0].category !== undefined && item[0].category.length > 0) {
-        var uuid = generateUUID()
+        var uuid = shortid.generate()
         var labelClass = item[0].category.toLowerCase().trim().replace(/ /g, '-')
         var labelTitle = item[0].category.toUpperCase()
         boxGroups.push(
