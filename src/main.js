@@ -10,9 +10,13 @@ import AppContainer from './containers/AppContainer'
 // Browser History Setup
 // Use createHashHistory instead of createBrowserHistory
 // so it will work on gh-pages
+//
+// set queryKey to false, so strange characters aren't
+// added to the url
 // ========================================================
 const hashHistory = useRouterHistory(createHashHistory)({
-  basename: __BASENAME__
+  basename: __BASENAME__,
+  queryKey: false
 })
 
 // ========================================================
