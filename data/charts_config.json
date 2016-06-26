@@ -60,7 +60,7 @@
 				"x-title-offiset": 20
 			}
 		}
-	}
+	},
 	
 	"Housing": {
 		"Average Apartment Rent": {
@@ -108,4 +108,5 @@
 				"x-title-offiset": 20
 			}
 		}
+	}
 }
