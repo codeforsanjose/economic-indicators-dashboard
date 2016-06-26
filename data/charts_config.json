@@ -28,10 +28,12 @@
 			"detail1": {
 				"title": "San Jose Unemployment Rate Over Time",
 				"plotstyle": "line",
+				"y-min": 0.0,
+				"y-max": 13.0,
 				"y-title": "%",
 				"y-precision": 0.0,
 				"title-offset": 200,
-				"y-title-offset": 30,
+				"y-title-offset": 10,
 				"x-title-offiset": 20
 			}
 		},
@@ -74,7 +76,7 @@
 				"y-precision": 0,
 				"legend": "no",
 				"title-offset": 200,
-				"y-title-offset": 30,
+				"y-title-offset": 10,
 				"x-title-offiset": 20
 			}
 		},
@@ -89,7 +91,7 @@
 				"y-precision": 0,
 				"legend": "no",
 				"title-offset": 200,
-				"y-title-offset": 30,
+				"y-title-offset": 10,
 				"x-title-offiset": 20
 			}
 		},
@@ -104,7 +106,7 @@
 				"y-precision": 0,
 				"legend": "no",
 				"title-offset": 200,
-				"y-title-offset": 30,
+				"y-title-offset": 10,
 				"x-title-offiset": 20
 			}
 		}
