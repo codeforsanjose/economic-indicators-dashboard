@@ -2,7 +2,7 @@
 .image-holder,
 .label-overlay {
  // min-width: 50px;
- height: 8rem;
+ height: 19.6rem; 
 //  max-width: 50px;
 //  max-height: 160px;
  // line-height: 23px;
@@ -52,7 +52,7 @@
   color: white !important;
   font-weight: normal;
   font-family: "Bell Gothic W01 Black 691900", "Arial";
-  text-align: left;
+  text-align: center;
   padding: 5px;
   margin: .75rem 1rem;
   width: 100%;
@@ -80,7 +80,7 @@
   font-weight: normal;
   min-height: 100px;
   padding: 0 .35rem;
-  text-align: right;
+  text-align: center;
   border-radius: 3px;
 }
 
@@ -118,11 +118,11 @@ and (min-width: 768px) {
   }
 
   .image-holder {
-    height: 17.75rem;
+    height: 19.6rem;
   }
 
   .label-overlay {
-    height: 18rem;
+    height: 19.6rem;
   }
 }
 
