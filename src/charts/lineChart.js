@@ -17,7 +17,7 @@ export function addLineChart (inputOptions, config) {
       .useInteractiveGuideline(true)
       .showYAxis(true)
       .showXAxis(true)
-      .showLegend(false)
+      .showLegend(inputOptions.showLegend)
 
     chart.xAxis
       .axisLabel(inputOptions.xAxisLabel)
