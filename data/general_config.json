@@ -1,6 +1,6 @@
 {
 
- "intro-text": "This dashboard provides a snapshot of San Jose's economy, using the latest data available for each indicator. We're constantly improving the dashboard, so <a href="http://goo.gl/forms/80TpqxEAA4ugEvkH3">give us your feedback</a>.<p><a href=\"about.html\">About the dashboard</a>",
+ "intro-text": "This dashboard provides a snapshot of San Jose's economy, using the latest data available. We're constantly improving the dashboard, so <a href=\"http://goo.gl/forms/hUMQq8apm5EJ5Ew2\">give us your feedback</a>.<p><a href=\"about.html\">About the dashboard</a>",
 
  "indicator-file": "econ_indicators_q12016_v03.csv",
  
