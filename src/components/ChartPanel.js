@@ -1,41 +1,10 @@
-/* @flow */
-
 /*eslint no-unused-vars: [2, { "varsIgnorePattern": "Props" }]*/
 /*eslint max-len: [2, 200, 4]*/ // extend the maximum allowed characters
 
 import React, { PropTypes } from 'react'
 
-// We can use Flow (http://flowtype.org/) to type our component's props
-// and state. For convenience we've included both regular propTypes and
-// Flow types, but if you want to try just using Flow you'll want to
-// disable the eslint rule `react/prop-types`.
-// NOTE: You can run `npm run flow:check` to check for any errors in your
-// code, or `npm i -g flow-bin` to have access to the binary globally.
-// Sorry Windows users :(.
-type Props = {
-  panelID: PropTypes.string,
-  chartTitleID: PropTypes.string,
-  chartID: PropTypes.string,
-  sectorTitleID: PropTypes.string,
-  sectorChartID: PropTypes.string,
-  hasSector: PropTypes.bool,
-  chartsConfig: PropTypes.object,
-  sectorPanelID: PropTypes.string
-}
-
-export var ChartPanel = React.createClass({
-  propTypes: {
-    panelID: PropTypes.string,
-    chartTitleID: PropTypes.string,
-    chartID: PropTypes.string,
-    sectorTitleID: PropTypes.string,
-    sectorChartID: PropTypes.string,
-    hasSector: PropTypes.bool,
-    chartsConfig: PropTypes.object,
-    sectorPanelID: PropTypes.string
-  },
-
-  render: function () {
+export class ChartPanel extends React.Component {
+  render () {
     var panelID = this.props.panelID
     var chartTitleID = this.props.chartTitleID
     var chartID = this.props.chartID
@@ -77,5 +46,15 @@ export var ChartPanel = React.createClass({
       </div>
     )
   }
-})
+}
 
+ChartPanel.propTypes = {
+  panelID: PropTypes.string.isRequired,
+  chartTitleID: PropTypes.string.isRequired,
+  chartID: PropTypes.string.isRequired,
+  sectorTitleID: PropTypes.string.isRequired,
+  sectorChartID: PropTypes.string.isRequired,
+  hasSector: PropTypes.bool.isRequired,
+  chartsConfig: PropTypes.object.isRequired,
+  sectorPanelID: PropTypes.string.isRequired
+}

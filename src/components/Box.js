@@ -1,216 +1,147 @@
-/* @flow */
 /*global $:true*/
 /*eslint no-unused-vars: [2, { "varsIgnorePattern": "Props" }]*/
 /*eslint max-len: [2, 250, 4]*/ // extend the maximum allowed characters
 
 import React, { PropTypes } from 'react'
 import ReactTooltip from 'react-tooltip'
-import {showChart} from '../charts/chartUtilities'
 
-// We can use Flow (http://flowtype.org/) to type our component's props
-// and state. For convenience we've included both regular propTypes and
-// Flow types, but if you want to try just using Flow you'll want to
-// disable the eslint rule `react/prop-types`.
-// NOTE: You can run `npm run flow:check` to check for any errors in your
-// code, or `npm i -g flow-bin` to have access to the binary globally.
-// Sorry Windows users :(.
-type Props = {
-  boxType: PropTypes.string,
-  headline: PropTypes.string,
-  content: PropTypes.string,
-  footer: PropTypes.string,
-  source: PropTypes.string,
-  trend: PropTypes.string,
-  idName: PropTypes.string,
-  date: PropTypes.string,
-  maxBoxes: PropTypes.number,
-  source: PropTypes.string,
-  details: PropTypes.string,
-  sector: PropTypes.string,
-  dataURL: PropTypes.string,
-  sectorDataURL: PropTypes.string,
-  chartsConfig: React.PropTypes.object
-}
+import { showChart } from '../charts/chartUtilities'
+import { chartTypes, getChartID } from '../utilities/chartIDs'
 
-export function getPanelID (id) {
-  return id + '-chart-panel'
-}
-
-export function getChartID (id) {
-  return id + '-chart'
-}
-
-export function getChartTitleID (id) {
-  return id + '-chart-title'
-}
-
-export function getSectorTitleID (id) {
-  return id + '-sector-title'
-}
-
-export function getSectorID (id) {
-  return id + '-sector'
-}
-
-export function getPanelSectorID (id) {
-  return id + '-sector-panel'
-}
-
-export var Box = React.createClass({
-  propTypes: {
-    boxType: React.PropTypes.string.isRequired,
-    headline: React.PropTypes.string,
-    content: React.PropTypes.string,
-    footer: React.PropTypes.string,
-    trend: React.PropTypes.string,
-    idName: React.PropTypes.string,
-    date: React.PropTypes.string,
-    maxBoxes: React.PropTypes.number,
-    source: React.PropTypes.string,
-    details: React.PropTypes.string,
-    sector: React.PropTypes.string,
-    dataURL: React.PropTypes.string,
-    sectorDataURL: React.PropTypes.string,
-    chartsConfig: React.PropTypes.object
-  },
-
-  renderDetailsButton () {
-    if (this.props.details !== undefined && this.props.details.length > 0) {
-      return (
-        <div className={'dashboard-box__more-details'} id={this.props.idName + '-more-details'}><span className='dashboard-box__more-details-copy'>see more </span><span className='glyphicon glyphicon-chevron-down'></span></div>
-      )
-    }
-  },
-
-  renderInfoButton () {
-    var tooltipText = 'Source: ' + this.props.source
-    var tooltipID = this.props.idName + '-info-tooltip'
-
+const renderDetailsButton = (details, idName) => {
+  if (details !== undefined && details.length > 0) {
     return (
-      <div className='tooltip-box'>
-        <a data-tip data-for={tooltipID}> <span className='glyphicon glyphicon-info-sign info'></span></a>
-        <ReactTooltip place='right' type='info' effect='solid' className='info-tooltip' id={tooltipID}>
-          <div className='tooltip-content'>
-            <span>{tooltipText}</span>
-          </div>
-        </ReactTooltip>
-      </div>
+      <div className={'dashboard-box__more-details'} id={idName + '-more-details'}><span className='dashboard-box__more-details-copy'>see more </span><span className='glyphicon glyphicon-chevron-down'></span></div>
     )
-  },
+  }
+}
 
-  hideSectorPanels () {
-    const visibleElements = $.find('.sector-visible')
-    visibleElements.forEach((value) => {
-      $(value).slideUp()
-      $(value).removeClass('sector-visible')
-      $(value).addClass('sector-hidden')
-    })
-  },
+const renderInfoButton = (source, idName) => {
+  var tooltipText = 'Source: ' + source
+  var tooltipID = idName + '-info-tooltip'
 
-  resetSeeMore () {
-    const visibleElements = $.find('.dashboard-box__more-details .glyphicon')
-    visibleElements.forEach((value) => {
-      $(value).removeClass('glyphicon-chevron-up')
-      $(value).addClass('glyphicon-chevron-down')
-      $(value).siblings('.dashboard-box__more-details-copy').text('see more')
-    })
-  },
+  return (
+    <div className='tooltip-box'>
+      <a data-tip data-for={tooltipID}> <span className='glyphicon glyphicon-info-sign info'></span></a>
+      <ReactTooltip place='right' type='info' effect='solid' className='info-tooltip' id={tooltipID}>
+        <div className='tooltip-content'>
+          <span>{tooltipText}</span>
+        </div>
+      </ReactTooltip>
+    </div>
+  )
+}
 
-  hideChartPanels () {
-    const visibleElements = $.find('.chart-visible')
-    visibleElements.forEach((value) => {
-      $(value).slideUp()
-      $(value).removeClass('chart-visible')
-      $(value).addClass('chart-hidden')
-    })
-  },
+const hideSectorPanels = () => {
+  const visibleElements = $.find('.sector-visible')
+  visibleElements.forEach((value) => {
+    $(value).slideUp()
+    $(value).removeClass('sector-visible')
+    $(value).addClass('sector-hidden')
+  })
+}
 
-  /*
-  toggleSectorPanel (sectorID) {
-    if ($(sectorID).hasClass('sector-hidden')) {
-      $(sectorID).slideDown()
-      $(sectorID).removeClass('sector-hidden')
-      $(sectorID).addClass('sector-visible')
-    } else {
-      $(sectorID).slideUp()
-      $(sectorID).removeClass('sector-visible')
-      $(sectorID).addClass('sector-hidden')
-    }
-  },
-  */
+const resetSeeMore = () => {
+  const visibleElements = $.find('.dashboard-box__more-details .glyphicon')
+  visibleElements.forEach((value) => {
+    $(value).removeClass('glyphicon-chevron-up')
+    $(value).addClass('glyphicon-chevron-down')
+    $(value).siblings('.dashboard-box__more-details-copy').text('see more')
+  })
+}
 
-  toggleSectorPanel (sectorID) {
-    if ($(sectorID).hasClass('chart-hidden')) {
-      $(sectorID).slideDown()
-      $(sectorID).removeClass('chart-hidden')
-      $(sectorID).addClass('chart-visible')
-    } else {
-      $(sectorID).slideUp()
-      $(sectorID).removeClass('chart-visible')
-      $(sectorID).addClass('chart-hidden')
-    }
-  },
+const hideChartPanels = () => {
+  const visibleElements = $.find('.chart-visible')
+  visibleElements.forEach((value) => {
+    $(value).slideUp()
+    $(value).removeClass('chart-visible')
+    $(value).addClass('chart-hidden')
+  })
+}
 
-  toggleChartPanel (show, id) {
-    if (show) {
-      $(id).slideDown()
-      $(id).removeClass('chart-hidden')
-      $(id).addClass('chart-visible')
-    } else {
-      $(id).slideUp()
-      $(id).removeClass('chart-visible')
-      $(id).addClass('chart-hidden')
-    }
+const toggleSectorPanel = (sectorID) => {
+  if ($(sectorID).hasClass('chart-hidden')) {
+    $(sectorID).slideDown()
+    $(sectorID).removeClass('chart-hidden')
+    $(sectorID).addClass('chart-visible')
+  } else {
+    $(sectorID).slideUp()
+    $(sectorID).removeClass('chart-visible')
+    $(sectorID).addClass('chart-hidden')
+  }
+}
+
+const toggleChartPanel = (show, id) => {
+  if (show) {
+    $(id).slideDown()
+    $(id).removeClass('chart-hidden')
+    $(id).addClass('chart-visible')
+  } else {
+    $(id).slideUp()
+    $(id).removeClass('chart-visible')
+    $(id).addClass('chart-hidden')
+  }
+}
+
+export const Box = React.createClass({
+  propTypes: {
+    boxType: PropTypes.string.isRequired,
+    headline: PropTypes.string.isRequired,
+    content: PropTypes.string.isRequired,
+    footer: PropTypes.string.isRequired,
+    trend: PropTypes.string.isRequired,
+    idName: PropTypes.string.isRequired,
+    date: PropTypes.string.isRequired,
+    maxBoxes: PropTypes.number.isRequired,
+    source: PropTypes.string.isRequired,
+    details: PropTypes.string,
+    sector: PropTypes.string.isRequired,
+    dataURL: PropTypes.string.isRequired,
+    sectorDataURL: PropTypes.string.isRequired,
+    chartsConfig: PropTypes.object.isRequired
   },
 
   clickHandler (event) {
-    var panelID = getPanelID(event.currentTarget.id)
-    var chartID = getChartID(event.currentTarget.id)
-    var sectorChartID = getSectorID(event.currentTarget.id)
-    var sectorTitleID = getSectorTitleID(event.currentTarget.id)
-    var sectorPanelID = getPanelSectorID(event.currentTarget.id)
-
+    var panelID = getChartID(event.currentTarget.id, chartTypes.chartPanel)
+    var chartID = getChartID(event.currentTarget.id, chartTypes.chartID)
+    var sectorChartID = getChartID(event.currentTarget.id, chartTypes.sector)
+    var sectorTitleID = getChartID(event.currentTarget.id, chartTypes.sectorTitle)
+    var sectorPanelID = getChartID(event.currentTarget.id, chartTypes.sectorPanel)
     // handle the selected panel id
     var id = '#' + panelID
     var sectorID = '#' + sectorPanelID
     var $seeMoreIcon = $('#' + event.currentTarget.id).find('.dashboard-box__more-details .glyphicon')
-
     if ($(id).hasClass('chart-hidden')) {
-      this.hideChartPanels()
-      this.hideSectorPanels()
-      this.resetSeeMore()
+      hideChartPanels()
+      hideSectorPanels()
+      resetSeeMore()
       showChart(chartID,
                 this.props.dataURL,
                 sectorChartID,
                 this.props.sectorDataURL,
                 sectorTitleID,
                 this.props.chartsConfig)
-
-      this.toggleChartPanel(true, id)
-
+      toggleChartPanel(true, id)
       // toggle see more icon direction and copy
       $seeMoreIcon.removeClass('glyphicon-chevron-down')
       $seeMoreIcon.addClass('glyphicon-chevron-up')
       $seeMoreIcon.siblings('.dashboard-box__more-details-copy').text('see less')
-
       if (this.props.sector) {
-        this.toggleSectorPanel(sectorID)
+        toggleSectorPanel(sectorID)
       }
     } else {
-      this.toggleChartPanel(false, id)
-
+      toggleChartPanel(false, id)
       // toggle see more icon direction copy
       $seeMoreIcon.removeClass('glyphicon-chevron-up')
       $seeMoreIcon.addClass('glyphicon-chevron-down')
       $seeMoreIcon.siblings('.dashboard-box__more-details-copy').text('see more')
-
       if (this.props.sector) {
-        this.toggleSectorPanel(sectorID)
+        toggleSectorPanel(sectorID)
       }
     }
   },
 
-  render: function () {
+  render () {
     var boxType = this.props.boxType
     var headline = this.props.headline
     var content = this.props.content
@@ -264,13 +195,14 @@ export var Box = React.createClass({
             from previous year
           </div>
           <div>
-            {this.renderInfoButton()}
+            {renderInfoButton(this.props.source, this.props.idName)}
           </div>
           <div>
-            {this.renderDetailsButton()}
+            {renderDetailsButton(this.props.details, this.props.idName)}
           </div>
         </div>
       </div>
     )
   }
 })
+
