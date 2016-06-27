@@ -1,10 +1,11 @@
-/* @flow */
-/*global $:true*/
 /*eslint max-len: [2, 200, 4]*/ // extend the maximum allowed characters
 
 import React from 'react'
 import _ from 'lodash'
 var shortid = require('shortid')
+
+require('es6-promise').polyfill()
+import fetch from 'isomorphic-fetch'
 
 import {BoxGroup} from '../../components/BoxGroup'
 
@@ -13,62 +14,111 @@ import {convertIndicatorsToJSON} from '../../utilities/csvtojson'
 
 import '../../styles/core.scss'
 
-// We can use Flow (http://flowtype.org/) to type our component's props
-// and state. For convenience we've included both regular propTypes and
-// Flow types, but if you want to try just using Flow you'll want to
-// disable the eslint rule `react/prop-types`.
-// NOTE: You can run `npm run flow:check` to check for any errors in your
-// code, or `npm i -g flow-bin` to have access to the binary globally.
-// Sorry Windows users :(.
+const renderIntroText = (config) => {
+  if (config['intro-text'].length > 0) {
+    return {
+      __html: config['intro-text']
+    }
+  }
+}
+
+const renderTitleRight = (config) => {
+  if (config['header-right-text'].length > 0) {
+    return (config['header-right-text'])
+  }
+}
+
+const renderFooterRight = (config) => {
+  if (config['footer-right-text'].length > 0) {
+    return (config['footer-right-text'])
+  }
+}
 
 export default class DashboardView extends React.Component {
+  processIndicators (csvdata) {
+    var indicators = convertIndicatorsToJSON(csvdata)
+    this.setState({
+      indicators: indicators
+    })
+    _.forIn(indicators, (set) => {
+      _.forIn(set, (item) => {
+        if (item.detail1) {
+          var newDetail1 = constructOpenDataURL(this.state.generalConfig['open-data-url'],
+                                                 item.detail1,
+                                                 this.state.generalConfig['api-key'])
+          item.dataURL = newDetail1
+        }
+        if (item.detail2) {
+          var newDetail2 = constructOpenDataURL(this.state.generalConfig['open-data-url'],
+                                                  item.detail2,
+                                                  this.state.generalConfig['api-key'])
+          item.sectorDataURL = newDetail2
+        }
+      })
+    })
+    this.forceUpdate()
+  }
+
+  processChartConfig (data) {
+    this.setState({
+      chartsConfig: data
+    })
+  }
+
+  processGeneralConfig (data) {
+    this.setState({
+      generalConfig: data
+    })
+
+    var latestIndicatorsURL = constructOpenDataURL(this.state.generalConfig['open-data-url'],
+                                                      this.state.generalConfig['indicator-guid'],
+                                                      this.state.generalConfig['api-key'])
+
+    fetch(latestIndicatorsURL,
+      {
+        method: 'get'
+      }
+    )
+    .then((res) => res.text())
+    .then((data) => {
+      this.processIndicators(data)
+    })
+    .catch((err) => {
+      console.log(err)
+    })
+
+    var chartURL = this.state.generalConfig['chart-config-file']
+    fetch(chartURL,
+      {
+        method: 'get'
+      }
+    )
+    .then((res) => res.json())
+    .then((data) => {
+      this.processChartConfig(data)
+    })
+    .catch((err) => {
+      console.log(err)
+    })
+  }
+
   // Retrieve the data for the dashboard
   componentDidMount () {
     // var generalURL = rootDataURL + '/' + generalConfig
     var rootDiv = document.getElementById('root')
     var generalURL = rootDiv.getAttribute('data-config')
 
-    this.serverRequest = $.get(generalURL, (configData) => {
-      this.setState({
-        generalConfig: JSON.parse(configData)
-      })
-
-      var latestIndicatorsURL = constructOpenDataURL(this.state.generalConfig['open-data-url'],
-                                                      this.state.generalConfig['indicator-guid'],
-                                                      this.state.generalConfig['api-key'])
-
-      // Get the indicator data
-      this.serverRequest = $.get(latestIndicatorsURL, (csvdata) => {
-        var indicators = convertIndicatorsToJSON(csvdata)
-        this.setState({
-          indicators: indicators
-        })
-
-        _.forIn(indicators, (set) => {
-          _.forIn(set, (item) => {
-            if (item.detail1) {
-              var newDetail1 = constructOpenDataURL(this.state.generalConfig['open-data-url'],
-                                                      item.detail1,
-                                                      this.state.generalConfig['api-key'])
-              item.dataURL = newDetail1
-            }
-            if (item.detail2) {
-              var newDetail2 = constructOpenDataURL(this.state.generalConfig['open-data-url'],
-                                                      item.detail2,
-                                                      this.state.generalConfig['api-key'])
-              item.sectorDataURL = newDetail2
-            }
-          })
-        })
-
-        var chartURL = this.state.generalConfig['chart-config-file']
-        this.serverRequest = $.get(chartURL, (chartsConfigData) => {
-          this.setState({
-            chartsConfig: JSON.parse(chartsConfigData)
-          })
-          this.forceUpdate()
-        })
-      })
+    fetch(generalURL,
+      {
+        method: 'get'
+      }
+    )
+    .then((res) => res.json())
+    .then((data) => {
+      this.processGeneralConfig(data)
+    })
+    .catch((err) => {
+      console.log(err)
     })
   }
 
@@ -79,28 +129,7 @@ export default class DashboardView extends React.Component {
     if (!this.state) {
       returnStatus = false
     }
-    console.log('shouldcomponentUpdate ' + returnStatus)
     return returnStatus
-  }
-
-  renderIntroText () {
-    if (this.state.generalConfig['intro-text'].length > 0) {
-      return {
-        __html: this.state.generalConfig['intro-text']
-      }
-    }
-  }
-
-  renderTitleRight () {
-    if (this.state.generalConfig['header-right-text'].length > 0) {
-      return (this.state.generalConfig['header-right-text'])
-    }
-  }
-
-  renderFooterRight () {
-    if (this.state.generalConfig['footer-right-text'].length > 0) {
-      return (this.state.generalConfig['footer-right-text'])
-    }
   }
 
   render () {
@@ -141,19 +170,19 @@ export default class DashboardView extends React.Component {
             <div className='container-fluid'>
               <span className='head-title'><span className='sjeconomy'>SJECONOMY</span> INDICATORS</span>
               <span className='nav navbar-nav navbar-right head-title-right'>
-                <span id='header-title-right-content'>{this.renderTitleRight()}</span>
+                <span id='header-title-right-content'>{renderTitleRight(this.state.generalConfig)}</span>
               </span>
             </div>
           </nav>
         </div>
         <div className='container-fluid'>
-          <div className='intro-text-container' dangerouslySetInnerHTML={this.renderIntroText()} />
+          <div className='intro-text-container' dangerouslySetInnerHTML={renderIntroText(this.state.generalConfig)} />
             {boxGroups}
         </div>
         <div>
           <footer className='econ-footer'>
             <div className='container'>
-              <span className='footer-subtext' id='footer-right-content'>{this.renderFooterRight()}</span>
+              <span className='footer-subtext' id='footer-right-content'>{renderFooterRight(this.state.generalConfig)}</span>
             </div>
           </footer>
         </div>

@@ -1,7 +1,7 @@
-/*global $:true*/
-
 import Papa from 'papaparse'
 import _ from 'lodash'
+require('es6-promise').polyfill()
+import fetch from 'isomorphic-fetch'
 
 import {addLineChart} from './lineChart'
 import {addBarChart} from './barChart'
@@ -58,9 +58,16 @@ function addChart (chartID, dataURL, sectorID, sectorURL, sectorTitleID, chartsC
 
   function handleChartEvents (label, value) {
     if (sectorResults === undefined) {
-      $.get(sectorURL, function (result) {
-        processSectorResults(result)
+      fetch(sectorURL, {
+        method: 'get'
+      })
+      .then((res) => res.text())
+      .then((data) => {
+        processSectorResults(data)
         displaySectorResults(label, sectorTitleID, chartsConfig['detail2'])
+      })
+      .catch((err) => {
+        console.log(err)
       })
     } else {
       displaySectorResults(label, sectorTitleID, chartsConfig['detail2'])
@@ -150,11 +157,17 @@ function addChart (chartID, dataURL, sectorID, sectorURL, sectorTitleID, chartsC
         }
         addLineChart(inputParams, chartsConfig['detail1'])
         if (sectorURL !== null && (typeof sectorURL !== 'undefined') && sectorURL.length > 0) {
-          $.get(sectorURL, function (result) {
-            processSectorResults(result)
+          fetch(sectorURL, {
+            method: 'get'
+          })
+          .then((res) => res.text())
+          .then((data) => {
+            processSectorResults(data)
             const label = xTickLabels[xTickLabels.length - 1]
-            console.log(label)
             displaySectorResults(label, sectorTitleID, chartsConfig['detail2'])
+          })
+          .catch((err) => {
+            console.log(err)
           })
         }
         break
@@ -171,97 +184,15 @@ function addChart (chartID, dataURL, sectorID, sectorURL, sectorTitleID, chartsC
     }
   }
 
-  /*
-  function processResults (result) {
-    // var values = result.split('\r\n')
-    var values = result.replace(/(\r\n|\n|\r)/gm, '~foo~').split('~foo~')
-
-    var dataValues = []
-    var xTickLabels = []
-
-    var header = values[0].split(',')
-
-    values.shift() // ignore the header
-    var done = false
-    var index = 0
-    var yMax = 0
-
-    values.map(function (item) {
-      var items = item.split(',')
-
-      var axisLabel = items[0].replace(/,/g, '')
-      axisLabel = axisLabel.trim().replace(/"/g, '')
-
-      if (axisLabel.length === 0) {
-        done = true
-      }
-
-      if (!done) {
-        var empNum = parseFloat(items[1].replace(/,/g, '').replace(/"/g, ''))
-
-        var labelVal = index
-        if (chartsConfig['detail1'].plotstyle === 'horizontal-bar-chart') {
-          labelVal = axisLabel
-        }
-
-        dataValues.push({
-          label: labelVal,
-          value: empNum
-        })
-        xTickLabels.push(axisLabel)
-        index++
-
-        // Track the maximum y value
-        if (empNum > yMax) {
-          yMax = empNum
-        }
-      }
-    })
-    var chartData = []
-
-    chartData.push({
-      key: header[1],
-      values: dataValues
-    })
-
-    var inputParams = []
-
-    switch (chartsConfig['detail1'].plotstyle) {
-      case 'line':
-        inputParams = {
-          data: chartData,
-          id: chartID,
-          xTickLabels: xTickLabels,
-          chartEvents: handleChartEvents,
-          yMax: yMax,
-          showLegend: false
-        }
-        addLineChart(inputParams, chartsConfig['detail1'])
-        if (sectorURL !== null && (typeof sectorURL !== 'undefined') && sectorURL.length > 0) {
-          $.get(sectorURL, function (result) {
-            processSectorResults(result)
-            const label = xTickLabels[xTickLabels.length / 2]
-            console.log(label)
-            displaySectorResults(label, sectorTitleID, chartsConfig['detail2'])
-          })
-        }
-        break
-      case 'horizontal-bar-chart':
-        inputParams = {
-          data: chartData,
-          id: chartID
-        }
-        addBarChart(inputParams, chartsConfig['detail1'])
-        break
-      case 'doughnut':
-        // TBD
-        break
-    }
-  }
-*/
-
-  $.get(dataURL, function (result) {
-    processResultsMultiLines(result)
+  fetch(dataURL, {
+    method: 'get'
+  })
+  .then((res) => res.text())
+  .then((data) => {
+    processResultsMultiLines(data)
+  })
+  .catch((err) => {
+    console.log(err)
   })
 }
 
