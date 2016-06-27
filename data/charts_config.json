@@ -69,7 +69,6 @@
 			"detail1": {
 				"title": "Average Apartment Rent by Quarter",
 				"plotstyle": "line",
-				"x-title": "quarter",
 				"y-title": "monthly rent",
 				"y-min": 0,
 				"y-max": 3000,
@@ -84,7 +83,6 @@
 			"detail1": {
 				"title": "Apartment Vacancy Rate by Quarter",
 				"plotstyle": "line",
-				"x-title": "quarter",
 				"y-title": "% vacancy",
 				"y-min": 0,
 				"y-max": 15,
@@ -99,7 +97,6 @@
 			"detail1": {
 				"title": "Median Sales price",
 				"plotstyle": "line",
-				"x-title": "month",
 				"y-title": "price",
 				"y-min": 0,
 				"y-max": 1000000,
