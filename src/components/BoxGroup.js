@@ -10,7 +10,7 @@ import { ChartPanel } from './ChartPanel'
 import { RowLabel } from './RowLabel'
 import { dataTags } from '../config/constants'
 
-export class BoxGroup extends React.Component {
+class BoxGroup extends React.Component {
   render () {
     var title = this.props.labelTitle
     title = title.toUpperCase()
@@ -103,3 +103,5 @@ BoxGroup.propTypes = {
   data: PropTypes.array,
   chartsConfig: PropTypes.object
 }
+
+export { BoxGroup }

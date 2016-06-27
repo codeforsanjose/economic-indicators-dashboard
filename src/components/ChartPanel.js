@@ -3,7 +3,7 @@
 
 import React, { PropTypes } from 'react'
 
-export class ChartPanel extends React.Component {
+class ChartPanel extends React.Component {
   render () {
     var panelID = this.props.panelID
     var chartTitleID = this.props.chartTitleID
@@ -58,3 +58,5 @@ ChartPanel.propTypes = {
   chartsConfig: PropTypes.object.isRequired,
   sectorPanelID: PropTypes.string.isRequired
 }
+
+export { ChartPanel }

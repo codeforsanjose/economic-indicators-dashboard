@@ -3,7 +3,7 @@
 
 import React, { PropTypes } from 'react'
 
-export class RowLabel extends React.Component {
+class RowLabel extends React.Component {
   render () {
     var labelClass = this.props.labelClass
     var labelTitle = this.props.labelTitle
@@ -27,3 +27,5 @@ RowLabel.propTypes = {
   labelClass: PropTypes.string.isRequired,
   labelTitle: PropTypes.string.isRequired
 }
+
+export { RowLabel }

@@ -7,10 +7,10 @@ var shortid = require('shortid')
 require('es6-promise').polyfill()
 import fetch from 'isomorphic-fetch'
 
-import {BoxGroup} from '../../components/BoxGroup'
+import { BoxGroup } from '../BoxGroup'
 
-import {constructOpenDataURL} from '../../config/dataURLs'
-import {convertIndicatorsToJSON} from '../../utilities/csvtojson'
+import { constructOpenDataURL } from '../../config/dataURLs'
+import { convertIndicatorsToJSON } from '../../utilities/csvtojson'
 
 import '../../styles/core.scss'
 
@@ -34,7 +34,7 @@ const renderFooterRight = (config) => {
   }
 }
 
-export default class DashboardView extends React.Component {
+class DashboardView extends React.Component {
   processIndicators (csvdata) {
     var indicators = convertIndicatorsToJSON(csvdata)
     this.setState({
@@ -190,3 +190,5 @@ export default class DashboardView extends React.Component {
     )
   }
 }
+
+export default DashboardView

@@ -83,7 +83,7 @@ const toggleChartPanel = (show, id) => {
   }
 }
 
-export const Box = React.createClass({
+const Box = React.createClass({
   propTypes: {
     boxType: PropTypes.string.isRequired,
     headline: PropTypes.string.isRequired,
@@ -206,3 +206,4 @@ export const Box = React.createClass({
   }
 })
 
+export { Box }
