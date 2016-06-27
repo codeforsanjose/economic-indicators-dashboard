@@ -56,6 +56,7 @@
 				"title": "Educational Attainment of San Jose Residents Over 25",
 				"plotstyle": "horizontal-bar-chart",
 				"x-title": "number of residents",
+				"x-max": 200000,
 				"y-precision": 0,
 				"title-offset": 200,
 				"y-title-offset": 30,
