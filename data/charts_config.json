@@ -16,7 +16,7 @@
 			"detail2": {
 				"plotstyle": "horizontal-bar-chart",
 				"title": "San Jose Jobs by Sector",
-				"x-title": "Number of jobs",
+				"x-title": "jobs",
 				"x-max": 85000,
 				"x-precision": 0,
 				"title-offset": 200,
@@ -55,7 +55,7 @@
 			"detail1": {
 				"title": "Educational Attainment of San Jose Residents Over 25",
 				"plotstyle": "horizontal-bar-chart",
-				"x-title": "Number of residents",
+				"x-title": "number of residents",
 				"y-precision": 0,
 				"title-offset": 200,
 				"y-title-offset": 30,
@@ -69,7 +69,7 @@
 			"detail1": {
 				"title": "Average Apartment Rent by Quarter",
 				"plotstyle": "line",
-				"y-title": "monthly rent",
+				"y-title": "monthly rent ($)",
 				"y-min": 0,
 				"y-max": 3000,
 				"y-precision": 0,
@@ -95,9 +95,9 @@
 		},
 		"Single-Family Home Median Sales Price": {
 			"detail1": {
-				"title": "Median Sales price",
+				"title": "Median Sales Price",
 				"plotstyle": "line",
-				"y-title": "price",
+				"y-title": "price ($)",
 				"y-min": 0,
 				"y-max": 1000000,
 				"y-precision": 0,
