@@ -1,6 +1,6 @@
 {
 
- "intro-text": "This dashboard provides a snapshot of San Jose's economy, using the most recent data available. All data shown is for the city rather than the metro area, unless specifically noted. Read more <a href="about.html">about the dashboard</a>...",
+ "intro-text": "This dashboard provides a snapshot of San Jose's economy, using the most recent data available. All data shown is for the city rather than the metro area, unless specifically noted. Read more <a href=\"about.html\">about the dashboard &rt&rt</a>",
 
  "indicator-file": "econ_indicators_q12016_v03.csv",
  
