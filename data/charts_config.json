@@ -68,7 +68,7 @@
 	"Housing": {
 		"Average Apartment Rent": {
 			"detail1": {
-				"title": "Average Apartment Rent by Quarter",
+				"title": "Average Apartment Rent",
 				"plotstyle": "line",
 				"y-title": "monthly rent ($)",
 				"y-min": 0,
