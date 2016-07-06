@@ -9,6 +9,7 @@ import { chartTypes, getChartID } from '../utilities/chartIDs'
 import { ChartPanel } from './ChartPanel'
 import { RowLabel } from './RowLabel'
 import { dataTags } from '../config/constants'
+import { detailsEventHandler } from './detailsEventHandler'
 
 class BoxGroup extends React.Component {
   render () {
@@ -46,6 +47,7 @@ class BoxGroup extends React.Component {
           sector={item.detail2}
           sectorDataURL={item.sectorDataURL}
           chartsConfig={chartsConfigData}
+          clickHandler={detailsEventHandler}
         />
       )
     })
