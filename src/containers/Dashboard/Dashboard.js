@@ -36,7 +36,6 @@ const renderFooterRight = (config) => {
 class DashboardComponent extends React.Component {
   // Retrieve the data for the dashboard
   componentDidMount () {
-    // var generalURL = rootDataURL + '/' + generalConfig
     var rootDiv = document.getElementById('root')
     var generalURL = rootDiv.getAttribute('data-config')
 
@@ -55,10 +54,11 @@ class DashboardComponent extends React.Component {
   }
 
   render () {
-    const indicators = this.props.indicators.data
-    const chartsConfig = this.props.chartsConfig.data
-    const generalConfig = this.props.generalConfig.data
-    const maxBoxes = this.props.indicators.maxBoxes
+    console.log(this.props)
+    const indicators = _.isNil(this.props.indicators) ? {} : this.props.indicators.data
+    const chartsConfig = _.isNil(this.props.chartsConfig) ? {} : this.props.chartsConfig.data
+    const generalConfig = _.isNil(this.props.generalConfig) ? {} : this.props.generalConfig.data
+    const maxBoxes = _.isNil(this.props.indicators) ? 3 : this.props.indicators.maxBoxes
 
     // If the data isn't defined - just show loading
     if (_.isEmpty(indicators) ||
@@ -116,9 +116,9 @@ class DashboardComponent extends React.Component {
 }
 
 DashboardComponent.propTypes = {
-  indicators: PropTypes.object.isRequired,
-  generalConfig: PropTypes.object.isRequired,
-  chartsConfig: PropTypes.object.isRequired,
+  indicators: PropTypes.object,
+  generalConfig: PropTypes.object,
+  chartsConfig: PropTypes.object,
   dispatch: PropTypes.func.isRequired
 }
 

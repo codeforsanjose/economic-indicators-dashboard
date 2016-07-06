@@ -4,7 +4,7 @@ import createHashHistory from 'history/lib/createHashHistory'
 import { useRouterHistory } from 'react-router'
 import { syncHistoryWithStore } from 'react-router-redux'
 import createStore from './store/createStore'
-import App from './App'
+import AppComponent from './App'
 
 // ========================================================
 // Browser History Setup
@@ -50,7 +50,7 @@ let render = (routerKey = null) => {
   const routes = require('./routes/index').default(store)
 
   ReactDOM.render(
-    <App
+    <AppComponent
       store={store}
       history={history}
       routes={routes}

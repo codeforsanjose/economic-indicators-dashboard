@@ -31,6 +31,8 @@ const requestGeneralConfig = () => {
 }
 
 const receiveGeneralConfig = (data) => {
+  console.log('receiveGeneralConfig')
+  console.log(data)
   return {
     type: RECEIVE_GENERAL_CONFIG,
     data,
@@ -43,18 +45,16 @@ const fetchGeneralConfig = (url) => {
     dispatch(requestGeneralConfig(url))
 
     const fetchGeneralConfigSuccessCallback = (data) => {
-      return dispatch => {
-        dispatch(receiveGeneralConfig(data))
+      dispatch(receiveGeneralConfig(data))
 
-        const latestIndicatorsURL = constructOpenDataURL(data['open-data-url'],
+      const latestIndicatorsURL = constructOpenDataURL(data['open-data-url'],
                                                        data['indicator-guid'],
                                                        data['api-key'])
 
-        dispatch(fetchIndicatorsIfNeeded(latestIndicatorsURL))
+      dispatch(fetchIndicatorsIfNeeded(latestIndicatorsURL))
 
-        const chartURL = data['chart-config-file']
-        dispatch(fetchChartsConfigIfNeeded(chartURL))
-      }
+      const chartURL = data['chart-config-file']
+      dispatch(fetchChartsConfigIfNeeded(chartURL))
     }
 
     const fetchGeneralConfigErrorCallback = (err) => {
@@ -99,6 +99,8 @@ const requestChartsConfig = () => {
 }
 
 const receiveChartsConfig = (data) => {
+  console.log('receiveChartsConfig....')
+  console.log(data)
   return {
     type: RECEIVE_CHARTS_CONFIG,
     data,
@@ -111,9 +113,7 @@ const fetchChartsConfig = (url) => {
     dispatch(requestChartsConfig(url))
 
     const fetchChartsConfigSuccessCallback = (data) => {
-      return dispatch => {
-        dispatch(receiveChartsConfig(data))
-      }
+      dispatch(receiveChartsConfig(data))
     }
 
     const fetchChartsConfigErrorCallback = (err) => {
@@ -157,6 +157,8 @@ const requestIndicators = () => {
 }
 
 const receiveIndicators = (data) => {
+  console.log('receiveIndicators....')
+  console.log(data)
   return {
     type: RECEIVE_INDICATORS,
     data,
@@ -169,10 +171,8 @@ const fetchIndicators = (url) => {
     dispatch(requestIndicators(url))
 
     const fetchIndicatorsSuccessCallback = (data) => {
-      return (dispatch, getState) => {
-        const indicators = processIndicators(getState(), data)
-        dispatch(receiveIndicators(indicators))
-      }
+      const indicators = processIndicators(getState(), data)
+      dispatch(receiveIndicators(indicators))
     }
 
     const fetchIndicatorsErrorCallback = (err) => {
@@ -207,15 +207,15 @@ const processIndicators = (state, csvdata) => {
   _.forIn(indicators, (set) => {
     _.forIn(set, (item) => {
       if (item.detail1) {
-        var newDetail1 = constructOpenDataURL(state.generalConfig['open-data-url'],
+        var newDetail1 = constructOpenDataURL(state.generalConfig.data['open-data-url'],
                                                item.detail1,
-                                               state.generalConfig['api-key'])
+                                               state.generalConfig.data['api-key'])
         item.dataURL = newDetail1
       }
       if (item.detail2) {
-        var newDetail2 = constructOpenDataURL(state.generalConfig['open-data-url'],
+        var newDetail2 = constructOpenDataURL(state.generalConfig.data['open-data-url'],
                                                 item.detail2,
-                                                state.generalConfig['api-key'])
+                                                state.generalConfig.data['api-key'])
         item.sectorDataURL = newDetail2
       }
     })

@@ -12,7 +12,7 @@ import {
 } from './dashboardActions'
 
 // ToDo - calculate maxBoxes from indicators
-const indicators = (state = {
+export const indicators = (state = {
   isFetching: false,
   didInvalidate: false,
   data: {},
@@ -39,7 +39,8 @@ const indicators = (state = {
       return state
   }
 }
-const chartsConfig = (state = {
+
+export const chartsConfig = (state = {
   isFetching: false,
   didInvalidate: false,
   data: {}
@@ -66,7 +67,7 @@ const chartsConfig = (state = {
   }
 }
 
-const generalConfig = (state = {
+export const generalConfig = (state = {
   isFetching: false,
   didInvalidate: false,
   data: {}
@@ -92,11 +93,3 @@ const generalConfig = (state = {
       return state
   }
 }
-
-const dashboardReducer = combineReducers({
-  generalConfig,
-  chartsConfig,
-  indicators
-})
-
-export default dashboardReducer

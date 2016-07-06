@@ -2,7 +2,7 @@ import React, { PropTypes } from 'react'
 import { Router } from 'react-router'
 import { Provider } from 'react-redux'
 
-class App extends React.Component {
+class AppComponent extends React.Component {
   static propTypes = {
     history: PropTypes.object.isRequired,
     routes: PropTypes.object.isRequired,
@@ -23,4 +23,4 @@ class App extends React.Component {
   }
 }
 
-export default App
+export default AppComponent
