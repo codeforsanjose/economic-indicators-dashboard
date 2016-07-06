@@ -1,4 +1,3 @@
-import { combineReducers } from 'redux'
 import {
   INVALIDATE_GENERAL_CONFIG,
   REQUEST_GENERAL_CONFIG,
