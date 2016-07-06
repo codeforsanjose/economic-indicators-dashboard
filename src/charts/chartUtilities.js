@@ -7,10 +7,10 @@ import {addLineChart} from './lineChart'
 import {addBarChart} from './barChart'
 // import {addScatterChart} from './scatterChart'
 
-function addChart (chartID, dataURL, sectorID, sectorURL, sectorTitleID, chartsConfig) {
+const addChart = (chartID, dataURL, sectorID, sectorURL, sectorTitleID, chartsConfig) => {
   var sectorResults
 
-  function processSectorResults (result) {
+  const processSectorResults = (result) => {
     sectorResults = {}
 
     var sectorVals = Papa.parse(result)
@@ -37,7 +37,7 @@ function addChart (chartID, dataURL, sectorID, sectorURL, sectorTitleID, chartsC
     }
   }
 
-  function displaySectorResults (label, sectorTitleID, configData) {
+  const displaySectorResults = (label, sectorTitleID, configData) => {
     var chartData = []
 
     chartData.push({
@@ -56,7 +56,7 @@ function addChart (chartID, dataURL, sectorID, sectorURL, sectorTitleID, chartsC
     addBarChart(inputParams, configData, newTitle)
   }
 
-  function handleChartEvents (label, value) {
+  const handleChartEvents = (label, value) => {
     if (sectorResults === undefined) {
       fetch(sectorURL, {
         method: 'get'
@@ -74,7 +74,7 @@ function addChart (chartID, dataURL, sectorID, sectorURL, sectorTitleID, chartsC
     }
   }
 
-  function processResultsMultiLines (result) {
+  const processResultsMultiLines = (result) => {
     var values = Papa.parse(result)
 
     var dataValues = {}

@@ -1,6 +1,6 @@
 /*global nv, d3:true*/
 
-export function addLineChart (inputOptions, config) {
+export const addLineChart = (inputOptions, config) => {
   nv.addGraph(function () {
     var chart = nv.models.lineChart()
       .x(function (d) {

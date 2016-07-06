@@ -1,6 +1,6 @@
 /*global nv, d3:true*/
 
-export function addBarChart (inputOptions, config, title) {
+export const addBarChart = (inputOptions, config, title) => {
   nv.addGraph(function () {
     var chart = nv.models.multiBarHorizontalChart()
       .margin({top: 50, right: 40, bottom: 50, left: 200})

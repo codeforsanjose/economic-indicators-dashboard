@@ -1,6 +1,6 @@
 /*global nv, d3:true*/
 
-export function addScatterChart (inputOptions) {
+export const addScatterChart = (inputOptions) => {
   nv.addGraph(function () {
     var chart = nv.models.scatterChart()
       .x(function (d) { return d.label })    // Specify the data accessors.

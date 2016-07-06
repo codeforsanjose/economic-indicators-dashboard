@@ -6,8 +6,8 @@ import { Route } from 'react-router'
 // they were from the root of the ~/src directory. This makes it
 // very easy to navigate to files regardless of how deeply nested
 // your current file is.
-import DashboardView from '../components/DashboardView'
+import Dashboard from '../containers/Dashboard'
 
 export default (store) => (
-  <Route path='/' component={DashboardView} />
+  <Route path='/' component={Dashboard} />
 )
