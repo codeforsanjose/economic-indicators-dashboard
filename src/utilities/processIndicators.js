@@ -1,7 +1,10 @@
 /*eslint max-len: [2, 200, 4]*/ // extend the maximum allowed characters
 
 import Papa from 'papaparse'
-import {dataTags} from '../config/constants'
+import _ from 'lodash'
+
+import { dataTags } from '../config/constants'
+import { constructOpenDataURL } from '../config/dataURLs'
 
 function convertRow (row, heading) {
   var result = {}
@@ -31,7 +34,7 @@ function convertRow (row, heading) {
   return result
 }
 
-export function convertIndicatorsToJSON (csvData) {
+function convertIndicatorsToJSON (csvData) {
   var indicators = Papa.parse(csvData)
 
   var indicatorsJSON = {}
@@ -59,4 +62,26 @@ export function convertIndicatorsToJSON (csvData) {
   })
 
   return indicatorsJSON
+}
+
+// ToDo convert to use map
+export const processIndicators = (state, csvdata) => {
+  let indicators = convertIndicatorsToJSON(csvdata)
+  _.forIn(indicators, (set) => {
+    _.forIn(set, (item) => {
+      if (item.detail1) {
+        var newDetail1 = constructOpenDataURL(state.generalConfig.data['open-data-url'],
+                                               item.detail1,
+                                               state.generalConfig.data['api-key'])
+        item.dataURL = newDetail1
+      }
+      if (item.detail2) {
+        var newDetail2 = constructOpenDataURL(state.generalConfig.data['open-data-url'],
+                                                item.detail2,
+                                                state.generalConfig.data['api-key'])
+        item.sectorDataURL = newDetail2
+      }
+    })
+  })
+  return indicators
 }

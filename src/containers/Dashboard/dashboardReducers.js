@@ -28,6 +28,8 @@ export const indicators = (state = {
         didInvalidate: false
       })
     case RECEIVE_INDICATORS:
+      console.log('reducer - RECEIVE_INDICATORS')
+      console.log(action.data)
       return Object.assign({}, state, {
         isFetching: false,
         didInvalidate: false,
@@ -55,6 +57,8 @@ export const chartsConfig = (state = {
         didInvalidate: false
       })
     case RECEIVE_CHARTS_CONFIG:
+      console.log('reducer - RECEIVE_CHARTS_CONFIG')
+      console.log(action.data)
       return Object.assign({}, state, {
         isFetching: false,
         didInvalidate: false,
@@ -82,6 +86,8 @@ export const generalConfig = (state = {
         didInvalidate: false
       })
     case RECEIVE_GENERAL_CONFIG:
+      console.log('reducer - RECEIVE_GENERAL_CONFIG')
+      console.log(action.data)
       return Object.assign({}, state, {
         isFetching: false,
         didInvalidate: false,

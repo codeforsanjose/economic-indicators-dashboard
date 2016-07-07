@@ -1,8 +1,8 @@
 import _ from 'lodash'
 
+import { fetchJSONData2, fetchJSONData, fetchTextData } from '../../utilities/fetchCalls'
 import { constructOpenDataURL } from '../../config/dataURLs'
-import { convertIndicatorsToJSON } from '../../utilities/csvtojson'
-import { fetchJSONData, fetchTextData } from '../../utilities/fetchCalls'
+import { processIndicators } from '../../utilities/processIndicators'
 
 export const REQUEST_GENERAL_CONFIG = 'REQUEST_GENERAL_CONFIG'
 export const RECEIVE_GENERAL_CONFIG = 'RECEIVE_GENERAL_CONFIG'
@@ -31,8 +31,6 @@ const requestGeneralConfig = () => {
 }
 
 const receiveGeneralConfig = (data) => {
-  console.log('receiveGeneralConfig')
-  console.log(data)
   return {
     type: RECEIVE_GENERAL_CONFIG,
     data,
@@ -44,7 +42,8 @@ const fetchGeneralConfig = (url) => {
   return dispatch => {
     dispatch(requestGeneralConfig(url))
 
-    const fetchGeneralConfigSuccessCallback = (data) => {
+    return fetchJSONData2(url)
+    .then(data => {
       dispatch(receiveGeneralConfig(data))
 
       const latestIndicatorsURL = constructOpenDataURL(data['open-data-url'],
@@ -55,13 +54,10 @@ const fetchGeneralConfig = (url) => {
 
       const chartURL = data['chart-config-file']
       dispatch(fetchChartsConfigIfNeeded(chartURL))
-    }
-
-    const fetchGeneralConfigErrorCallback = (err) => {
+    })
+    .catch(err => {
       console.log(err)
-    }
-
-    return fetchJSONData(url, fetchGeneralConfigSuccessCallback, fetchGeneralConfigErrorCallback)
+    })
   }
 }
 
@@ -200,25 +196,4 @@ export const fetchIndicatorsIfNeeded = (url) => {
       return dispatch(fetchIndicators(url))
     }
   }
-}
-
-const processIndicators = (state, csvdata) => {
-  let indicators = convertIndicatorsToJSON(csvdata)
-  _.forIn(indicators, (set) => {
-    _.forIn(set, (item) => {
-      if (item.detail1) {
-        var newDetail1 = constructOpenDataURL(state.generalConfig.data['open-data-url'],
-                                               item.detail1,
-                                               state.generalConfig.data['api-key'])
-        item.dataURL = newDetail1
-      }
-      if (item.detail2) {
-        var newDetail2 = constructOpenDataURL(state.generalConfig.data['open-data-url'],
-                                                item.detail2,
-                                                state.generalConfig.data['api-key'])
-        item.sectorDataURL = newDetail2
-      }
-    })
-  })
-  return indicators
 }

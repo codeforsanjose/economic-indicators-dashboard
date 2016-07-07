@@ -1,5 +1,12 @@
 import fetch from 'isomorphic-fetch'
 
+export const fetchJSONData2 = (url) => {
+  return fetch(url, {
+    method: 'get'
+  })
+  .then((res) => res.json())
+}
+
 export const fetchJSONData = (url, successCallback, errorCallback) => {
   fetch(url, {
     method: 'get'

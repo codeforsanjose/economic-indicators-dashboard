@@ -43,16 +43,6 @@ class DashboardComponent extends React.Component {
     dispatch(fetchGeneralConfigIfNeeded(generalURL))
   }
 
-  // don't update if the data hasn't finished being retrieved
-  shouldComponentUpdate () {
-    var returnStatus = true
-
-    if (!this.state) {
-      returnStatus = false
-    }
-    return returnStatus
-  }
-
   render () {
     console.log(this.props)
     const indicators = _.isNil(this.props.indicators) ? {} : this.props.indicators.data
