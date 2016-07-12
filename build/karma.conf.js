@@ -9,7 +9,6 @@ debug('Create configuration.')
 const karmaConfig = {
   basePath: '../', // project root in relation to bin/karma.js
   files: [
-    './node_modules/phantomjs-polyfill/bind-polyfill.js',
     {
       pattern: `./${config.dir_test}/test-bundler.js`,
       watched: false,
@@ -45,11 +44,13 @@ const karmaConfig = {
         }
       ])
     },
+    // Enzyme fix, see:
+    // https://github.com/airbnb/enzyme/issues/47
     externals: {
       ...webpackConfig.externals,
+      'react/addons': true,
       'react/lib/ExecutionEnvironment': true,
-      'react/lib/ReactContext': 'window',
-      'text-encoding': 'window'
+      'react/lib/ReactContext': 'window'
     },
     sassLoader: webpackConfig.sassLoader
   },
@@ -61,7 +62,7 @@ const karmaConfig = {
   }
 }
 
-if (config.coverage_enabled) {
+if (config.globals.__COVERAGE__) {
   karmaConfig.reporters.push('coverage')
   karmaConfig.webpack.module.preLoaders = [{
     test: /\.(js|jsx)$/,
