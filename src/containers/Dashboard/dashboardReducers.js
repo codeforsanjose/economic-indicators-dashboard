@@ -1,3 +1,5 @@
+import _ from 'lodash'
+
 import {
   INVALIDATE_GENERAL_CONFIG,
   REQUEST_GENERAL_CONFIG,
@@ -9,6 +11,17 @@ import {
   REQUEST_INDICATORS,
   RECEIVE_INDICATORS
 } from './dashboardActions'
+
+const calculateMaxBoxes = (data) => {
+  let numBoxes = 0
+
+  _.forIn(data, (item, index) => {
+    if (numBoxes < item.length) {
+      numBoxes = item.length
+    }
+  })
+  return numBoxes
+}
 
 // ToDo - calculate maxBoxes from indicators
 export const indicators = (state = {
@@ -28,12 +41,12 @@ export const indicators = (state = {
         didInvalidate: false
       })
     case RECEIVE_INDICATORS:
-      console.log('reducer - RECEIVE_INDICATORS')
-      console.log(action.data)
+      const maxBoxes = calculateMaxBoxes(action.indicators)
       return Object.assign({}, state, {
         isFetching: false,
         didInvalidate: false,
-        data: action.data,
+        data: action.indicators,
+        maxBoxes,
         lastUpdated: action.receivedAt
       })
     default:
@@ -57,8 +70,6 @@ export const chartsConfig = (state = {
         didInvalidate: false
       })
     case RECEIVE_CHARTS_CONFIG:
-      console.log('reducer - RECEIVE_CHARTS_CONFIG')
-      console.log(action.data)
       return Object.assign({}, state, {
         isFetching: false,
         didInvalidate: false,
@@ -86,8 +97,6 @@ export const generalConfig = (state = {
         didInvalidate: false
       })
     case RECEIVE_GENERAL_CONFIG:
-      console.log('reducer - RECEIVE_GENERAL_CONFIG')
-      console.log(action.data)
       return Object.assign({}, state, {
         isFetching: false,
         didInvalidate: false,

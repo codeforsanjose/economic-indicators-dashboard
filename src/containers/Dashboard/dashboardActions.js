@@ -24,27 +24,19 @@ export const invalidateGeneralConfig = () => {
   }
 }
 
-const requestGeneralConfig = () => {
-  return {
-    type: REQUEST_GENERAL_CONFIG
-  }
-}
-
-const receiveGeneralConfig = (data) => {
-  return {
-    type: RECEIVE_GENERAL_CONFIG,
-    data,
-    receivedAt: Date.now()
-  }
-}
-
 const fetchGeneralConfig = (url) => {
   return dispatch => {
-    dispatch(requestGeneralConfig(url))
+    dispatch({
+      type: REQUEST_GENERAL_CONFIG
+    })
 
     return fetchJSONData2(url)
     .then(data => {
-      dispatch(receiveGeneralConfig(data))
+      dispatch({
+        type: RECEIVE_GENERAL_CONFIG,
+        data,
+        receivedAt: Date.now()
+      })
 
       const latestIndicatorsURL = constructOpenDataURL(data['open-data-url'],
                                                        data['indicator-guid'],
@@ -88,28 +80,18 @@ export const invalidateChartsConfig = () => {
   }
 }
 
-const requestChartsConfig = () => {
-  return {
-    type: REQUEST_CHARTS_CONFIG
-  }
-}
-
-const receiveChartsConfig = (data) => {
-  console.log('receiveChartsConfig....')
-  console.log(data)
-  return {
-    type: RECEIVE_CHARTS_CONFIG,
-    data,
-    receivedAt: Date.now()
-  }
-}
-
 const fetchChartsConfig = (url) => {
   return dispatch => {
-    dispatch(requestChartsConfig(url))
+    dispatch({
+      type: REQUEST_CHARTS_CONFIG
+    })
 
     const fetchChartsConfigSuccessCallback = (data) => {
-      dispatch(receiveChartsConfig(data))
+      dispatch({
+        type: RECEIVE_CHARTS_CONFIG,
+        data,
+        receivedAt: Date.now()
+      })
     }
 
     const fetchChartsConfigErrorCallback = (err) => {
@@ -146,29 +128,19 @@ export const invalidateIndicators = () => {
   }
 }
 
-const requestIndicators = () => {
-  return {
-    type: REQUEST_INDICATORS
-  }
-}
-
-const receiveIndicators = (data) => {
-  console.log('receiveIndicators....')
-  console.log(data)
-  return {
-    type: RECEIVE_INDICATORS,
-    data,
-    receivedAt: Date.now()
-  }
-}
-
 const fetchIndicators = (url) => {
   return (dispatch, getState) => {
-    dispatch(requestIndicators(url))
+    dispatch({
+      type: REQUEST_INDICATORS
+    })
 
     const fetchIndicatorsSuccessCallback = (data) => {
       const indicators = processIndicators(getState(), data)
-      dispatch(receiveIndicators(indicators))
+      dispatch({
+        type: RECEIVE_INDICATORS,
+        indicators,
+        receivedAt: Date.now()
+      })
     }
 
     const fetchIndicatorsErrorCallback = (err) => {
