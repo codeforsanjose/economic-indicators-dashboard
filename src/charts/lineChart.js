@@ -77,7 +77,8 @@ export const addLineChart = (inputOptions, config) => {
     var titleOffset = document.getElementById(inputOptions.id).offsetWidth / 2
 
     d3.selectAll('.nv-axisMax-y').remove()
-
+    
+    d3.select(id + ' svg').select('svg > text').remove();
     d3.select(id + ' svg')
       .append('text')
       .attr('x', titleOffset)
