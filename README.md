@@ -253,7 +253,9 @@ Great, now that introductions have been made here's everything in full detail:
 
 ### Run Local Data
 
-This will provide you an overview of running the application using local data.
+This will provide an overview of running the application using local data.   
+
+###_Remember to restore that settings that apply to the production settings if you are deploying the configurations_
 
 We will be using two simple data servers.  One for the configuration data and second one for the indicator data.   This was tested using http-server which can be downloaded from npm:  https://www.npmjs.com/package/http-server
 
@@ -298,3 +300,22 @@ Verify the json formatting by pasting the contents of the file into an online JS
       "MEDIA-HOME-PRICE": "monthly_home_prices.csv"
    }
   ```
+  
+The dataMap maps the OpenData portal guid to the corresponding csv file that was downloaded.
+
+#### Steps to run
+
+```
+cd [cloned repo directory]/demoData/dashboard2/config
+http-server --cors
+
+cd [cloned repo directory]/demoData/dashboard2/data/q1
+http-server --cors -p 1234
+
+cd <cloned repo directory>
+npm start
+
+# In your prowser, navigate to 'http://localhost:3000/local.html'
+
+
+```
