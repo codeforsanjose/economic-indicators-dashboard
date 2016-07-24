@@ -315,7 +315,7 @@ http-server --cors -p 1234
 cd <cloned repo directory>
 npm start
 
-# In your prowser, navigate to 'http://localhost:3000/local.html'
+# In your browser, navigate to 'http://localhost:3000/local.html'
 
 
 ```
