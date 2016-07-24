@@ -55,7 +55,7 @@ ChartPanel.propTypes = {
   sectorTitleID: PropTypes.string.isRequired,
   sectorChartID: PropTypes.string.isRequired,
   hasSector: PropTypes.bool.isRequired,
-  chartsConfig: PropTypes.object.isRequired,
+  chartsConfig: PropTypes.object,
   sectorPanelID: PropTypes.string.isRequired
 }
 

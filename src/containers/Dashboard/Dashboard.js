@@ -8,43 +8,24 @@ var shortid = require('shortid')
 require('es6-promise').polyfill()
 
 import { BoxGroup } from '../../components/BoxGroup'
-
+import { getInitialDataURL } from '../../utilities/dataURLs'
+import { renderIntroText,
+         renderTitleRight,
+         renderFooterRight } from '../../utilities/generalConfig'
 import { fetchGeneralConfigIfNeeded } from './dashboardActions'
 
 import '../../styles/core.scss'
 
-const renderIntroText = (config) => {
-  if (config['intro-text'].length > 0) {
-    return {
-      __html: config['intro-text']
-    }
-  }
-}
-
-const renderTitleRight = (config) => {
-  if (config['header-right-text'].length > 0) {
-    return (config['header-right-text'])
-  }
-}
-
-const renderFooterRight = (config) => {
-  if (config['footer-right-text'].length > 0) {
-    return (config['footer-right-text'])
-  }
-}
-
 class DashboardComponent extends React.Component {
   // Retrieve the data for the dashboard
   componentDidMount () {
-    var rootDiv = document.getElementById('root')
-    var generalURL = rootDiv.getAttribute('data-config')
+    const generalURL = getInitialDataURL()
 
     const { dispatch } = this.props
     dispatch(fetchGeneralConfigIfNeeded(generalURL))
   }
 
   render () {
-    console.log(this.props)
     const indicators = _.isNil(this.props.indicators) ? {} : this.props.indicators.data
     const chartsConfig = _.isNil(this.props.chartsConfig) ? {} : this.props.chartsConfig.data
     const generalConfig = _.isNil(this.props.generalConfig) ? {} : this.props.generalConfig.data

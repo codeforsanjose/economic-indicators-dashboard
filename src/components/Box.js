@@ -129,8 +129,8 @@ Box.propTypes = {
   source: PropTypes.string.isRequired,
   details: PropTypes.string,
   sector: PropTypes.string.isRequired,
-  dataURL: PropTypes.string.isRequired,
-  sectorDataURL: PropTypes.string.isRequired,
+  dataURL: PropTypes.string,
+  sectorDataURL: PropTypes.string,
   chartsConfig: PropTypes.object.isRequired,
   clickHandler: PropTypes.func.isRequired
 }

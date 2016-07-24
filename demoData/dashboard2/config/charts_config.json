@@ -1,0 +1,163 @@
+{
+	"Group 1": {
+		"Box 1": {
+			"detail1": {
+				"title": "detail1",
+				"plotstyle": "line",
+				"y-title": "jobs",
+				"y-min": 300000,
+				"y-max": 425000,
+				"y-precision": 0,
+				"legend": "no",
+				"title-offset": 200,
+				"y-title-offset": 30,
+				"x-title-offiset": 20
+			},
+			"detail2": {
+				"plotstyle": "horizontal-bar-chart",
+				"title": "detail2 title",
+				"x-title": "jobs",
+				"x-max": 85000,
+				"x-precision": 0,
+				"title-offset": 200,
+				"y-title-offset": 30,
+				"x-title-offiset": 20
+			}
+		},
+		"Box 2": {
+			"detail1": {
+				"title": "title",
+				"plotstyle": "line",
+				"y-min": 0.0,
+				"y-max": 13.0,
+				"y-title": "%",
+				"y-precision": 0.0,
+				"title-offset": 200,
+				"y-title-offset": 10,
+				"x-title-offiset": 20
+			}
+		},
+		"Box 3": {
+			"detail1": {
+				"title": "title",
+				"plotstyle": "horizontal-bar-chart",
+				"x-title": "number in labor force",
+				"x-precision": 0,
+				"y-title": "age",
+				"title-offset": 200,
+				"y-title-offset": 30,
+				"x-title-offiset": 20
+			}
+		}
+	},
+	"Talent": {
+		"Population with Bachelor's Degree": {
+			"detail1": {
+				"title": "title",
+				"plotstyle": "horizontal-bar-chart",
+				"x-title": "number of residents",
+				"x-max": 200000,
+				"y-precision": 0,
+				"title-offset": 200,
+				"y-title-offset": 30,
+				"x-title-offiset": 20
+			}
+		}
+	},
+	
+	"Housing": {
+		"Average Apartment Rent": {
+			"detail1": {
+				"title": "title",
+				"plotstyle": "line",
+				"y-title": "monthly rent ($)",
+				"y-min": 0,
+				"y-max": 3000,
+				"y-precision": 0,
+				"legend": "no",
+				"title-offset": 200,
+				"y-title-offset": 10,
+				"x-title-offiset": 20
+			}
+		},
+		"Apartment Vacancy Rate": {
+			"detail1": {
+				"title": "Apartment Vacancy Rate by Quarter",
+				"plotstyle": "line",
+				"y-title": "% vacancy",
+				"y-min": 0,
+				"y-max": 15,
+				"y-precision": 0,
+				"legend": "no",
+				"title-offset": 200,
+				"y-title-offset": 10,
+				"x-title-offiset": 20
+			}
+		},
+		"Median Sales Price": {
+			"detail1": {
+				"title": "title",
+				"plotstyle": "line",
+				"y-title": "price ($)",
+				"y-min": 0,
+				"y-max": 1000000,
+				"y-precision": 0,
+				"legend": "no",
+				"title-offset": 200,
+				"y-title-offset": 10,
+				"x-title-offiset": 20
+			}
+		}
+	},
+	"Group 5": {
+		"Label 1": {
+			"detail1": {
+				"title": "detail1",
+				"plotstyle": "line",
+				"y-title": "jobs",
+				"y-min": 300000,
+				"y-max": 425000,
+				"y-precision": 0,
+				"legend": "no",
+				"title-offset": 200,
+				"y-title-offset": 30,
+				"x-title-offiset": 20
+			},
+			"detail2": {
+				"plotstyle": "horizontal-bar-chart",
+				"title": "detail2 title",
+				"x-title": "jobs",
+				"x-max": 85000,
+				"x-precision": 0,
+				"title-offset": 200,
+				"y-title-offset": 30,
+				"x-title-offiset": 20
+			}
+		},
+		"Label 2": {
+			"detail1": {
+				"title": "title",
+				"plotstyle": "line",
+				"y-min": 0.0,
+				"y-max": 13.0,
+				"y-title": "%",
+				"y-precision": 0.0,
+				"title-offset": 200,
+				"y-title-offset": 10,
+				"x-title-offiset": 20
+			}
+		},
+		"Label 3": {
+			"detail1": {
+				"title": "title",
+				"plotstyle": "horizontal-bar-chart",
+				"x-title": "number in labor force",
+				"x-precision": 0,
+				"y-title": "age",
+				"title-offset": 200,
+				"y-title-offset": 30,
+				"x-title-offiset": 20
+			}
+		}
+	}
+}

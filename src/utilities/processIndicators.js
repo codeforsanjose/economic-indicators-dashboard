@@ -3,12 +3,12 @@
 import Papa from 'papaparse'
 import _ from 'lodash'
 
-import { dataTags } from '../config/constants'
-import { constructOpenDataURL } from '../config/dataURLs'
+import { dataTags } from './constants'
+import { constructDataURL } from './dataURLs'
 
-function convertRow (row, heading) {
-  var result = {}
-  var data = {}
+const convertRow = (row, heading) => {
+  let result = {}
+  let data = {}
 
   heading.map((item, index) => {
     if (row[index] !== 'TBD' && row[index] !== undefined) {
@@ -34,11 +34,11 @@ function convertRow (row, heading) {
   return result
 }
 
-function convertIndicatorsToJSON (csvData) {
-  var indicators = Papa.parse(csvData)
+const convertIndicatorsToJSON = (csvData) => {
+  const indicators = Papa.parse(csvData)
 
-  var indicatorsJSON = {}
-  var orderID = -1
+  let indicatorsJSON = {}
+  let orderID = -1
 
   indicators.data.map((row, index, indicatorSet) => {
     // Don't do anything if it is the first row
@@ -70,15 +70,11 @@ export const processIndicators = (state, csvdata) => {
   _.forIn(indicators, (set) => {
     _.forIn(set, (item) => {
       if (item.detail1) {
-        var newDetail1 = constructOpenDataURL(state.generalConfig.data['open-data-url'],
-                                               item.detail1,
-                                               state.generalConfig.data['api-key'])
+        let newDetail1 = constructDataURL(state.generalConfig.data, item.detail1)
         item.dataURL = newDetail1
       }
       if (item.detail2) {
-        var newDetail2 = constructOpenDataURL(state.generalConfig.data['open-data-url'],
-                                                item.detail2,
-                                                state.generalConfig.data['api-key'])
+        let newDetail2 = constructDataURL(state.generalConfig.data, item.detail2)
         item.sectorDataURL = newDetail2
       }
     })
