@@ -30,6 +30,7 @@ See the [wiki](https://github.com/codeforsanjose/economic-indicators-dashboard/w
    * [Getting Started](#getting-started)
      * [Publishing the site](#publishing-the-site) 
    * [Structure](#structure)
+  * [Run local data](#run-local-data)
 
 ### Goals
 1. Elected officials, policymakers, businesses, nonprofits and community members have access to an "at-a-glance" snapshot of how the San Jose economy is doing. 
@@ -250,3 +251,50 @@ Great, now that introductions have been made here's everything in full detail:
 └── tests                    # Unit tests
 ```
 
+### Run Local Data
+
+This will provide you an overview of running the application using local data.
+
+We will be using two simple data servers.  One for the configuration data and second one for the indicator data.   This was tested using http-server which can be downloaded from npm:  https://www.npmjs.com/package/http-server
+
+The three servers that will be running are:
+
+* Dashboard:  http://localhost:3000/local.html
+* Configuration: http://localhost:8080
+* Data: http://localhost:1234
+
+The references to these are as following:
+
+* src/local.html - This is the entry point for the dashboard.  Enter in the url for the configuration on the following line
+
+```
+    <div id='root'  data-config='http://127.0.0.1:8080/general_config.json'></div>
+```
+
+* demoData/dashboard2/config/general_config.json - This overrides the default urls that currently point to SJ github repo for the configuration and the opendata portal for the data.
+
+Confirm that the following settings are in the general_config.json - see snippet below
+
+   "useURLConfig": true,
+   "configURL": "http://127.0.0.1:8080",
+   "dataURL": "http://127.0.0.1:1234",
+   
+Verify the json formatting by pasting the contents of the file into an online JSON format verifier.  An example can be found here:  http://jsonlint.com/
+
+```
+"urlConfig": {
+   "useURLConfig": true,
+   "configURL": "http://127.0.0.1:8080",
+   "dataURL": "http://127.0.0.1:1234",
+   "useDataMap": true,
+   "dataMap": {
+      "SAN-JOSE-ECONO-INDIC":"econ_indicators_q12016_junar_CMO-T17-117LT_1.csv",
+      "MONTH-JOBS-TOTAL" : "monthly_jobs_june2015.csv",
+      "SAN-JOSE-JOBS-BY-SECTO" : "monthly_jobs_by_sector_june2015.csv",
+      "MONTH-UNEMP-RATE": "monthly_unemployment_may2016_sj_sjmsa.csv",
+      "LABOR-FORCE-BY-AGE": "labor_force_by_age_acs2014.csv",
+      "EDUCA-ATTAI-FOR-SAN-JOSE":  "edu_attainment_2014.csv",
+      "MONTH-APART-RENTS": "monthly_apt_rend_rendjungle.csv",
+      "MEDIA-HOME-PRICE": "monthly_home_prices.csv"
+   }
+  ```
