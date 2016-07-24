@@ -8,7 +8,7 @@ import { Box } from './Box'
 import { chartTypes, getChartID } from '../utilities/chartIDs'
 import { ChartPanel } from './ChartPanel'
 import { RowLabel } from './RowLabel'
-import { dataTags } from '../config/constants'
+import { dataTags } from '../utilities/constants'
 import { detailsEventHandler } from './detailsEventHandler'
 
 class BoxGroup extends React.Component {

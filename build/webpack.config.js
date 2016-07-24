@@ -68,7 +68,27 @@ webpackConfig.plugins = [
     minify: {
       collapseWhitespace: false
     }
-  })
+  }),
+  new HtmlWebpackPlugin({
+    template: paths.client('local.html'),
+    hash: false,
+    favicon: paths.client('static/favicon.ico'),
+    filename: 'local.html',
+    inject: 'body',
+    minify: {
+      collapseWhitespace: false
+    }
+  }),
+  new HtmlWebpackPlugin({
+    template: paths.client('demo.html'),
+    hash: false,
+    favicon: paths.client('static/favicon.ico'),
+    filename: 'demo.html',
+    inject: 'body',
+    minify: {
+    collapseWhitespace: false
+  }
+})
 ]
 
 if (__DEV__) {

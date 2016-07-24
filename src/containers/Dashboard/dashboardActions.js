@@ -1,7 +1,7 @@
 import _ from 'lodash'
 
 import { fetchJSONData2, fetchJSONData, fetchTextData } from '../../utilities/fetchCalls'
-import { constructOpenDataURL } from '../../config/dataURLs'
+import { chartURL, indicatorURL } from '../../utilities/dataURLs'
 import { processIndicators } from '../../utilities/processIndicators'
 
 export const REQUEST_GENERAL_CONFIG = 'REQUEST_GENERAL_CONFIG'
@@ -38,14 +38,11 @@ const fetchGeneralConfig = (url) => {
         receivedAt: Date.now()
       })
 
-      const latestIndicatorsURL = constructOpenDataURL(data['open-data-url'],
-                                                       data['indicator-guid'],
-                                                       data['api-key'])
-
+      const latestIndicatorsURL = indicatorURL(data)
       dispatch(fetchIndicatorsIfNeeded(latestIndicatorsURL))
 
-      const chartURL = data['chart-config-file']
-      dispatch(fetchChartsConfigIfNeeded(chartURL))
+      const url = chartURL(data)
+      dispatch(fetchChartsConfigIfNeeded(url))
     })
     .catch(err => {
       console.log(err)
