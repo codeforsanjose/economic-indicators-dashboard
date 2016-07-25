@@ -64,12 +64,8 @@ class Box extends React.Component {
     this.detailsClickHandler = this.detailsClickHandler.bind(this)
   }
 
-  detailsClickHandler (event) {
-    this.props.clickHandler(event,
-                            this.props.dataURL,
-                            this.props.sectorDataURL,
-                            this.props.chartsConfig,
-                            this.props.sector)
+  detailsClickHandler (inputEvent) {
+    this.props.clickHandler(inputEvent)
   }
 
   render () {
@@ -128,10 +124,6 @@ Box.propTypes = {
   maxBoxes: PropTypes.number.isRequired,
   source: PropTypes.string.isRequired,
   details: PropTypes.string,
-  sector: PropTypes.string.isRequired,
-  dataURL: PropTypes.string,
-  sectorDataURL: PropTypes.string,
-  chartsConfig: PropTypes.object.isRequired,
   clickHandler: PropTypes.func.isRequired
 }
 

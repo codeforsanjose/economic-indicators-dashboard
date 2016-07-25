@@ -1,7 +1,7 @@
 /*global $:true*/
 
-import { showChart } from '../charts/chartUtilities'
-import { chartTypes, getChartID } from '../utilities/chartIDs'
+import { showChart } from '../../charts/chartUtilities'
+import { chartTypes, getChartID } from '../../utilities/chartIDs'
 
 const hideSectorPanels = () => {
   const visibleElements = $.find('.sector-visible')
@@ -54,16 +54,16 @@ const toggleChartPanel = (show, id) => {
   }
 }
 
-export const detailsEventHandler = (event, dataURL, sectorDataURL, chartsConfig, sector) => {
-  const panelID = getChartID(event.currentTarget.id, chartTypes.chartPanel)
-  const chartID = getChartID(event.currentTarget.id, chartTypes.chartID)
-  const sectorChartID = getChartID(event.currentTarget.id, chartTypes.sector)
-  const sectorTitleID = getChartID(event.currentTarget.id, chartTypes.sectorTitle)
-  const sectorPanelID = getChartID(event.currentTarget.id, chartTypes.sectorPanel)
+export const detailsEventHandler = (eventID, dataURL, sectorDataURL, chartsConfig, sector) => {
+  const panelID = getChartID(eventID, chartTypes.chartPanel)
+  const chartID = getChartID(eventID, chartTypes.chartID)
+  const sectorChartID = getChartID(eventID, chartTypes.sector)
+  const sectorTitleID = getChartID(eventID, chartTypes.sectorTitle)
+  const sectorPanelID = getChartID(eventID, chartTypes.sectorPanel)
   // handle the selected panel id
   const id = '#' + panelID
   const sectorID = '#' + sectorPanelID
-  const $seeMoreIcon = $('#' + event.currentTarget.id).find('.dashboard-box__more-details .glyphicon')
+  const $seeMoreIcon = $('#' + eventID).find('.dashboard-box__more-details .glyphicon')
   if ($(id).hasClass('chart-hidden')) {
     hideChartPanels()
     hideSectorPanels()

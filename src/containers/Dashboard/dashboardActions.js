@@ -16,6 +16,14 @@ export const REQUEST_INDICATORS = 'REQUEST_INDICATORS'
 export const RECEIVE_INDICATORS = 'RECEIVE_INDICATORS'
 export const INVALIDATE_INDICATORS = 'INVALIDATE_INDICATORS'
 
+export const REQUEST_CHART_DATA = 'REQUEST_CHART_DATA'
+export const RECEIVE_CHART_DATA = 'RECEIVE_CHART_DATA'
+export const INVALIDATE_CHART_DATA = 'INVALIDATE_CHART_DATA'
+
+export const REQUEST_SECTOR_DATA = 'REQUEST_SECTOR_DATA'
+export const RECEIVE_SECTOR_DATA = 'RECEIVE_SECTOR_DATA'
+export const INVALIDATE_SECTOR_DATA = 'INVALIDATE_SECTOR_DATA'
+
 // =================================
 // General Config
 export const invalidateGeneralConfig = () => {
@@ -163,6 +171,106 @@ export const fetchIndicatorsIfNeeded = (url) => {
   return (dispatch, getState) => {
     if (shouldFetchIndicators(getState(), url)) {
       return dispatch(fetchIndicators(url))
+    }
+  }
+}
+
+// =================================
+// Chart Data
+export const invalidateChartData = () => {
+  return {
+    type: INVALIDATE_CHART_DATA
+  }
+}
+
+const fetchChartData = (url) => {
+  return (dispatch, getState) => {
+    dispatch({
+      type: REQUEST_CHART_DATA
+    })
+
+    const fetchChartDataSuccessCallback = (data) => {
+      // const indicators = processIndicators(getState(), data)
+      dispatch({
+        type: RECEIVE_CHART_DATA,
+        data,
+        receivedAt: Date.now()
+      })
+    }
+
+    const fetchChartDataErrorCallback = (err) => {
+      console.log(err)
+    }
+
+    return fetchTextData(url, fetchChartDataSuccessCallback, fetchChartDataErrorCallback)
+  }
+}
+
+const shouldFetchChartData = (state) => {
+  const indicators = state.indicators
+  if (_.isEmpty(indicators.data)) {
+    return true
+  }
+  if (indicators.isFetching) {
+    return false
+  }
+  return indicators.didInvalidate
+}
+
+export const fetchChartDataIfNeeded = (url) => {
+  return (dispatch, getState) => {
+    if (shouldFetchChartData(getState(), url)) {
+      return dispatch(fetchChartData(url))
+    }
+  }
+}
+
+// =================================
+// Sector Data
+export const invalidateSectorData = () => {
+  return {
+    type: INVALIDATE_SECTOR_DATA
+  }
+}
+
+const fetchSectorData = (url) => {
+  return (dispatch, getState) => {
+    dispatch({
+      type: REQUEST_SECTOR_DATA
+    })
+
+    const fetchSectorDataSuccessCallback = (data) => {
+      // const indicators = processIndicators(getState(), data)
+      dispatch({
+        type: RECEIVE_SECTOR_DATA,
+        data,
+        receivedAt: Date.now()
+      })
+    }
+
+    const fetchSectorDataErrorCallback = (err) => {
+      console.log(err)
+    }
+
+    return fetchTextData(url, fetchSectorDataSuccessCallback, fetchSectorDataErrorCallback)
+  }
+}
+
+const shouldFetchSectorData = (state) => {
+  const indicators = state.indicators
+  if (_.isEmpty(indicators.data)) {
+    return true
+  }
+  if (indicators.isFetching) {
+    return false
+  }
+  return indicators.didInvalidate
+}
+
+export const fetchSectorDataIfNeeded = (url) => {
+  return (dispatch, getState) => {
+    if (shouldFetchSectorData(getState(), url)) {
+      return dispatch(fetchSectorData(url))
     }
   }
 }
