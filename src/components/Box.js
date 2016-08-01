@@ -59,15 +59,9 @@ const getTrendIcon = (trend) => {
 }
 
 class Box extends React.Component {
-  constructor () {
-    super()
-    this.detailsClickHandler = this.detailsClickHandler.bind(this)
+  clickHandler = (e) => {
+    console.log(e)
   }
-
-  detailsClickHandler (inputEvent) {
-    this.props.clickHandler(inputEvent)
-  }
-
   render () {
     var boxType = this.props.boxType
     var headline = this.props.headline
@@ -85,7 +79,7 @@ class Box extends React.Component {
 
     return (
       <div className={boxType + boxClassNames}>
-        <div id={idName} onClick={this.detailsClickHandler} >
+        <div id={idName} onClick={this.props.clickHandler} >
           <div className={'headlineBox-' + boxType + ' dashboard-headline'}>
             {headline}
           </div>

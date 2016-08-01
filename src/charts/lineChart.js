@@ -19,6 +19,8 @@ export const addLineChart = (inputOptions, config) => {
       .showXAxis(true)
       .showLegend(inputOptions.showLegend)
 
+    chart.legend.margin({top: 20, right: 0, bottom: 15, left: 0})
+
     chart.xAxis
       .axisLabel(inputOptions.xAxisLabel)
 
@@ -37,6 +39,7 @@ export const addLineChart = (inputOptions, config) => {
     chart.xAxis
         .axisLabel(config['x-title'])
         .axisLabelDistance(config['x-title-offset'])
+        .ticks(10)
 
     var yMin = 0
     var yMax = 100000
