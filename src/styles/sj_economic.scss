@@ -47,6 +47,11 @@
   text-align: center;
   z-index: 1;
 
+  &.dashboard-open {
+      border: none;
+      box-shadow: 0 0 0 3px $primary-green inset;
+  }
+
   .dashboard-headline {
     border-bottom: 2px solid $primary-grey-50;
     color: $primary-grey;
