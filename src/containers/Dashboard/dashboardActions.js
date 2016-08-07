@@ -2,7 +2,6 @@ import _ from 'lodash'
 
 import { fetchJSONData2, fetchJSONData, fetchTextData } from '../../utilities/fetchCalls'
 import { chartURL, indicatorURL } from '../../utilities/dataURLs'
-import { processIndicators } from '../../utilities/processIndicators'
 
 export const REQUEST_GENERAL_CONFIG = 'REQUEST_GENERAL_CONFIG'
 export const RECEIVE_GENERAL_CONFIG = 'RECEIVE_GENERAL_CONFIG'
@@ -19,6 +18,8 @@ export const INVALIDATE_INDICATORS = 'INVALIDATE_INDICATORS'
 export const REQUEST_CHART_DATA = 'REQUEST_CHART_DATA'
 export const RECEIVE_CHART_DATA = 'RECEIVE_CHART_DATA'
 export const INVALIDATE_CHART_DATA = 'INVALIDATE_CHART_DATA'
+export const SHOW_CHART = 'SHOW_CHART'
+export const CHART_IS_SHOWING = 'CHART_IS_SHOWING'
 
 export const REQUEST_SECTOR_DATA = 'REQUEST_SECTOR_DATA'
 export const RECEIVE_SECTOR_DATA = 'RECEIVE_SECTOR_DATA'
@@ -107,14 +108,14 @@ const fetchChartsConfig = (url) => {
 }
 
 const shouldFetchChartsConfig = (state) => {
-  const chartsConfig = state.chartsConfig
-  if (_.isEmpty(chartsConfig.data)) {
+  const charts = state.charts
+  if (_.isEmpty(charts.config.data)) {
     return true
   }
-  if (chartsConfig.isFetching) {
+  if (charts.config.isFetching) {
     return false
   }
-  return chartsConfig.didInvalidate
+  return charts.config.didInvalidate
 }
 
 export const fetchChartsConfigIfNeeded = (url) => {
@@ -140,10 +141,11 @@ const fetchIndicators = (url) => {
     })
 
     const fetchIndicatorsSuccessCallback = (data) => {
-      const indicators = processIndicators(getState(), data)
+      const state = getState()
       dispatch({
         type: RECEIVE_INDICATORS,
-        indicators,
+        data,
+        generalConfig: state.generalConfig,
         receivedAt: Date.now()
       })
     }
@@ -177,23 +179,38 @@ export const fetchIndicatorsIfNeeded = (url) => {
 
 // =================================
 // Chart Data
-export const invalidateChartData = () => {
+export const invalidateChartData = (id) => {
   return {
-    type: INVALIDATE_CHART_DATA
+    type: INVALIDATE_CHART_DATA,
+    id
   }
 }
 
-const fetchChartData = (url) => {
+export const showChart = () => {
+  return {
+    type: SHOW_CHART
+  }
+}
+
+export const chartIsShowing = () => {
+  return {
+    type: CHART_IS_SHOWING
+  }
+}
+
+const fetchChartData = (item, eventId) => {
   return (dispatch, getState) => {
     dispatch({
-      type: REQUEST_CHART_DATA
+      type: REQUEST_CHART_DATA,
+      item,
+      eventId
     })
 
     const fetchChartDataSuccessCallback = (data) => {
-      // const indicators = processIndicators(getState(), data)
       dispatch({
         type: RECEIVE_CHART_DATA,
         data,
+        id: item.id,
         receivedAt: Date.now()
       })
     }
@@ -202,25 +219,25 @@ const fetchChartData = (url) => {
       console.log(err)
     }
 
-    return fetchTextData(url, fetchChartDataSuccessCallback, fetchChartDataErrorCallback)
+    return fetchTextData(item.dataURL, fetchChartDataSuccessCallback, fetchChartDataErrorCallback)
   }
 }
 
-const shouldFetchChartData = (state) => {
-  const indicators = state.indicators
-  if (_.isEmpty(indicators.data)) {
+const shouldFetchChartData = (state, id) => {
+  const chartData = state.charts.chartData
+  if (_.isEmpty(chartData[id])) {
     return true
   }
-  if (indicators.isFetching) {
+  if (chartData[id].isFetching) {
     return false
   }
-  return indicators.didInvalidate
+  return chartData[id].didInvalidate
 }
 
-export const fetchChartDataIfNeeded = (url) => {
+export const fetchChartDataIfNeeded = (item, eventId) => {
   return (dispatch, getState) => {
-    if (shouldFetchChartData(getState(), url)) {
-      return dispatch(fetchChartData(url))
+    if (shouldFetchChartData(getState(), item.id)) {
+      return dispatch(fetchChartData(item, eventId))
     }
   }
 }
@@ -240,7 +257,6 @@ const fetchSectorData = (url) => {
     })
 
     const fetchSectorDataSuccessCallback = (data) => {
-      // const indicators = processIndicators(getState(), data)
       dispatch({
         type: RECEIVE_SECTOR_DATA,
         data,
@@ -257,14 +273,14 @@ const fetchSectorData = (url) => {
 }
 
 const shouldFetchSectorData = (state) => {
-  const indicators = state.indicators
-  if (_.isEmpty(indicators.data)) {
+  const sectorData = state.indicators
+  if (_.isEmpty(sectorData.data)) {
     return true
   }
-  if (indicators.isFetching) {
+  if (sectorData.isFetching) {
     return false
   }
-  return indicators.didInvalidate
+  return sectorData.didInvalidate
 }
 
 export const fetchSectorDataIfNeeded = (url) => {

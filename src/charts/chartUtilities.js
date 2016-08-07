@@ -1,5 +1,4 @@
 import Papa from 'papaparse'
-import _ from 'lodash'
 require('es6-promise').polyfill()
 import fetch from 'isomorphic-fetch'
 
@@ -7,7 +6,13 @@ import {addLineChart} from './lineChart'
 import {addBarChart} from './barChart'
 // import {addScatterChart} from './scatterChart'
 
-const addChart = (chartID, dataURL, sectorID, sectorURL, sectorTitleID, chartsConfig) => {
+const addChart = (chartID,
+                  dataURL,
+                  sectorID,
+                  sectorURL,
+                  sectorTitleID,
+                  chartsConfig,
+                  chartData) => {
   var sectorResults
 
   const processSectorResults = (result) => {
@@ -74,74 +79,11 @@ const addChart = (chartID, dataURL, sectorID, sectorURL, sectorTitleID, chartsCo
     }
   }
 
-  const processResultsMultiLines = (result) => {
-    var values = Papa.parse(result)
-
-    var dataValues = {}
-    var xTickLabels = []
-
-    var header = values.data[0]
-
-    header.map(function (headerItem, idx) {
-      if (idx > 0) {
-        dataValues[headerItem] = {
-          values: [],
-          key: headerItem
-        }
-      }
-    })
-
-    values.data.shift() // ignore the header
-    var done = false
-    var index = 0
-    var yMax = 0
-
-    values.data.map(function (item) {
-      var axisLabel = item[0]
-      axisLabel = axisLabel.trim().replace(/"/g, '')
-
-      if (axisLabel.length === 0) {
-        done = true
-      }
-
-      if (!done) {
-        // Get rid of the first element
-        item.shift()
-
-        item.map(function (dataPoint, idx) {
-          var value = parseFloat(dataPoint.replace(/,/g, '').replace(/"/g, '').replace(/\$/g, ''))
-
-          var labelVal = index
-          if (chartsConfig['detail1'].plotstyle === 'horizontal-bar-chart') {
-            labelVal = axisLabel
-          }
-
-          var headerName = header[idx + 1]
-
-          dataValues[headerName].values.push({
-            label: labelVal,
-            value: value
-          })
-
-          // Track the maximum y value
-          if (value > yMax) {
-            yMax = value
-          }
-        })
-        xTickLabels.push(axisLabel)
-        index++
-      }
-    })
-
-    var chartData = []
-
-    _.forIn(dataValues, function (dataSet, dataKey) {
-      chartData.push({
-        key: dataSet.key,
-        values: dataSet.values
-      })
-    })
-
+  const processResultsMultiLines = (chartResults) => {
+    // const chartResults = processChartResults(result, chartsConfig)
+    const chartData = chartResults.chartData
+    const xTickLabels = chartResults.xTickLabels
+    const yMax = chartResults.yMax
     var inputParams = []
 
     switch (chartsConfig['detail1'].plotstyle) {
@@ -183,22 +125,21 @@ const addChart = (chartID, dataURL, sectorID, sectorURL, sectorTitleID, chartsCo
         break
     }
   }
-
-  fetch(dataURL, {
-    method: 'get'
-  })
-  .then((res) => res.text())
-  .then((data) => {
-    processResultsMultiLines(data)
-  })
-  .catch((err) => {
-    console.log(err)
-  })
+  processResultsMultiLines(chartData)
 }
 
-export function showChart (chartID, dataURL, sectorID, sectorDataURL, sectorTitleID, chartsConfig) {
-  console.log(dataURL)
-  console.log(sectorDataURL)
-
-  addChart(chartID, dataURL, sectorID, sectorDataURL, sectorTitleID, chartsConfig)
+export function showChart (chartID,
+                           dataURL,
+                           sectorID,
+                           sectorDataURL,
+                           sectorTitleID,
+                           chartsConfig,
+                           chartData) {
+  addChart(chartID,
+           dataURL,
+           sectorID,
+           sectorDataURL,
+           sectorTitleID,
+           chartsConfig,
+           chartData)
 }

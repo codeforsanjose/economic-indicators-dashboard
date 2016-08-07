@@ -2,11 +2,9 @@
 /*eslint max-len: [2, 200, 4]*/ // extend the maximum allowed characters
 
 import React, { PropTypes } from 'react'
-var shortid = require('shortid')
 
 import { Box } from './Box'
 import { RowLabel } from './RowLabel'
-import { dataTags } from '../utilities/constants'
 
 class BoxGroup extends React.Component {
   render () {
@@ -14,20 +12,13 @@ class BoxGroup extends React.Component {
     title = title.toUpperCase()
 
     var boxes = this.props.data.map((item) => {
-      var uuid = shortid.generate()
+      var uuid = item.id
 
       return (
         <Box boxType={this.props.labelClass}
-          headline={item.name}
-          content={item.value}
-          footer={item[dataTags.changeFromPrevYear]}
-          trend={item.trend}
           key={uuid}
-          idName={item.id}
-          date={item.date}
-          details={item.detail1}
           maxBoxes={this.props.maxBoxes}
-          source={item.source}
+          item={item}
           clickHandler={this.props.detailsEventHandler}
         />
       )

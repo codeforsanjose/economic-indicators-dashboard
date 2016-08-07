@@ -3,7 +3,6 @@
 import React, { PropTypes } from 'react'
 import _ from 'lodash'
 import { connect } from 'react-redux'
-var shortid = require('shortid')
 
 require('es6-promise').polyfill()
 
@@ -17,8 +16,9 @@ import { renderIntroText,
          renderTitleRight,
          renderFooterRight } from '../../utilities/generalConfig'
 import { fetchGeneralConfigIfNeeded,
-  fetchChartDataIfNeeded,
-  fetchSectorDataIfNeeded } from './dashboardActions'
+         fetchChartDataIfNeeded,
+         fetchSectorDataIfNeeded,
+         chartIsShowing } from './dashboardActions'
 import { detailsEventHandler } from './detailsEventHandler'
 
 import '../../styles/core.scss'
@@ -29,34 +29,36 @@ class DashboardComponent extends React.Component {
     this.detailsClickHandler = this.detailsClickHandler.bind(this)
   }
 
-  detailsClickHandler (inputEvent) {
+  showDetails (item, config, chartDataProp, eventId) {
     let chartsConfigData = {}
-    const chartData = this.props.chartsConfig.data
 
-    let item = {}
-    _.forEach(this.props.indicators.data, (value, key) => {
-      value.forEach((element, index, array) => {
-        if (element.id === inputEvent.currentTarget.id) {
-          item = element
-        }
-      })
-    })
-
-    if (chartData !== null && chartData !== undefined) {
-      if (chartData.hasOwnProperty(item.category)) {
-        if (chartData[item.category].hasOwnProperty(item.name)) {
-          chartsConfigData = chartData[item.category][item.name]
+    if (config !== null && config !== undefined) {
+      if (config.data.hasOwnProperty(item.category)) {
+        if (config.data[item.category].hasOwnProperty(item.name)) {
+          chartsConfigData = config.data[item.category][item.name]
         }
       }
     }
-    detailsEventHandler(inputEvent.currentTarget.id,
+
+    let chartData = {}
+
+    if (!_.isNil(chartDataProp)) {
+      if (chartDataProp.hasOwnProperty(item.id)) {
+        chartData = chartDataProp[item.id]
+      }
+    }
+
+    detailsEventHandler(eventId,
                         item.dataURL,
                         item.sectorDataURL,
                         chartsConfigData,
+                        chartData,
                         item.detail2)
-    // ToDo - replace detailsEventHandler with action/reducers
-    this.props.dispatch(fetchChartDataIfNeeded(item.dataURL))
-    this.props.dispatch(fetchSectorDataIfNeeded(item.sectorDataURL))
+  }
+
+  detailsClickHandler (inputEvent, item) {
+    this.props.dispatch(fetchChartDataIfNeeded(item, inputEvent.currentTarget.id))
+    this.props.dispatch(fetchSectorDataIfNeeded(item.sectorDataURL, item.id))
   }
 
   // Retrieve the data for the dashboard
@@ -76,7 +78,7 @@ class DashboardComponent extends React.Component {
         var chartTitleID = getChartID(item.id, chartTypes.chartTitle)
         var sectorTitleID = getChartID(item.id, chartTypes.sectorTitle)
         var sectorPanelID = getChartID(item.id, chartTypes.sectorPanel)
-        var uuid = shortid.generate()
+        var uuid = chartID
         var hasSector = false
         if (item.sector !== undefined && item.sector.length > 0) {
           hasSector = true
@@ -100,24 +102,16 @@ class DashboardComponent extends React.Component {
     return chartPanels
   }
 
-  render () {
-    const indicators = _.isNil(this.props.indicators) ? {} : this.props.indicators.data
-    const chartsConfig = _.isNil(this.props.chartsConfig) ? {} : this.props.chartsConfig.data
-    const generalConfig = _.isNil(this.props.generalConfig) ? {} : this.props.generalConfig.data
-    const maxBoxes = _.isNil(this.props.indicators) ? 3 : this.props.indicators.maxBoxes
-
-    // If the data isn't defined - just show loading
-    if (_.isEmpty(indicators) ||
-        _.isEmpty(chartsConfig) ||
-        _.isEmpty(generalConfig)) {
-      return (<h1>Loading data</h1>)
-    }
-
+  getBoxGroups (indicators,
+               maxBoxes,
+               chartsData,
+               sectorData,
+               chartsConfig) {
     var boxGroups = []
 
     _.forIn(indicators, (item, key) => {
       if (item[0] !== undefined && item[0].category !== undefined && item[0].category.length > 0) {
-        var uuid = shortid.generate()
+        var uuid = `indicator-${item[0].id}`
         var labelClass = item[0].category.toLowerCase().trim().replace(/ /g, '-')
         var labelTitle = item[0].category.toUpperCase()
 
@@ -132,6 +126,8 @@ class DashboardComponent extends React.Component {
               maxBoxes={maxBoxes}
               key={uuid}
               chartsConfig={chartsConfig}
+              chartsData={chartsData}
+              sectorData={sectorData}
               detailsEventHandler={this.detailsClickHandler}
             />
             <div className='row'>
@@ -141,6 +137,38 @@ class DashboardComponent extends React.Component {
         )
       }
     })
+
+    return boxGroups
+  }
+
+  render () {
+    const indicators = _.isNil(this.props.indicators) ? {} : this.props.indicators.data
+    const chartsConfig = _.isNil(this.props.chartsConfig) ? {} : this.props.chartsConfig.data
+    const chartsData = _.isNil(this.props.chartData) ? {} : this.props.chartData
+    const sectorData = _.isNil(this.props.sectorData) ? {} : this.props.sectorData
+    const generalConfig = _.isNil(this.props.generalConfig) ? {} : this.props.generalConfig.data
+    const maxBoxes = _.isNil(this.props.indicators) ? 3 : this.props.indicators.maxBoxes
+
+    // If the data isn't defined - just show loading
+    if (_.isEmpty(indicators) ||
+        _.isEmpty(chartsConfig) ||
+        _.isEmpty(generalConfig)) {
+      return (<h1>Loading data</h1>)
+    }
+
+    const boxGroups = this.getBoxGroups(indicators,
+                                   maxBoxes,
+                                   chartsData,
+                                   sectorData,
+                                   chartsConfig)
+
+    if (this.props.showChart) {
+      this.showDetails(this.props.selectedItem,
+                  this.props.chartsConfig,
+                  this.props.chartData,
+                  this.props.selectedEventId)
+      this.dispatch(chartIsShowing())
+    }
 
     return (
       <div>
@@ -175,14 +203,24 @@ DashboardComponent.propTypes = {
   indicators: PropTypes.object,
   generalConfig: PropTypes.object,
   chartsConfig: PropTypes.object,
-  dispatch: PropTypes.func.isRequired
+  chartData: PropTypes.object,
+  sectorData: PropTypes.object,
+  dispatch: PropTypes.func.isRequired,
+  selectedItem: PropTypes.object,
+  selectedEventId: PropTypes.string,
+  showChart: PropTypes.bool
 }
 
 const mapStateToProps = (state) => ({
   indicators: state.indicators,
   generalConfig: state.generalConfig,
-  chartsConfig: state.chartsConfig,
-  dispatch: state.dispatch
+  chartsConfig: state.charts.config,
+  chartData: state.charts.chartData,
+  sectorData: state.charts.sectorData,
+  dispatch: state.dispatch,
+  selectedItem: state.charts.config.selectedItem,
+  selectedEventId: state.charts.config.selectedEventId,
+  showChart: state.charts.config.showChart
 })
 
 export const Dashboard = connect(mapStateToProps)(DashboardComponent)

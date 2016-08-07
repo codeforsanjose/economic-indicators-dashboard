@@ -9,7 +9,7 @@ const chartIDTypes = {
 
 export const chartTypes = {
   chartPanel: 'chartPanel',
-  chardID: 'chartID',
+  chartID: 'chartID',
   chartTitle: 'chartTitle',
   sectorTitle: 'sectorTitle',
   sector: 'sector',

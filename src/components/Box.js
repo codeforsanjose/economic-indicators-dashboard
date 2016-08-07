@@ -5,6 +5,8 @@
 import React, { PropTypes } from 'react'
 import ReactTooltip from 'react-tooltip'
 
+import { dataTags } from '../utilities/constants'
+
 const renderDetailsButton = (details, idName) => {
   if (details !== undefined && details.length > 0) {
     return (
@@ -60,16 +62,18 @@ const getTrendIcon = (trend) => {
 
 class Box extends React.Component {
   clickHandler = (e) => {
-    console.log(e)
+    this.props.clickHandler(e, this.props.item)
   }
   render () {
     var boxType = this.props.boxType
-    var headline = this.props.headline
-    var content = this.props.content
-    var footer = this.props.footer
-    var trend = this.props.trend
-    var idName = this.props.idName
-    var date = this.props.date
+    var headline = this.props.item.name
+    var content = this.props.item.content
+    var footer = this.props.item[dataTags.changeFromPrevYear]
+    var trend = this.props.item.trend
+    var idName = this.props.item.id
+    var date = this.props.item.date
+    var source = this.props.item.source
+    var details = this.props.item.detail1
     var maxBoxes = this.props.maxBoxes
 
     const trendIcon = getTrendIcon(trend)
@@ -79,7 +83,7 @@ class Box extends React.Component {
 
     return (
       <div className={boxType + boxClassNames}>
-        <div id={idName} onClick={this.props.clickHandler} >
+        <div id={idName} onClick={this.clickHandler} >
           <div className={'headlineBox-' + boxType + ' dashboard-headline'}>
             {headline}
           </div>
@@ -96,10 +100,10 @@ class Box extends React.Component {
             from previous year
           </div>
           <div>
-            {renderInfoButton(this.props.source, this.props.idName)}
+            {renderInfoButton(source, idName)}
           </div>
           <div>
-            {renderDetailsButton(this.props.details, this.props.idName)}
+            {renderDetailsButton(details, idName)}
           </div>
         </div>
       </div>
@@ -109,15 +113,8 @@ class Box extends React.Component {
 
 Box.propTypes = {
   boxType: PropTypes.string.isRequired,
-  headline: PropTypes.string.isRequired,
-  content: PropTypes.string.isRequired,
-  footer: PropTypes.string.isRequired,
-  trend: PropTypes.string.isRequired,
-  idName: PropTypes.string.isRequired,
-  date: PropTypes.string.isRequired,
   maxBoxes: PropTypes.number.isRequired,
-  source: PropTypes.string.isRequired,
-  details: PropTypes.string,
+  item: PropTypes.object,
   clickHandler: PropTypes.func.isRequired
 }
 
