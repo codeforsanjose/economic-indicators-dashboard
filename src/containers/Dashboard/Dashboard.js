@@ -167,7 +167,7 @@ class DashboardComponent extends React.Component {
                   this.props.chartsConfig,
                   this.props.chartData,
                   this.props.selectedEventId)
-      this.dispatch(chartIsShowing())
+      // this.props.dispatch(chartIsShowing())
     }
 
     return (

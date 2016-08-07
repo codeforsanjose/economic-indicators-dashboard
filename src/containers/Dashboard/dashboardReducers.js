@@ -168,8 +168,6 @@ export const charts = (state = {
         }
       }
       const newData = processChartResults(action.data, chartConfig)
-      console.log(newData.chartData)
-      console.log(newData.xTickLabels)
       return Object.assign({}, state, {
         config: {
           ...state.config,
@@ -191,7 +189,9 @@ export const charts = (state = {
       return Object.assign({}, state, {
         config: {
           ...state.config,
-          showChart: true
+          showChart: true,
+          selectedItem: action.item,
+          selectedEventId: action.eventId
         }
       })
     case CHART_IS_SHOWING:

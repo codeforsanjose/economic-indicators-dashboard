@@ -186,9 +186,11 @@ export const invalidateChartData = (id) => {
   }
 }
 
-export const showChart = () => {
+export const showChart = (item, eventId) => {
   return {
-    type: SHOW_CHART
+    type: SHOW_CHART,
+    item,
+    eventId
   }
 }
 
@@ -238,6 +240,8 @@ export const fetchChartDataIfNeeded = (item, eventId) => {
   return (dispatch, getState) => {
     if (shouldFetchChartData(getState(), item.id)) {
       return dispatch(fetchChartData(item, eventId))
+    } else {
+      return dispatch(showChart(item, eventId))
     }
   }
 }
