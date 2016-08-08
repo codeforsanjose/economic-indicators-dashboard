@@ -17,8 +17,7 @@ import { renderIntroText,
          renderFooterRight } from '../../utilities/generalConfig'
 import { fetchGeneralConfigIfNeeded,
          fetchChartDataIfNeeded,
-         fetchSectorDataIfNeeded,
-         chartIsShowing } from './dashboardActions'
+         fetchSectorDataIfNeeded } from './dashboardActions'
 import { detailsEventHandler } from './detailsEventHandler'
 
 import '../../styles/core.scss'
@@ -29,7 +28,11 @@ class DashboardComponent extends React.Component {
     this.detailsClickHandler = this.detailsClickHandler.bind(this)
   }
 
-  showDetails (item, config, chartDataProp, eventId) {
+  showDetails (item,
+               config,
+               chartDataProp,
+               eventId,
+               sectorDataProp) {
     let chartsConfigData = {}
 
     if (config !== null && config !== undefined) {
@@ -48,17 +51,27 @@ class DashboardComponent extends React.Component {
       }
     }
 
+    let sectorData = {}
+    if (!_.isNil(sectorDataProp)) {
+      if (sectorDataProp.hasOwnProperty(item.id)) {
+        sectorData = sectorDataProp[item.id]
+      }
+    }
+
     detailsEventHandler(eventId,
                         item.dataURL,
                         item.sectorDataURL,
                         chartsConfigData,
                         chartData,
-                        item.detail2)
+                        item.detail2,
+                        sectorData)
   }
 
   detailsClickHandler (inputEvent, item) {
     this.props.dispatch(fetchChartDataIfNeeded(item, inputEvent.currentTarget.id))
-    this.props.dispatch(fetchSectorDataIfNeeded(item.sectorDataURL, item.id))
+    if (typeof item.sectorDataURL !== 'undefined') {
+      this.props.dispatch(fetchSectorDataIfNeeded(item.sectorDataURL, item.id))
+    }
   }
 
   // Retrieve the data for the dashboard
@@ -166,8 +179,8 @@ class DashboardComponent extends React.Component {
       this.showDetails(this.props.selectedItem,
                   this.props.chartsConfig,
                   this.props.chartData,
-                  this.props.selectedEventId)
-      // this.props.dispatch(chartIsShowing())
+                  this.props.selectedEventId,
+                  this.props.sectorData)
     }
 
     return (

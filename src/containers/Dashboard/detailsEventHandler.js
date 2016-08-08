@@ -59,7 +59,8 @@ export const detailsEventHandler = (eventID,
                                     sectorDataURL,
                                     chartsConfig,
                                     chartData,
-                                    sector) => {
+                                    sector,
+                                    sectorData) => {
   const panelID = getChartID(eventID, chartTypes.chartPanel)
   const chartID = getChartID(eventID, chartTypes.chartID)
   const sectorChartID = getChartID(eventID, chartTypes.sector)
@@ -79,7 +80,8 @@ export const detailsEventHandler = (eventID,
               sectorDataURL,
               sectorTitleID,
               chartsConfig,
-              chartData)
+              chartData,
+              sectorData)
     toggleChartPanel(true, id)
     // toggle see more icon direction and copy
     $seeMoreIcon.removeClass('glyphicon-chevron-down')

@@ -66,6 +66,7 @@ export const addLineChart = (inputOptions, config) => {
     chart.xAxis.rotateLabels(-45)
 
     chart.lines.dispatch.on('elementClick', function (e) {
+      console.log('elementClick')
       inputOptions.chartEvents(inputOptions.xTickLabels[e[0].point.label], e[0].point.value)
       chart.lines.clearHighlights()
       chart.lines.highlightPoint(inputOptions.xTickLabels[e[0].point.label], e[0].point.value, true)

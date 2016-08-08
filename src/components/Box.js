@@ -67,7 +67,7 @@ class Box extends React.Component {
   render () {
     var boxType = this.props.boxType
     var headline = this.props.item.name
-    var content = this.props.item.content
+    var content = this.props.item.value
     var footer = this.props.item[dataTags.changeFromPrevYear]
     var trend = this.props.item.trend
     var idName = this.props.item.id

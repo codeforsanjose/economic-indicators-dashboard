@@ -248,22 +248,25 @@ export const fetchChartDataIfNeeded = (item, eventId) => {
 
 // =================================
 // Sector Data
-export const invalidateSectorData = () => {
+export const invalidateSectorData = (id) => {
   return {
-    type: INVALIDATE_SECTOR_DATA
+    type: INVALIDATE_SECTOR_DATA,
+    id
   }
 }
 
-const fetchSectorData = (url) => {
+const fetchSectorData = (url, id) => {
   return (dispatch, getState) => {
     dispatch({
-      type: REQUEST_SECTOR_DATA
+      type: REQUEST_SECTOR_DATA,
+      id
     })
 
     const fetchSectorDataSuccessCallback = (data) => {
       dispatch({
         type: RECEIVE_SECTOR_DATA,
         data,
+        id,
         receivedAt: Date.now()
       })
     }
@@ -276,21 +279,21 @@ const fetchSectorData = (url) => {
   }
 }
 
-const shouldFetchSectorData = (state) => {
-  const sectorData = state.indicators
-  if (_.isEmpty(sectorData.data)) {
+const shouldFetchSectorData = (state, id) => {
+  const sectorData = state.charts.sectorData
+  if (_.isEmpty(sectorData[id])) {
     return true
   }
-  if (sectorData.isFetching) {
+  if (sectorData[id].isFetching) {
     return false
   }
-  return sectorData.didInvalidate
+  return sectorData[id].didInvalidate
 }
 
-export const fetchSectorDataIfNeeded = (url) => {
+export const fetchSectorDataIfNeeded = (url, id) => {
   return (dispatch, getState) => {
-    if (shouldFetchSectorData(getState(), url)) {
-      return dispatch(fetchSectorData(url))
+    if (shouldFetchSectorData(getState(), id)) {
+      return dispatch(fetchSectorData(url, id))
     }
   }
 }

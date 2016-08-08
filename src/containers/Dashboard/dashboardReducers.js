@@ -2,6 +2,7 @@ import _ from 'lodash'
 
 import { processIndicators } from '../../utilities/processIndicators'
 import processChartResults from '../../utilities/processChartResults'
+import processSectorResults from '../../utilities/processSectorResults'
 
 import {
   INVALIDATE_GENERAL_CONFIG,
@@ -180,6 +181,7 @@ export const charts = (state = {
             didInvalidate: false,
             chartData: newData.chartData,
             xTickLabels: newData.xTickLabels,
+            selectedLabel: newData.xTickLabels[newData.xTickLabels.length - 1],
             ymax: newData.yMax,
             lastUpdated: action.receivedAt
           }
@@ -203,22 +205,39 @@ export const charts = (state = {
       })
     case INVALIDATE_SECTOR_DATA:
       return Object.assign({}, state, {
-        ...state,
-        didInvalidate: true
+        sectorData: {
+          ...state.sectorData,
+          [action.idi]: {
+            didInvalidate: true
+          }
+        }
       })
     case REQUEST_SECTOR_DATA:
       return Object.assign({}, state, {
-        ...state,
-        isFetching: true,
-        didInvalidate: false
+        sectorData: {
+          ...state.sectorData,
+          [action.idi]: {
+            didInvalidate: true,
+            isFetching: true
+          }
+        }
       })
     case RECEIVE_SECTOR_DATA:
+      const newSectorData = processSectorResults(action.data)
       return Object.assign({}, state, {
-        ...state,
-        isFetching: false,
-        didInvalidate: false,
-        data: action.data,
-        lastUpdated: action.receivedAt
+        config: {
+          ...state.config,
+          showChart: true
+        },
+        sectorData: {
+          ...state.sectorData,
+          [action.id]: {
+            isFetching: false,
+            didInvalidate: false,
+            data: newSectorData,
+            lastUpdated: action.receivedAt
+          }
+        }
       })
     default:
       return state
