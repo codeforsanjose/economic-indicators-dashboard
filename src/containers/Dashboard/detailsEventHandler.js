@@ -21,6 +21,13 @@ const resetSeeMore = () => {
   })
 }
 
+const resetBox = () => {
+  const visibleElements = $.find('.dashboard-open')
+  visibleElements.forEach((value) => {
+    $(value).removeClass('dashboard-open')
+  })
+}
+
 const hideChartPanels = () => {
   const visibleElements = $.find('.chart-visible')
   visibleElements.forEach((value) => {
@@ -70,10 +77,12 @@ export const detailsEventHandler = (eventID,
   const id = '#' + panelID
   const sectorID = '#' + sectorPanelID
   const $seeMoreIcon = $('#' + eventID).find('.dashboard-box__more-details .glyphicon')
+  const $targetDashboardBox = $('#' + eventID).parent()
   if ($(id).hasClass('chart-hidden')) {
     hideChartPanels()
     hideSectorPanels()
     resetSeeMore()
+    resetBox()
     showChart(chartID,
               dataURL,
               sectorChartID,
@@ -83,6 +92,7 @@ export const detailsEventHandler = (eventID,
               chartData,
               sectorData)
     toggleChartPanel(true, id)
+    $targetDashboardBox.addClass('dashboard-open')
     // toggle see more icon direction and copy
     $seeMoreIcon.removeClass('glyphicon-chevron-down')
     $seeMoreIcon.addClass('glyphicon-chevron-up')
@@ -92,6 +102,7 @@ export const detailsEventHandler = (eventID,
     }
   } else {
     toggleChartPanel(false, id)
+    $targetDashboardBox.removeClass('dashboard-open')
     // toggle see more icon direction copy
     $seeMoreIcon.removeClass('glyphicon-chevron-up')
     $seeMoreIcon.addClass('glyphicon-chevron-down')
