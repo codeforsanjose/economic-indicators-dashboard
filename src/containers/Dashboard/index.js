@@ -1,4 +1,4 @@
 import { Dashboard } from './Dashboard'
 export default Dashboard
 
-export { indicators, generalConfig, chartsConfig } from './dashboardReducers'
+export { indicators, generalConfig, charts } from './dashboardReducers'

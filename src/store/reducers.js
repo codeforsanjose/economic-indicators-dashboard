@@ -1,12 +1,12 @@
 import { combineReducers } from 'redux'
 import { routerReducer as router } from 'react-router-redux'
-import { generalConfig, chartsConfig, indicators } from '../containers/Dashboard'
+import { generalConfig, charts, indicators } from '../containers/Dashboard'
 
 export const makeRootReducer = (asyncReducers) => {
   return combineReducers({
     // Add sync reducers here
     generalConfig,
-    chartsConfig,
+    charts,
     indicators,
     router,
     ...asyncReducers

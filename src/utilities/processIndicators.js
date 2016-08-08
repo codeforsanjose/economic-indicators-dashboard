@@ -65,16 +65,16 @@ const convertIndicatorsToJSON = (csvData) => {
 }
 
 // ToDo convert to use map
-export const processIndicators = (state, csvdata) => {
+export const processIndicators = (generalConfig, csvdata) => {
   let indicators = convertIndicatorsToJSON(csvdata)
   _.forIn(indicators, (set) => {
     _.forIn(set, (item) => {
       if (item.detail1) {
-        let newDetail1 = constructDataURL(state.generalConfig.data, item.detail1)
+        let newDetail1 = constructDataURL(generalConfig.data, item.detail1)
         item.dataURL = newDetail1
       }
       if (item.detail2) {
-        let newDetail2 = constructDataURL(state.generalConfig.data, item.detail2)
+        let newDetail2 = constructDataURL(generalConfig.data, item.detail2)
         item.sectorDataURL = newDetail2
       }
     })
