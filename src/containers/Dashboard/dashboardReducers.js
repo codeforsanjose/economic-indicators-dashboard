@@ -20,8 +20,7 @@ import {
   INVALIDATE_SECTOR_DATA,
   REQUEST_SECTOR_DATA,
   RECEIVE_SECTOR_DATA,
-  SHOW_CHART,
-  CHART_IS_SHOWING
+  SHOW_CHART
 } from './dashboardActions'
 
 const calculateMaxBoxes = (data) => {
@@ -169,10 +168,15 @@ export const charts = (state = {
         }
       }
       const newData = processChartResults(action.data, chartConfig)
+      let showChart = true
+      if (!_.isNil(state.sectorData[action.id]) &&
+        state.sectorData[action.id].isFetching) {
+        showChart = false
+      }
       return Object.assign({}, state, {
         config: {
           ...state.config,
-          showChart: true
+          showChart
         },
         chartData: {
           ...state.chartData,
@@ -188,19 +192,18 @@ export const charts = (state = {
         }
       })
     case SHOW_CHART:
+      let showChartFlag = true
+      if (!_.isNil(state.sectorData[action.id]) &&
+        state.sectorData[action.id].isFetching) {
+        showChartFlag = false
+      }
+      console.log(showChart)
       return Object.assign({}, state, {
         config: {
           ...state.config,
-          showChart: true,
+          showChart: showChartFlag,
           selectedItem: action.item,
           selectedEventId: action.eventId
-        }
-      })
-    case CHART_IS_SHOWING:
-      return Object.assign({}, state, {
-        config: {
-          ...state.config,
-          showChart: false
         }
       })
     case INVALIDATE_SECTOR_DATA:
@@ -216,7 +219,7 @@ export const charts = (state = {
       return Object.assign({}, state, {
         sectorData: {
           ...state.sectorData,
-          [action.idi]: {
+          [action.id]: {
             didInvalidate: true,
             isFetching: true
           }

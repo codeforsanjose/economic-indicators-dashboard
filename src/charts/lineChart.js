@@ -36,10 +36,15 @@ export const addLineChart = (inputOptions, config) => {
         .axisLabel(config['y-title'])
         .axisLabelDistance(config['y-title-offset'])
 
+    const numValues = inputOptions.data[0].values.length
+
+    const numTicks = Math.ceil(numValues / 12)
+
     chart.xAxis
         .axisLabel(config['x-title'])
         .axisLabelDistance(config['x-title-offset'])
-        .ticks(10)
+        .ticks(numTicks)
+        .showMaxMin(false)
 
     var yMin = 0
     var yMax = 100000
