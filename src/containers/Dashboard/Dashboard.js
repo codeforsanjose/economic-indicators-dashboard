@@ -82,7 +82,7 @@ class DashboardComponent extends React.Component {
     dispatch(fetchGeneralConfigIfNeeded(generalURL))
   }
 
-  getChartPanels (data) {
+  getChartPanels (data, chartConfig) {
     var chartPanels = data.map((item) => {
       if (item.detail1 !== undefined && item.detail1.length > 0) {
         var panelID = getChartID(item.id, chartTypes.chartPanel)
@@ -97,6 +97,12 @@ class DashboardComponent extends React.Component {
           hasSector = true
         }
 
+        let isOpened = false
+
+        if (chartConfig.showChart && chartConfig.selectedItem.id === item.id) {
+          isOpened = true
+        }
+
         return (
           <ChartPanel
             key={uuid}
@@ -107,6 +113,7 @@ class DashboardComponent extends React.Component {
             sectorChartID={sectorChartID}
             hasSector={hasSector}
             sectorPanelID={sectorPanelID}
+            isOpened={isOpened}
           />
         )
       }
@@ -119,6 +126,7 @@ class DashboardComponent extends React.Component {
                maxBoxes,
                chartsData,
                sectorData,
+               chartsConfigData,
                chartsConfig) {
     var boxGroups = []
 
@@ -128,10 +136,10 @@ class DashboardComponent extends React.Component {
         var labelClass = item[0].category.toLowerCase().trim().replace(/ /g, '-')
         var labelTitle = item[0].category.toUpperCase()
 
-        const chartPanels = this.getChartPanels(item)
+        const chartPanels = this.getChartPanels(item, chartsConfig)
 
         boxGroups.push(
-          <div>
+          <div key={`${uuid}-div`}>
             <BoxGroup
               labelClass={labelClass}
               labelTitle={labelTitle}
@@ -156,7 +164,7 @@ class DashboardComponent extends React.Component {
 
   render () {
     const indicators = _.isNil(this.props.indicators) ? {} : this.props.indicators.data
-    const chartsConfig = _.isNil(this.props.chartsConfig) ? {} : this.props.chartsConfig.data
+    const chartsConfigData = _.isNil(this.props.chartsConfig) ? {} : this.props.chartsConfig.data
     const chartsData = _.isNil(this.props.chartData) ? {} : this.props.chartData
     const sectorData = _.isNil(this.props.sectorData) ? {} : this.props.sectorData
     const generalConfig = _.isNil(this.props.generalConfig) ? {} : this.props.generalConfig.data
@@ -164,7 +172,7 @@ class DashboardComponent extends React.Component {
 
     // If the data isn't defined - just show loading
     if (_.isEmpty(indicators) ||
-        _.isEmpty(chartsConfig) ||
+        _.isEmpty(chartsConfigData) ||
         _.isEmpty(generalConfig)) {
       return (<h1>Loading data</h1>)
     }
@@ -173,7 +181,8 @@ class DashboardComponent extends React.Component {
                                    maxBoxes,
                                    chartsData,
                                    sectorData,
-                                   chartsConfig)
+                                   chartsConfigData,
+                                   this.props.chartsConfig)
 
     if (this.props.showChart) {
       this.showDetails(this.props.selectedItem,
@@ -185,7 +194,7 @@ class DashboardComponent extends React.Component {
 
     return (
       <div>
-        <div>
+        <div key='header'>
           <nav className='navbar econ-header'>
             <div className='container-fluid'>
               <span className='head-title'><span className='sjeconomy'>SJECONOMY</span> INDICATORS</span>
@@ -195,12 +204,12 @@ class DashboardComponent extends React.Component {
             </div>
           </nav>
         </div>
-        <div className='container-fluid'>
+        <div className='container-fluid' key='dashboard-content'>
           <div className='intro-text-container' dangerouslySetInnerHTML={renderIntroText(generalConfig)} />
             {boxGroups}
 
         </div>
-        <div>
+        <div key='footer'>
           <footer className='econ-footer'>
             <div className='container'>
               <span className='footer-subtext' id='footer-right-content'>{renderFooterRight(generalConfig)}</span>

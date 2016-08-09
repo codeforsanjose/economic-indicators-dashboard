@@ -19,10 +19,10 @@ export const REQUEST_CHART_DATA = 'REQUEST_CHART_DATA'
 export const RECEIVE_CHART_DATA = 'RECEIVE_CHART_DATA'
 export const INVALIDATE_CHART_DATA = 'INVALIDATE_CHART_DATA'
 export const SHOW_CHART = 'SHOW_CHART'
-export const CHART_IS_SHOWING = 'CHART_IS_SHOWING'
 
 export const REQUEST_SECTOR_DATA = 'REQUEST_SECTOR_DATA'
 export const RECEIVE_SECTOR_DATA = 'RECEIVE_SECTOR_DATA'
+export const SHOW_SECTOR = 'SHOW_SECTOR'
 export const INVALIDATE_SECTOR_DATA = 'INVALIDATE_SECTOR_DATA'
 
 // =================================
@@ -191,12 +191,6 @@ export const showChart = (item, eventId) => {
     type: SHOW_CHART,
     item,
     eventId
-  }
-}
-
-export const chartIsShowing = () => {
-  return {
-    type: CHART_IS_SHOWING
   }
 }
 

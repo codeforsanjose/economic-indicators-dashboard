@@ -13,8 +13,6 @@ const displaySectorResults = (label,
   }
   let sectorChartData = []
 
-  console.log(sectorData)
-
   sectorChartData.push({
     key: label,
     values: sectorData[key]
@@ -45,10 +43,7 @@ export const showChart = (chartID,
   var inputParams = []
 
   const chartEventHandler = (label, value) => {
-    console.log(label)
-    console.log(value)
     const key = label.replace(/ /g, '-')
-    console.log(key)
     displaySectorResults(label,
       sectorID,
       chartsConfig['detail2'],
