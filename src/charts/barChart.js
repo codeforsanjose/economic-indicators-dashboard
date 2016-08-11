@@ -67,7 +67,7 @@ export const addBarChart = (inputOptions, config, title) => {
     d3.select(id + '-sector').remove()
 
     var titleOffset = document.getElementById(inputOptions.id).offsetWidth / 2
-    
+
     d3.select(id + ' svg').select('svg > text').remove()
     d3.select(id + ' svg')
       .append('text')
