@@ -11,6 +11,8 @@ class ChartPanel extends React.Component {
     var sectorTitleID = this.props.sectorTitleID
     var sectorChartID = this.props.sectorChartID
     var sectorPanelID = this.props.sectorPanelID
+    var chartURL = this.props.chartURL
+    var sectorDataURL = this.props.sectorDataURL
 
     var chartClassName = 'chart-hidden chart-panel col-sm-offset-1 '
     // ToDo - figure out why layout is wrong when using sectorClassName
@@ -31,14 +33,18 @@ class ChartPanel extends React.Component {
     return (
       <div>
         <div id={panelID} className={chartClassName}>
-          <div id={chartTitleID} className={'chart-title'}></div>
+          <div id={chartTitleID} className={'chart-data-link'}>
+            <a href={chartURL} >download data</a>
+          </div>
           <div id={chartID} className={'chart'}>
             <svg></svg>
           </div>
         </div>
         <div id={sectorPanelID} className={chartClassName}>
           <hr />
-          <div id={sectorTitleID} className={'sector-title'}></div>
+          <div id={sectorTitleID} className={'chart-data-link'}>
+            <a href={sectorDataURL} >download data</a>
+          </div>
           <div id={sectorChartID} className={'sector-chart'}>
             <svg></svg>
           </div>
@@ -56,7 +62,9 @@ ChartPanel.propTypes = {
   sectorChartID: PropTypes.string.isRequired,
   hasSector: PropTypes.bool.isRequired,
   chartsConfig: PropTypes.object,
-  sectorPanelID: PropTypes.string.isRequired
+  sectorPanelID: PropTypes.string.isRequired,
+  chartURL: PropTypes.string,
+  sectorDataURL: PropTypes.string
 }
 
 export { ChartPanel }

@@ -51,10 +51,10 @@ const getTrendIcon = (trend) => {
   var iconName = ''
   if (trend === 'down') {
     iconName = 'images/down_arrow.svg'
-    trendIcon = (<img src={iconName} />)
+    trendIcon = (<img src={iconName} alt='trend down' />)
   } else if (trend === 'up') {
     iconName = 'images/up_arrow.svg'
-    trendIcon = (<img src={iconName} />)
+    trendIcon = (<img src={iconName} alt='trend up' />)
   }
 
   return trendIcon

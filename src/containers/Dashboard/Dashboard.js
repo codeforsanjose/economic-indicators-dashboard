@@ -114,6 +114,8 @@ class DashboardComponent extends React.Component {
             hasSector={hasSector}
             sectorPanelID={sectorPanelID}
             isOpened={isOpened}
+            chartURL={item.dataURL}
+            sectorDataURL={item.sectorDataURL}
           />
         )
       }
