@@ -1,8 +1,10 @@
 
+import DOMPurify from 'dompurify'
+
 export const renderIntroText = (config) => {
   if (config['intro-text'].length > 0) {
     return {
-      __html: config['intro-text']
+      __html: DOMPurify.sanitize(config['intro-text'])
     }
   }
 }

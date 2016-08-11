@@ -64,6 +64,16 @@ export const addLineChart = (inputOptions, config) => {
       yMax = inputOptions.yMax
     }
 
+    if (config.hasOwnProperty('y-axis-tick-format')) {
+      if (config['y-axis-tick-format'] === 'currency') {
+        chart.yAxis.tickFormat(function (d, index) {
+          if (d) {
+            return '$' + d
+          }
+        })
+      }
+    }
+
     chart.forceY([yMin, yMax])
     chart.yAxis.scale().domain([yMin, yMax])
 
