@@ -1,4 +1,5 @@
-/*global nv, d3:true*/
+import nv from 'nvd3'
+import d3 from 'd3'
 
 export const addBarChart = (inputOptions, config, title) => {
   nv.addGraph(function () {
@@ -66,6 +67,14 @@ export const addBarChart = (inputOptions, config, title) => {
     d3.select(id + '-sector').remove()
 
     var titleOffset = document.getElementById(inputOptions.id).offsetWidth / 2
+
+    d3.select(id + ' svg')
+      .append('text')
+      .attr('x', titleOffset)
+      .attr('y', 20)
+      .attr('text-anchor', 'middle')
+      .attr('id', inputOptions.id + '-sector')
+      .text(titleToUse)
 
     d3.select(id + ' svg')
       .append('text')

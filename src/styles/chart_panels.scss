@@ -3,6 +3,7 @@
   background-color: white;
   border-radius: 10px;
   display: none;
+  padding-bottom: 30px;
 }
 
 .chart-hidden {
@@ -43,6 +44,11 @@
   text-align: center;
   margin-top: 5px;
   
+}
+
+.chart-data-link {
+  float: right;
+  font-size: 12px;
 }
 
 .nv-axisMaxMin text {

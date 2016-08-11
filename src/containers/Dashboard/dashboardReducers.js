@@ -186,7 +186,7 @@ export const charts = (state = {
             chartData: newData.chartData,
             xTickLabels: newData.xTickLabels,
             selectedLabel: newData.xTickLabels[newData.xTickLabels.length - 1],
-            ymax: newData.yMax,
+            yMax: newData.yMax,
             lastUpdated: action.receivedAt
           }
         }
@@ -197,7 +197,6 @@ export const charts = (state = {
         state.sectorData[action.id].isFetching) {
         showChartFlag = false
       }
-      console.log(showChart)
       return Object.assign({}, state, {
         config: {
           ...state.config,

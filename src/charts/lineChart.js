@@ -1,4 +1,6 @@
-/*global nv, d3:true*/
+import nv from 'nvd3'
+import d3 from 'd3'
+import _ from 'lodash'
 
 export const addLineChart = (inputOptions, config) => {
   nv.addGraph(function () {
@@ -37,13 +39,16 @@ export const addLineChart = (inputOptions, config) => {
         .axisLabelDistance(config['y-title-offset'])
 
     const numValues = inputOptions.data[0].values.length
+    const numYears = Math.ceil(numValues / 12)
 
-    const numTicks = Math.ceil(numValues / 12)
+    const tickValues = _.times(numYears, (index) => {
+      return index * 12
+    })
 
     chart.xAxis
         .axisLabel(config['x-title'])
         .axisLabelDistance(config['x-title-offset'])
-        .ticks(numTicks)
+        .tickValues(tickValues)
         .showMaxMin(false)
 
     var yMin = 0
@@ -71,10 +76,19 @@ export const addLineChart = (inputOptions, config) => {
     chart.xAxis.rotateLabels(-45)
 
     chart.lines.dispatch.on('elementClick', function (e) {
-      console.log('elementClick')
       inputOptions.chartEvents(inputOptions.xTickLabels[e[0].point.label], e[0].point.value)
       chart.lines.clearHighlights()
       chart.lines.highlightPoint(inputOptions.xTickLabels[e[0].point.label], e[0].point.value, true)
+    })
+
+    chart.interactiveLayer.dispatch.on('elementMousemove', function (e) {
+      inputOptions.chartEvents(inputOptions.xTickLabels[e[0].point.label], e[0].point.value)
+      chart.lines.clearHighlights()
+      chart.lines.highlightPoint(inputOptions.xTickLabels[e[0].point.label], e[0].point.value, true)
+    })
+
+    chart.interactiveLayer.dispatch.on('elementMouseout', function (e) {
+      chart.lines.clearHighlights()
     })
 
     var id = '#' + inputOptions.id
