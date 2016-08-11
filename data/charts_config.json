@@ -77,7 +77,8 @@
 				"legend": "no",
 				"title-offset": 200,
 				"y-title-offset": 10,
-				"x-title-offiset": 20
+				"x-title-offiset": 20,
+				"y-axis-tick-format": "currency"
 			}
 		},
 		"Apartment Vacancy Rate": {
@@ -105,7 +106,8 @@
 				"legend": "no",
 				"title-offset": 200,
 				"y-title-offset": 10,
-				"x-title-offiset": 20
+				"x-title-offiset": 20,
+				"y-axis-tick-format": "currency"
 			}
 		}
 	}
