@@ -21,7 +21,7 @@
 				"x-precision": 0,
 				"title-offset": 200,
 				"y-title-offset": 30,
-				"x-title-offset": 20
+				"x-title-offset": 10
 			}
 		},
 		"Unemployment Rate": {
@@ -46,7 +46,7 @@
 				"y-title": "age",
 				"title-offset": 200,
 				"y-title-offset": 30,
-				"x-title-offset": 20
+				"x-title-offset": 10
 			}
 		}
 	},
@@ -60,7 +60,7 @@
 				"y-precision": 0,
 				"title-offset": 200,
 				"y-title-offset": 30,
-				"x-title-offset": 20
+				"x-title-offset": 10
 			}
 		}
 	},
@@ -68,7 +68,7 @@
 	"Housing": {
 		"Average Apartment Rent": {
 			"detail1": {
-				"title": "Average Apartment Rent",
+				"title": "Average Apartment Rent in San Jose",
 				"plotstyle": "line",
 				"y-title": "monthly rent ($)",
 				"y-min": 0,
@@ -83,7 +83,7 @@
 		},
 		"Apartment Vacancy Rate": {
 			"detail1": {
-				"title": "Apartment Vacancy Rate by Quarter",
+				"title": "Apartment Vacancy Rate in San Jose",
 				"plotstyle": "line",
 				"y-title": "% vacancy",
 				"y-min": 0,
@@ -95,7 +95,7 @@
 				"x-title-offset": 20
 			}
 		},
-		"Single-Family Home Median Sales Price": {
+		"San Jose Median Home Sales Price": {
 			"detail1": {
 				"title": "Median Sales Price",
 				"plotstyle": "line",
