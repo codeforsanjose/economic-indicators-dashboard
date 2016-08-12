@@ -11,7 +11,7 @@
 				"legend": "no",
 				"title-offset": 200,
 				"y-title-offset": 30,
-				"x-title-offiset": 20
+				"x-title-offset": 20
 			},
 			"detail2": {
 				"plotstyle": "horizontal-bar-chart",
@@ -21,7 +21,7 @@
 				"x-precision": 0,
 				"title-offset": 200,
 				"y-title-offset": 30,
-				"x-title-offiset": 20
+				"x-title-offset": 20
 			}
 		},
 		"Unemployment Rate": {
@@ -34,7 +34,7 @@
 				"y-precision": 0.0,
 				"title-offset": 200,
 				"y-title-offset": 10,
-				"x-title-offiset": 20
+				"x-title-offset": 20
 			}
 		},
 		"Labor Force": {
@@ -46,7 +46,7 @@
 				"y-title": "age",
 				"title-offset": 200,
 				"y-title-offset": 30,
-				"x-title-offiset": 20
+				"x-title-offset": 20
 			}
 		}
 	},
@@ -60,7 +60,7 @@
 				"y-precision": 0,
 				"title-offset": 200,
 				"y-title-offset": 30,
-				"x-title-offiset": 20
+				"x-title-offset": 20
 			}
 		}
 	},
@@ -77,7 +77,7 @@
 				"legend": "no",
 				"title-offset": 200,
 				"y-title-offset": 10,
-				"x-title-offiset": 20,
+				"x-title-offset": 20,
 				"y-axis-tick-format": "currency"
 			}
 		},
@@ -92,7 +92,7 @@
 				"legend": "no",
 				"title-offset": 200,
 				"y-title-offset": 10,
-				"x-title-offiset": 20
+				"x-title-offset": 20
 			}
 		},
 		"Single-Family Home Median Sales Price": {
@@ -106,7 +106,7 @@
 				"legend": "no",
 				"title-offset": 200,
 				"y-title-offset": 10,
-				"x-title-offiset": 20,
+				"x-title-offset": 20,
 				"y-axis-tick-format": "currency"
 			}
 		}
