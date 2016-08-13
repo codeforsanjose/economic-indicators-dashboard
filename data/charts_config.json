@@ -95,9 +95,9 @@
 				"x-title-offset": 20
 			}
 		},
-		"San Jose Median Home Sales Price": {
+		"Single-Family Home Median Sales Price": {
 			"detail1": {
-				"title": "Median Sales Price",
+				"title": "San Jose Median Sales Price",
 				"plotstyle": "line",
 				"y-title": "price ($)",
 				"y-min": 0,
