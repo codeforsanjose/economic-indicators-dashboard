@@ -1,6 +1,7 @@
 import nv from 'nvd3'
 import d3 from 'd3'
 import _ from 'lodash'
+import numeral from 'numeral'
 
 export const addLineChart = (inputOptions, config) => {
   nv.addGraph(function () {
@@ -38,17 +39,32 @@ export const addLineChart = (inputOptions, config) => {
         .axisLabel(config['y-title'])
         .axisLabelDistance(config['y-title-offset'])
 
-    const numValues = inputOptions.data[0].values.length
-    const numYears = Math.ceil(numValues / 12)
+    if (config.hasOwnProperty('x-tick-interval')) {
+      const numValues = inputOptions.data[0].values.length
+      const tickInterval = config['x-tick-interval']
+      let tickValues = []
+      switch (tickInterval) {
+        case 'months':
+          const numYears = Math.ceil(numValues / 12)
 
-    const tickValues = _.times(numYears, (index) => {
-      return index * 12
-    })
+          tickValues = _.times(numYears, (index) => {
+            return index * 12
+          })
+          break
+        case 'quarters':
+          const intervalCount = Math.ceil(numValues / 4)
+
+          tickValues = _.times(intervalCount, (index) => {
+            return index * 4
+          })
+          break
+      }
+      chart.xAxis.tickValues(tickValues)
+    }
 
     chart.xAxis
         .axisLabel(config['x-title'])
         .axisLabelDistance(config['x-title-offset'])
-        .tickValues(tickValues)
         .showMaxMin(false)
 
     var yMin = 0
@@ -65,12 +81,22 @@ export const addLineChart = (inputOptions, config) => {
     }
 
     if (config.hasOwnProperty('y-axis-tick-format')) {
-      if (config['y-axis-tick-format'] === 'currency') {
-        chart.yAxis.tickFormat(function (d, index) {
-          if (d) {
-            return '$' + d
-          }
-        })
+      const yAxisTickFormat = config['y-axis-tick-format']
+      switch (yAxisTickFormat) {
+        case 'currency':
+          chart.yAxis.tickFormat(function (d, index) {
+            if (d) {
+              return numeral(d).format('$0,0')
+            }
+          })
+          break
+        case 'percent':
+          chart.yAxis.tickFormat(function (d, index) {
+            if (d) {
+              return d + '%'
+            }
+          })
+          break
       }
     }
 

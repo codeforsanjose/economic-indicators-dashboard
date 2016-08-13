@@ -14,6 +14,9 @@ class ChartPanel extends React.Component {
     var chartURL = this.props.chartURL
     var sectorDataURL = this.props.sectorDataURL
 
+    const chartDownloadName = chartTitleID + '.csv'
+    const sectorDownloadName = sectorTitleID + '.csv'
+
     var chartClassName = 'chart-hidden chart-panel col-sm-offset-1 '
     // ToDo - figure out why layout is wrong when using sectorClassName
     //        instead of chartClassName for the sector panel.  When
@@ -34,7 +37,7 @@ class ChartPanel extends React.Component {
       <div>
         <div id={panelID} className={chartClassName}>
           <div id={chartTitleID} className={'chart-data-link'}>
-            <a href={chartURL} >download data</a>
+            <a href={chartURL} download={chartDownloadName}>download data</a>
           </div>
           <div id={chartID} className={'chart'}>
             <svg></svg>
@@ -43,7 +46,7 @@ class ChartPanel extends React.Component {
         <div id={sectorPanelID} className={chartClassName}>
           <hr />
           <div id={sectorTitleID} className={'chart-data-link'}>
-            <a href={sectorDataURL} >download data</a>
+            <a href={sectorDataURL} download={sectorDownloadName}>download data</a>
           </div>
           <div id={sectorChartID} className={'sector-chart'}>
             <svg></svg>
