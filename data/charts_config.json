@@ -11,7 +11,8 @@
 				"legend": "no",
 				"title-offset": 200,
 				"y-title-offset": 30,
-				"x-title-offset": 20
+				"x-title-offset": 20,
+				"x-tick-interval": "months"
 			},
 			"detail2": {
 				"plotstyle": "horizontal-bar-chart",
@@ -34,7 +35,9 @@
 				"y-precision": 0.0,
 				"title-offset": 200,
 				"y-title-offset": 10,
-				"x-title-offset": 20
+				"x-title-offset": 20,
+				"x-tick-interval": "months",
+				"y-axis-tick-format": "percent"
 			}
 		},
 		"Labor Force": {
@@ -78,7 +81,8 @@
 				"title-offset": 200,
 				"y-title-offset": 10,
 				"x-title-offset": 20,
-				"y-axis-tick-format": "currency"
+				"y-axis-tick-format": "currency",
+				"x-tick-interval": "quarters"
 			}
 		},
 		"Apartment Vacancy Rate": {
@@ -92,7 +96,9 @@
 				"legend": "no",
 				"title-offset": 200,
 				"y-title-offset": 10,
-				"x-title-offset": 20
+				"x-title-offset": 20,
+				"x-tick-interval": "quarters",
+				"y-axis-tick-format": "percent"
 			}
 		},
 		"Single-Family Home Median Sales Price": {
@@ -107,7 +113,8 @@
 				"title-offset": 200,
 				"y-title-offset": 10,
 				"x-title-offset": 20,
-				"y-axis-tick-format": "currency"
+				"y-axis-tick-format": "currency",
+				"x-tick-interval": "months"
 			}
 		}
 	}
