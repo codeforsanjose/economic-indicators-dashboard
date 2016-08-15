@@ -44,6 +44,22 @@ ul.share-buttons li{
     <div id="root" data-config="https://raw.githubusercontent.com/golgistudio/indicators/gh-pages/demoData/dashboard2/config/general_config.json"></div>
     
   </div>
+  <script>window.twttr = (function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0],
+    t = window.twttr || {};
+  if (d.getElementById(id)) return t;
+  js = d.createElement(s);
+  js.id = id;
+  js.src = "https://platform.twitter.com/widgets.js";
+  fjs.parentNode.insertBefore(js, fjs);
+ 
+  t._e = [];
+  t.ready = function(f) {
+    t._e.push(f);
+  };
+ 
+  return t;
+}(document, "script", "twitter-wjs"));</script>
 <script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
 <script type="text/javascript" src="//d3js.org/d3.v3.min.js" charset="utf-8"></script>
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/nvd3/1.8.4/nv.d3.min.js"></script>
