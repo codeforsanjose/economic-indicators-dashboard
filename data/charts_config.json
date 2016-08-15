@@ -3,53 +3,50 @@
 		"Total Jobs": {
 			"detail1": {
 				"title": "San Jose Employment Over Time",
+				"title-offset": 200,
 				"plotstyle": "line",
-				"y-title": "jobs",
+				"x-tick-interval": "months",
 				"y-min": 300000,
 				"y-max": 425000,
 				"y-precision": 0,
-				"legend": "no",
-				"title-offset": 200,
+				"y-title": "jobs",
 				"y-title-offset": 30,
-				"x-title-offset": 20,
-				"x-tick-interval": "months"
+				"legend": "no"
 			},
 			"detail2": {
 				"plotstyle": "horizontal-bar-chart",
 				"title": "San Jose Jobs by Sector",
-				"x-title": "jobs",
+				"title-offset": 200,
 				"x-max": 85000,
 				"x-precision": 0,
-				"title-offset": 200,
-				"y-title-offset": 30,
+				"x-title": "jobs",
 				"x-title-offset": 10
 			}
 		},
 		"Unemployment Rate": {
 			"detail1": {
 				"title": "San Jose Unemployment Rate Over Time",
+				"title-offset": 200,
 				"plotstyle": "line",
+				"x-tick-interval": "months",
 				"y-min": 0.0,
 				"y-max": 13.0,
 				"y-title": "%",
-				"y-precision": 0.0,
-				"title-offset": 200,
 				"y-title-offset": 10,
-				"x-title-offset": 20,
-				"x-tick-interval": "months",
+				"y-precision": 0.0,
 				"y-axis-tick-format": "percent"
 			}
 		},
 		"Labor Force": {
 			"detail1": {
 				"title": "Age Distribution of San Jose Labor Force (2014)",
+				"title-offset": 200,
 				"plotstyle": "horizontal-bar-chart",
 				"x-title": "number in labor force",
+				"x-title-offset": 10,
 				"x-precision": 0,
 				"y-title": "age",
-				"title-offset": 200,
-				"y-title-offset": 30,
-				"x-title-offset": 10
+				"y-title-offset": 30
 			}
 		}
 	},
@@ -57,25 +54,24 @@
 		"Population with Bachelor's Degree": {
 			"detail1": {
 				"title": "Educational Attainment of San Jose Residents Over 25",
+				"title-offset": 200,
 				"plotstyle": "horizontal-bar-chart",
 				"x-title": "number of residents",
+				"x-title-offset": 10,
 				"x-max": 200000,
-				"y-precision": 0,
-				"title-offset": 200,
-				"y-title-offset": 40,
-				"x-title-offset": 10
+				"y-precision": 0
 			}
 		},
 		"Foreign Born Population": {
 			"detail1": {
 				"title": "Place of Birth of San Jose's Foreign Born Residents (2014)",
+				"title-offset": 200,
 				"plotstyle": "horizontal-bar-chart",
 				"x-title": "number of residents",
+				"x-title-offset": 10,
 				"x-precision": 0,
 				"y-title": "place of birth",
-				"title-offset": 200,
-				"y-title-offset": 30,
-				"x-title-offset": 10
+				"y-title-offset": 35
 			}
 		}
 	},
@@ -84,49 +80,48 @@
 		"Average Apartment Rent": {
 			"detail1": {
 				"title": "Average Apartment Rent in San Jose",
+				"title-offset": 200,
 				"plotstyle": "line",
+				"legend": "no",
+				"x-tick-interval": "quarters",
+				"y-title-offset": 10,
+				"y-axis-tick-format": "currency",
 				"y-title": "monthly rent ($)",
 				"y-min": 0,
 				"y-max": 3000,
-				"y-precision": 0,
-				"legend": "no",
-				"title-offset": 200,
-				"y-title-offset": 10,
-				"x-title-offset": 20,
-				"y-axis-tick-format": "currency",
-				"x-tick-interval": "quarters"
+				"y-precision": 0
 			}
 		},
 		"Apartment Vacancy Rate": {
 			"detail1": {
 				"title": "Apartment Vacancy Rate in San Jose",
+				"title-offset": 200,
 				"plotstyle": "line",
+				"x-tick-interval": "quarters",
+				"x-title-offset": 20,
 				"y-title": "% vacancy",
+				"y-title-offset": 10,
 				"y-min": 0,
 				"y-max": 15,
 				"y-precision": 0,
-				"legend": "no",
-				"title-offset": 200,
-				"y-title-offset": 10,
-				"x-title-offset": 20,
-				"x-tick-interval": "quarters",
-				"y-axis-tick-format": "percent"
+				"y-axis-tick-format": "percent",
+				"legend": "no"
+
 			}
 		},
 		"Single-Family Home Median Sales Price": {
 			"detail1": {
 				"title": "San Jose Median Sales Price",
+				"title-offset": 200,
 				"plotstyle": "line",
+				"x-tick-interval": "months",
 				"y-title": "price ($)",
+				"y-title-offset": 10,
 				"y-min": 0,
 				"y-max": 1000000,
 				"y-precision": 0,
 				"legend": "no",
-				"title-offset": 200,
-				"y-title-offset": 10,
-				"x-title-offset": 20,
-				"y-axis-tick-format": "currency",
-				"x-tick-interval": "months"
+				"y-axis-tick-format": "currency"
 			}
 		}
 	}
