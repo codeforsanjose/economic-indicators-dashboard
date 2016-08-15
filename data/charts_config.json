@@ -62,7 +62,7 @@
 				"x-max": 200000,
 				"y-precision": 0,
 				"title-offset": 200,
-				"y-title-offset": 30,
+				"y-title-offset": 35,
 				"x-title-offset": 10
 			}
 		},
