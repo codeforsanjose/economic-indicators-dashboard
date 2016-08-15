@@ -1,7 +1,7 @@
 {
 
- "intro-text": "This dashboard provides a snapshot of San Jose's economy, using the most recent data available. All data shown is for the city rather than the metro area, unless specifically noted. Read more <a href=\"about.html\">about the dashboard &gt&gt></a><br><ul class="share-buttons">
-  <li><a href="https://twitter.com/intent/tweet?source=http%3A%2F%2Fsjeconomy.com%2F&text=San%20Jose%20Economic%20Indicators:%20http%3A%2F%2Fsjeconomy.com%2F&via=sjeconomy" target="_blank" title="Tweet"><i class="fa fa-twitter-square fa-2x"></i></a></li>
+ "intro-text": "This dashboard provides a snapshot of San Jose's economy, using the most recent data available. All data shown is for the city rather than the metro area, unless specifically noted. Read more <a href=\"about.html\">about the dashboard &gt&gt></a><br><ul class=\"share-buttons\">
+  <li><a href=\"https://twitter.com/intent/tweet?source=http%3A%2F%2Fsjeconomy.com%2F&text=San%20Jose%20Economic%20Indicators:%20http%3A%2F%2Fsjeconomy.com%2F&via=sjeconomy\" target=\"_blank\" title=\"Tweet\"><i class=\"fa fa-twitter-square fa-2x\"></i></a></li>
 </ul>",
  "footer-right-text": "Made by Code for San Jose for the San Jose Office of Economic Development",
  "header-right-text": "JUNE 2016",
