@@ -26,6 +26,9 @@ const convertRow = (row, heading) => {
         }
       }
     }
+    // ToDo - refactor to create array from
+    // returned values
+    return null
   })
 
   result.key = row[0]
@@ -42,7 +45,9 @@ const convertIndicatorsToJSON = (csvData) => {
 
   indicators.data.map((row, index, indicatorSet) => {
     // Don't do anything if it is the first row
-    if (index === 0) return
+    if (index === 0) {
+      return null
+    }
 
     const indicatorItem = convertRow(row, indicatorSet[0])
 
@@ -59,6 +64,9 @@ const convertIndicatorsToJSON = (csvData) => {
       indicatorArray.push(indicatorItem.data)
       indicatorsJSON[indicatorItem.key] = indicatorArray
     }
+    // ToDo - refactor to create array from
+    // returned values
+    return null
   })
 
   return indicatorsJSON
@@ -69,6 +77,7 @@ const processIndicators = (generalConfig, csvdata) => {
   const indicators = convertIndicatorsToJSON(csvdata)
   _.forIn(indicators, (set) => {
     _.forIn(set, (item) => {
+      /* eslint-disable no-param-reassign */
       if (item.detail1) {
         const newDetail1 = constructDataURL(generalConfig.data, item.detail1)
         item.dataURL = newDetail1
@@ -77,6 +86,7 @@ const processIndicators = (generalConfig, csvdata) => {
         const newDetail2 = constructDataURL(generalConfig.data, item.detail2)
         item.sectorDataURL = newDetail2
       }
+      /* eslint-enable no-param-reassign */
     })
   })
   return indicators

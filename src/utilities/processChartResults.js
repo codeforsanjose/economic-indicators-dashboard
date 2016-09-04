@@ -16,6 +16,9 @@ const processChartResults = (result, chartsConfig) => {
         key: headerItem
       }
     }
+    // ToDo - refactor to create array from
+    // returned values
+    return null
   })
 
   values.data.shift() // ignore the header
@@ -54,10 +57,17 @@ const processChartResults = (result, chartsConfig) => {
         if (value > yMax) {
           yMax = value
         }
+
+        // ToDo - refactor to create array from
+        // returned values
+        return null
       })
       xTickLabels.push(axisLabel)
       index++
     }
+    // ToDo - refactor to create array from
+    // returned values
+    return null
   })
 
   const chartData = []
