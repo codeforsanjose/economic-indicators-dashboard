@@ -1,12 +1,17 @@
 import nv from 'nvd3'
 import d3 from 'd3'
 
-export const addBarChart = (inputOptions, config, title) => {
-  nv.addGraph(function () {
-    var chart = nv.models.multiBarHorizontalChart()
-      .margin({top: 50, right: 40, bottom: 50, left: 200})
-      .x(function (d) { return d.label })    // Specify the data accessors.
-      .y(function (d) { return d.value })
+const addBarChart = (inputOptions, config, title) => {
+  nv.addGraph(() => {
+    const chart = nv.models.multiBarHorizontalChart()
+      .margin({
+        top: 50,
+        right: 40,
+        bottom: 50,
+        left: 200
+      })
+      .x((d) => { return d.label })    // Specify the data accessors.
+      .y((d) => { return d.value })
       .showControls(false)
       .showLegend(false)
 
@@ -22,7 +27,7 @@ export const addBarChart = (inputOptions, config, title) => {
     chart.yAxis
         .axisLabel(config['x-title'])
 
-    var yTitleOffset = config['x-title-offset']
+    const yTitleOffset = config['x-title-offset']
 
     if (yTitleOffset) {
       chart.yAxis.axisLabelDistance(yTitleOffset)
@@ -31,15 +36,15 @@ export const addBarChart = (inputOptions, config, title) => {
     chart.xAxis
         .axisLabel(config['y-title'])
 
-    var xTitleOffset = config['y-title-offset']
+    const xTitleOffset = config['y-title-offset']
 
     if (xTitleOffset) {
       chart.xAxis.axisLabelDistance(xTitleOffset)
     }
 
-    chart.barColor(function (d, i) {
-      var colors = d3.scale.category20().range()
-      return colors[i % colors.length - 1]
+    chart.barColor((d, i) => {
+      const colors = d3.scale.category20().range()
+      return colors[(i % colors.length) - 1]
     })
 
     // Set max and min for the y axis
@@ -51,30 +56,30 @@ export const addBarChart = (inputOptions, config, title) => {
       chart.yAxis.scale().domain([0, inputOptions.yMax])
     }
 
-    var id = '#' + inputOptions.id
+    const id = `#${inputOptions.id}`
 
-    d3.select(id + ' svg')
+    d3.select(`${id} svg`)
       .datum(inputOptions.data)
       .call(chart)
 
     // Consruct title
-    var titleToUse = config['title']
+    let titleToUse = config.title
 
     if (title) {
       titleToUse = title
     }
 
-    d3.select(id + '-sector').remove()
+    d3.select(`${id}-sector`).remove()
 
-    var titleOffset = document.getElementById(inputOptions.id).offsetWidth / 2
+    const titleOffset = document.getElementById(inputOptions.id).offsetWidth / 2
 
-    d3.select(id + ' svg').select('svg > text').remove()
-    d3.select(id + ' svg')
+    d3.select(`${id} svg`).select('svg > text').remove()
+    d3.select(`${id} svg`)
       .append('text')
       .attr('x', titleOffset)
       .attr('y', 20)
       .attr('text-anchor', 'middle')
-      .attr('id', inputOptions.id + '-sector')
+      .attr('id', `${inputOptions.id}-sector`)
       .text(titleToUse)
 
     nv.utils.windowResize(chart.update)
@@ -82,3 +87,5 @@ export const addBarChart = (inputOptions, config, title) => {
     return chart
   })
 }
+
+export default addBarChart

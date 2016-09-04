@@ -1,7 +1,7 @@
 import Papa from 'papaparse'
 
 const processSectorResults = (result) => {
-  let sectorResults = {}
+  const sectorResults = {}
 
   const sectorVals = Papa.parse(result)
 
@@ -11,8 +11,8 @@ const processSectorResults = (result) => {
   const numCols = cols.length
   const numRows = sectorVals.data.length
 
-  for (var colIdx = 1; colIdx < numCols; colIdx++) {
-    let dataValues = []
+  for (let colIdx = 1; colIdx < numCols; colIdx++) {
+    const dataValues = []
 
     for (let rowIdx = 1; rowIdx < numRows; rowIdx++) {
       if (sectorVals.data[rowIdx][0].trim().length > 0) {
@@ -23,7 +23,7 @@ const processSectorResults = (result) => {
       }
     }
 
-    var index = cols[colIdx].replace(/"/g, '').replace(/ /g, '-')
+    const index = cols[colIdx].replace(/"/g, '').replace(/ /g, '-')
     sectorResults[index] = dataValues
   }
   return sectorResults

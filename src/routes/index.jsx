@@ -8,6 +8,6 @@ import { Route } from 'react-router'
 // your current file is.
 import Dashboard from '../containers/Dashboard'
 
-export default (store) => (
+export default () => (
   <Route path='/' component={Dashboard} />
 )

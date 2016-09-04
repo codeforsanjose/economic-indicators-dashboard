@@ -1,10 +1,14 @@
+/* eslint-disable global-require */
+/* eslint-disable no-underscore-dangle */
+
 import React from 'react'
 import ReactDOM from 'react-dom'
-import createHashHistory from 'history/lib/createHashHistory'
 import { useRouterHistory } from 'react-router'
 import { syncHistoryWithStore } from 'react-router-redux'
-import createStore from './store/createStore'
+
+import createHashHistory from 'history/lib/createHashHistory'
 import AppComponent from './App'
+import initializeStore from './store/initializeStore'
 
 // ========================================================
 // Browser History Setup
@@ -27,7 +31,7 @@ const hashHistory = useRouterHistory(createHashHistory)({
 // so we need to provide a custom `selectLocationState` to inform
 // react-router-redux of its location.
 const initialState = window.___INITIAL_STATE__
-const store = createStore(initialState, hashHistory)
+const store = initializeStore(initialState, hashHistory)
 const history = syncHistoryWithStore(hashHistory, store, {
   selectLocationState: (state) => state.router
 })

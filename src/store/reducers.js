@@ -2,7 +2,7 @@ import { combineReducers } from 'redux'
 import { routerReducer as router } from 'react-router-redux'
 import { generalConfig, charts, indicators } from '../containers/Dashboard'
 
-export const makeRootReducer = (asyncReducers) => {
+const makeRootReducer = (asyncReducers) => {
   return combineReducers({
     // Add sync reducers here
     generalConfig,
@@ -13,9 +13,11 @@ export const makeRootReducer = (asyncReducers) => {
   })
 }
 
+/* eslint-disable no-param-reassign */
 export const injectReducer = (store, { key, reducer }) => {
   store.asyncReducers[key] = reducer
   store.replaceReducer(makeRootReducer(store.asyncReducers))
 }
+/* eslint-enable no-param-reassign */
 
 export default makeRootReducer

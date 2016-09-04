@@ -1,6 +1,6 @@
-/*global $:true*/
+/* global $:true */
 
-import { showChart } from '../../charts/chartUtilities'
+import showChart from '../../charts/chartUtilities'
 import { chartTypes, getChartID } from '../../utilities/chartIDs'
 
 const hideSectorPanels = () => {
@@ -61,7 +61,7 @@ const toggleChartPanel = (show, id) => {
   }
 }
 
-export const detailsEventHandler = (eventID,
+const detailsEventHandler = (eventID,
                                     dataURL,
                                     sectorDataURL,
                                     chartsConfig,
@@ -74,10 +74,11 @@ export const detailsEventHandler = (eventID,
   const sectorTitleID = getChartID(eventID, chartTypes.sectorTitle)
   const sectorPanelID = getChartID(eventID, chartTypes.sectorPanel)
   // handle the selected panel id
-  const id = '#' + panelID
-  const sectorID = '#' + sectorPanelID
-  const $seeMoreIcon = $('#' + eventID).find('.dashboard-box__more-details .glyphicon')
-  const $targetDashboardBox = $('#' + eventID).parent()
+  const id = `#${panelID}`
+  const sectorID = `#${sectorPanelID}`
+  const eventIDTag = `#${eventID}`
+  const $seeMoreIcon = $(eventIDTag).find('.dashboard-box__more-details .glyphicon')
+  const $targetDashboardBox = $(eventIDTag).parent()
   if ($(id).hasClass('chart-hidden')) {
     hideChartPanels()
     hideSectorPanels()
@@ -112,3 +113,6 @@ export const detailsEventHandler = (eventID,
     }
   }
 }
+
+export default detailsEventHandler
+

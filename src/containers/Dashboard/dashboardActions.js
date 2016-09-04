@@ -26,59 +26,6 @@ export const SHOW_SECTOR = 'SHOW_SECTOR'
 export const INVALIDATE_SECTOR_DATA = 'INVALIDATE_SECTOR_DATA'
 
 // =================================
-// General Config
-export const invalidateGeneralConfig = () => {
-  return {
-    type: INVALIDATE_GENERAL_CONFIG
-  }
-}
-
-const fetchGeneralConfig = (url) => {
-  return dispatch => {
-    dispatch({
-      type: REQUEST_GENERAL_CONFIG
-    })
-
-    return fetchJSONData2(url)
-    .then(data => {
-      dispatch({
-        type: RECEIVE_GENERAL_CONFIG,
-        data,
-        receivedAt: Date.now()
-      })
-
-      const latestIndicatorsURL = indicatorURL(data)
-      dispatch(fetchIndicatorsIfNeeded(latestIndicatorsURL))
-
-      const url = chartURL(data)
-      dispatch(fetchChartsConfigIfNeeded(url))
-    })
-    .catch(err => {
-      console.log(err)
-    })
-  }
-}
-
-const shouldFetchGeneralConfig = (state) => {
-  const generalConfig = state.generalConfig
-  if (_.isEmpty(generalConfig.data)) {
-    return true
-  }
-  if (generalConfig.isFetching) {
-    return false
-  }
-  return generalConfig.didInvalidate
-}
-
-export const fetchGeneralConfigIfNeeded = (generalURL) => {
-  return (dispatch, getState) => {
-    if (shouldFetchGeneralConfig(getState(), generalURL)) {
-      return dispatch(fetchGeneralConfig(generalURL))
-    }
-  }
-}
-
-// =================================
 // Charts Config
 export const invalidateChartsConfig = () => {
   return {
@@ -123,6 +70,7 @@ export const fetchChartsConfigIfNeeded = (url) => {
     if (shouldFetchChartsConfig(getState(), url)) {
       return dispatch(fetchChartsConfig(url))
     }
+    return null
   }
 }
 
@@ -174,6 +122,7 @@ export const fetchIndicatorsIfNeeded = (url) => {
     if (shouldFetchIndicators(getState(), url)) {
       return dispatch(fetchIndicators(url))
     }
+    return null
   }
 }
 
@@ -195,7 +144,7 @@ export const showChart = (item, eventId) => {
 }
 
 const fetchChartData = (item, eventId) => {
-  return (dispatch, getState) => {
+  return (dispatch) => {
     dispatch({
       type: REQUEST_CHART_DATA,
       item,
@@ -234,9 +183,8 @@ export const fetchChartDataIfNeeded = (item, eventId) => {
   return (dispatch, getState) => {
     if (shouldFetchChartData(getState(), item.id)) {
       return dispatch(fetchChartData(item, eventId))
-    } else {
-      return dispatch(showChart(item, eventId))
     }
+    return dispatch(showChart(item, eventId))
   }
 }
 
@@ -250,7 +198,7 @@ export const invalidateSectorData = (id) => {
 }
 
 const fetchSectorData = (url, id) => {
-  return (dispatch, getState) => {
+  return (dispatch) => {
     dispatch({
       type: REQUEST_SECTOR_DATA,
       id
@@ -289,5 +237,60 @@ export const fetchSectorDataIfNeeded = (url, id) => {
     if (shouldFetchSectorData(getState(), id)) {
       return dispatch(fetchSectorData(url, id))
     }
+    return null
   }
 }
+// =================================
+// General Config
+export const invalidateGeneralConfig = () => {
+  return {
+    type: INVALIDATE_GENERAL_CONFIG
+  }
+}
+
+const fetchGeneralConfig = (url) => {
+  return dispatch => {
+    dispatch({
+      type: REQUEST_GENERAL_CONFIG
+    })
+
+    return fetchJSONData2(url)
+    .then(data => {
+      dispatch({
+        type: RECEIVE_GENERAL_CONFIG,
+        data,
+        receivedAt: Date.now()
+      })
+
+      const latestIndicatorsURL = indicatorURL(data)
+      dispatch(fetchIndicatorsIfNeeded(latestIndicatorsURL))
+
+      const chartUrlPath = chartURL(data)
+      dispatch(fetchChartsConfigIfNeeded(chartUrlPath))
+    })
+    .catch(err => {
+      console.log(err)
+    })
+  }
+}
+
+const shouldFetchGeneralConfig = (state) => {
+  const generalConfig = state.generalConfig
+  if (_.isEmpty(generalConfig.data)) {
+    return true
+  }
+  if (generalConfig.isFetching) {
+    return false
+  }
+  return generalConfig.didInvalidate
+}
+
+export const fetchGeneralConfigIfNeeded = (generalURL) => {
+  return (dispatch, getState) => {
+    if (shouldFetchGeneralConfig(getState(), generalURL)) {
+      return dispatch(fetchGeneralConfig(generalURL))
+    }
+    return null
+  }
+}
+

@@ -2,14 +2,14 @@ import Papa from 'papaparse'
 import _ from 'lodash'
 
 const processChartResults = (result, chartsConfig) => {
-  var values = Papa.parse(result)
+  const values = Papa.parse(result)
 
-  var dataValues = {}
-  var xTickLabels = []
+  const dataValues = {}
+  const xTickLabels = []
 
-  var header = values.data[0]
+  const header = values.data[0]
 
-  header.map(function (headerItem, idx) {
+  header.map((headerItem, idx) => {
     if (idx > 0) {
       dataValues[headerItem] = {
         values: [],
@@ -19,12 +19,12 @@ const processChartResults = (result, chartsConfig) => {
   })
 
   values.data.shift() // ignore the header
-  var done = false
-  var index = 0
-  var yMax = 0
+  let done = false
+  let index = 0
+  let yMax = 0
 
-  values.data.map(function (item) {
-    var axisLabel = item[0]
+  values.data.map((item) => {
+    let axisLabel = item[0]
     axisLabel = axisLabel.trim().replace(/"/g, '')
 
     if (axisLabel.length === 0) {
@@ -35,19 +35,19 @@ const processChartResults = (result, chartsConfig) => {
       // Get rid of the first element
       item.shift()
 
-      item.map(function (dataPoint, idx) {
-        var value = parseFloat(dataPoint.replace(/,/g, '').replace(/"/g, '').replace(/\$/g, ''))
+      item.map((dataPoint, idx) => {
+        const value = parseFloat(dataPoint.replace(/,/g, '').replace(/"/g, '').replace(/\$/g, ''))
 
-        var labelVal = index
-        if (chartsConfig['detail1'].plotstyle === 'horizontal-bar-chart') {
+        let labelVal = index
+        if (chartsConfig.detail1.plotstyle === 'horizontal-bar-chart') {
           labelVal = axisLabel
         }
 
-        var headerName = header[idx + 1]
+        const headerName = header[idx + 1]
 
         dataValues[headerName].values.push({
           label: labelVal,
-          value: value
+          value
         })
 
         // Track the maximum y value
@@ -60,9 +60,9 @@ const processChartResults = (result, chartsConfig) => {
     }
   })
 
-  var chartData = []
+  const chartData = []
 
-  _.forIn(dataValues, function (dataSet, dataKey) {
+  _.forIn(dataValues, (dataSet) => {
     chartData.push({
       key: dataSet.key,
       values: dataSet.values

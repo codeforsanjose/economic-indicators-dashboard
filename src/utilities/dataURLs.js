@@ -1,4 +1,4 @@
-/*eslint max-len: [2, 200, 4]*/ // extend the maximum allowed characters
+/* eslint max-len: [2, 200, 4] */
 
 const constructOpenDataURL = (rootURL, guid, apiKey) => {
   const url = `${rootURL}/${guid}/data.csv/?auth_key=${apiKey}`

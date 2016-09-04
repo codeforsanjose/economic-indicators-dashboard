@@ -1,6 +1,6 @@
 import _ from 'lodash'
 
-import { processIndicators } from '../../utilities/processIndicators'
+import processIndicators from '../../utilities/processIndicators'
 import processChartResults from '../../utilities/processChartResults'
 import processSectorResults from '../../utilities/processSectorResults'
 
@@ -26,7 +26,7 @@ import {
 const calculateMaxBoxes = (data) => {
   let numBoxes = 0
 
-  _.forIn(data, (item, index) => {
+  _.forIn(data, (item) => {
     if (numBoxes < item.length) {
       numBoxes = item.length
     }
@@ -53,17 +53,18 @@ export const indicators = (state = {
         isFetching: true,
         didInvalidate: false
       })
-    case RECEIVE_INDICATORS:
-      const indicators = processIndicators(action.generalConfig, action.data)
-      const maxBoxes = calculateMaxBoxes(indicators)
+    case RECEIVE_INDICATORS: {
+      const generalIndicators = processIndicators(action.generalConfig, action.data)
+      const maxBoxes = calculateMaxBoxes(generalIndicators)
       return Object.assign({}, state, {
         ...state,
         isFetching: false,
         didInvalidate: false,
-        data: indicators,
+        data: generalIndicators,
         maxBoxes,
         lastUpdated: action.receivedAt
       })
+    }
     default:
       return state
   }
@@ -158,7 +159,7 @@ export const charts = (state = {
           }
         }
       })
-    case RECEIVE_CHART_DATA:
+    case RECEIVE_CHART_DATA: {
       let chartConfig = {}
       const category = state.config.selectedItem.category
       const name = state.config.selectedItem.name
@@ -191,7 +192,8 @@ export const charts = (state = {
           }
         }
       })
-    case SHOW_CHART:
+    }
+    case SHOW_CHART: {
       let showChartFlag = true
       if (!_.isNil(state.sectorData[action.id]) &&
         state.sectorData[action.id].isFetching) {
@@ -205,6 +207,7 @@ export const charts = (state = {
           selectedEventId: action.eventId
         }
       })
+    }
     case INVALIDATE_SECTOR_DATA:
       return Object.assign({}, state, {
         sectorData: {
@@ -224,7 +227,7 @@ export const charts = (state = {
           }
         }
       })
-    case RECEIVE_SECTOR_DATA:
+    case RECEIVE_SECTOR_DATA: {
       const newSectorData = processSectorResults(action.data)
       return Object.assign({}, state, {
         config: {
@@ -241,6 +244,7 @@ export const charts = (state = {
           }
         }
       })
+    }
     default:
       return state
   }

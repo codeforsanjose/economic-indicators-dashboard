@@ -3,26 +3,28 @@ import d3 from 'd3'
 import _ from 'lodash'
 import numeral from 'numeral'
 
-export const addLineChart = (inputOptions, config) => {
-  nv.addGraph(function () {
-    var chart = nv.models.lineChart()
-      .x(function (d) {
+const addLineChart = (inputOptions, config) => {
+  nv.addGraph(() => {
+    const chart = nv.models.lineChart()
+      .x((d) => {
         if (d) {
           return d.label
         }
+        return ''
       })
-      .y(function (d) {
+      .y((d) => {
         if (d) {
           return d.value
         }
+        return 0
       })
-      .margin({top: 30, right: 10, bottom: 60, left: 100})
+      .margin({ top: 30, right: 10, bottom: 60, left: 100 })
       .useInteractiveGuideline(true)
       .showYAxis(true)
       .showXAxis(true)
       .showLegend(inputOptions.showLegend)
 
-    chart.legend.margin({top: 20, right: 0, bottom: 15, left: 0})
+    chart.legend.margin({ top: 20, right: 0, bottom: 15, left: 0 })
 
     chart.xAxis
       .axisLabel(inputOptions.xAxisLabel)
@@ -44,20 +46,23 @@ export const addLineChart = (inputOptions, config) => {
       const tickInterval = config['x-tick-interval']
       let tickValues = []
       switch (tickInterval) {
-        case 'months':
-          const numYears = Math.ceil(numValues / 12)
-
-          tickValues = _.times(numYears, (index) => {
-            return index * 12
-          })
-          break
-        case 'quarters':
+        case 'quarters': {
           const intervalCount = Math.ceil(numValues / 4)
 
           tickValues = _.times(intervalCount, (index) => {
             return index * 4
           })
           break
+        }
+        case 'months':
+        default: {
+          const numYears = Math.ceil(numValues / 12)
+
+          tickValues = _.times(numYears, (index) => {
+            return index * 12
+          })
+          break
+        }
       }
       chart.xAxis.tickValues(tickValues)
     }
@@ -67,8 +72,8 @@ export const addLineChart = (inputOptions, config) => {
         .axisLabelDistance(config['x-title-offset'])
         .showMaxMin(false)
 
-    var yMin = 0
-    var yMax = 100000
+    let yMin = 0
+    let yMax = 100000
 
     if (config.hasOwnProperty(['y-min'])) {
       yMin = config['y-min']
@@ -84,17 +89,20 @@ export const addLineChart = (inputOptions, config) => {
       const yAxisTickFormat = config['y-axis-tick-format']
       switch (yAxisTickFormat) {
         case 'currency':
-          chart.yAxis.tickFormat(function (d, index) {
+          chart.yAxis.tickFormat((d) => {
             if (d) {
               return numeral(d).format('$0,0')
             }
+            return '$0'
           })
           break
         case 'percent':
-          chart.yAxis.tickFormat(function (d, index) {
+        default:
+          chart.yAxis.tickFormat((d) => {
             if (d) {
-              return d + '%'
+              return `${d}%`
             }
+            return '%'
           })
           break
       }
@@ -103,50 +111,54 @@ export const addLineChart = (inputOptions, config) => {
     chart.forceY([yMin, yMax])
     chart.yAxis.scale().domain([yMin, yMax])
 
-    chart.xAxis.tickFormat(function (d, index) {
+    chart.xAxis.tickFormat((d) => {
       if (d) {
         return inputOptions.xTickLabels[d]
       }
+      return ''
     })
 
     chart.xAxis.rotateLabels(-45)
 
-    chart.lines.dispatch.on('elementClick', function (e) {
+    chart.lines.dispatch.on('elementClick', (e) => {
       inputOptions.chartEvents(inputOptions.xTickLabels[e[0].point.label], e[0].point.value)
       chart.lines.clearHighlights()
       chart.lines.highlightPoint(inputOptions.xTickLabels[e[0].point.label], e[0].point.value, true)
     })
 
-    chart.interactiveLayer.dispatch.on('elementMousemove', function (e) {
+    chart.interactiveLayer.dispatch.on('elementMousemove', (e) => {
       inputOptions.chartEvents(inputOptions.xTickLabels[e[0].point.label], e[0].point.value)
       chart.lines.clearHighlights()
       chart.lines.highlightPoint(inputOptions.xTickLabels[e[0].point.label], e[0].point.value, true)
     })
 
-    chart.interactiveLayer.dispatch.on('elementMouseout', function (e) {
+    chart.interactiveLayer.dispatch.on('elementMouseout', () => {
       chart.lines.clearHighlights()
     })
 
-    var id = '#' + inputOptions.id
+    const id = `#${inputOptions.id}`
+    const svgTag = `${id} svg`
 
-    d3.select(id + ' svg')
+    d3.select(svgTag)
       .datum(inputOptions.data)
       .call(chart)
 
-    var titleOffset = document.getElementById(inputOptions.id).offsetWidth / 2
+    const titleOffset = document.getElementById(inputOptions.id).offsetWidth / 2
 
     d3.selectAll('.nv-axisMax-y').remove()
 
-    d3.select(id + ' svg').select('svg > text').remove()
-    d3.select(id + ' svg')
+    d3.select(svgTag).select('svg > text').remove()
+    d3.select(svgTag)
       .append('text')
       .attr('x', titleOffset)
       .attr('y', 20)
       .attr('text-anchor', 'middle')
-      .text(config['title'])
+      .text(config.title)
 
     nv.utils.windowResize(chart.update)
 
     return chart
   })
 }
+
+export default addLineChart

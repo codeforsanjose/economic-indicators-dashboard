@@ -1,6 +1,6 @@
-import {addLineChart} from './lineChart'
-import {addBarChart} from './barChart'
 import _ from 'lodash'
+import addLineChart from './lineChart'
+import addBarChart from './barChart'
 // import {addScatterChart} from './scatterChart'
 
 const displaySectorResults = (label,
@@ -11,25 +11,25 @@ const displaySectorResults = (label,
   if (_.isNil(sectorData)) {
     return
   }
-  let sectorChartData = []
+  const sectorChartData = []
 
   sectorChartData.push({
     key: label,
     values: sectorData[key]
   })
 
-  let inputParams = {
+  const inputParams = {
     data: sectorChartData,
     id: sectorID,
     title: label
   }
 
-  let newTitle = `${configData.title} - ${label}`
+  const newTitle = `${configData.title} - ${label}`
 
   addBarChart(inputParams, configData, newTitle)
 }
 
-export const showChart = (chartID,
+const showChart = (chartID,
                   dataURL,
                   sectorID,
                   sectorURL,
@@ -40,49 +40,53 @@ export const showChart = (chartID,
   const chartData = chartDataParam.chartData
   const xTickLabels = chartDataParam.xTickLabels
   const yMax = chartDataParam.yMax
-  var inputParams = []
+  let inputParams = []
 
-  const chartEventHandler = (label, value) => {
+  const chartEventHandler = (label) => {
     const key = label.replace(/ /g, '-')
     displaySectorResults(label,
       sectorID,
-      chartsConfig['detail2'],
+      chartsConfig.detail2,
       sectorData.data,
       key)
   }
 
-  switch (chartsConfig['detail1'].plotstyle) {
-    case 'line':
-      var showLegend = (chartData.length > 1)
+  switch (chartsConfig.detail1.plotstyle) {
+    case 'line': {
+      const showLegend = (chartData.length > 1)
       inputParams = {
         data: chartData,
         id: chartID,
-        xTickLabels: xTickLabels,
+        xTickLabels,
         chartEvents: chartEventHandler,
-        yMax: yMax,
-        showLegend: showLegend
+        yMax,
+        showLegend
       }
-      addLineChart(inputParams, chartsConfig['detail1'])
+      addLineChart(inputParams, chartsConfig.detail1)
       if (!_.isNil(sectorURL)) {
         const label = xTickLabels[xTickLabels.length - 1]
         const key = label.replace(/ /g, '-')
 
         displaySectorResults(label,
           sectorID,
-          chartsConfig['detail2'],
+          chartsConfig.detail2,
           sectorData.data,
           key)
       }
       break
+    }
     case 'horizontal-bar-chart':
       inputParams = {
         data: chartData,
         id: chartID
       }
-      addBarChart(inputParams, chartsConfig['detail1'])
+      addBarChart(inputParams, chartsConfig.detail1)
       break
     case 'doughnut':
+    default:
       // TBD
       break
   }
 }
+
+export default showChart

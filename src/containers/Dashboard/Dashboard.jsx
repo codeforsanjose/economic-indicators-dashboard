@@ -18,7 +18,7 @@ import { renderIntroText } from '../../utilities/generalConfig'
 import { fetchGeneralConfigIfNeeded,
          fetchChartDataIfNeeded,
          fetchSectorDataIfNeeded } from './dashboardActions'
-import { detailsEventHandler } from './detailsEventHandler'
+import detailsEventHandler from './detailsEventHandler'
 
 import '../../styles/core.scss'
 

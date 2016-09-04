@@ -1,6 +1,7 @@
-blueprints/**/files/**
 coverage/**
 node_modules/**
 dist/**
-src/index.html
-src/about.html
+src/*.html
+server/**
+build/**
+bin/**

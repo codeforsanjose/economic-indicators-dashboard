@@ -1,14 +1,14 @@
-/*eslint max-len: [2, 200, 4]*/ // extend the maximum allowed characters
+/* eslint max-len: [2, 200, 4] */
 
 import Papa from 'papaparse'
 import _ from 'lodash'
 
-import { dataTags } from './constants'
+import dataTags from './constants'
 import { constructDataURL } from './dataURLs'
 
 const convertRow = (row, heading) => {
-  let result = {}
-  let data = {}
+  const result = {}
+  const data = {}
 
   heading.map((item, index) => {
     if (row[index] !== 'TBD' && row[index] !== undefined) {
@@ -37,25 +37,25 @@ const convertRow = (row, heading) => {
 const convertIndicatorsToJSON = (csvData) => {
   const indicators = Papa.parse(csvData)
 
-  let indicatorsJSON = {}
+  const indicatorsJSON = {}
   let orderID = -1
 
   indicators.data.map((row, index, indicatorSet) => {
     // Don't do anything if it is the first row
     if (index === 0) return
 
-    var indicatorItem = convertRow(row, indicatorSet[0])
+    const indicatorItem = convertRow(row, indicatorSet[0])
 
-    if (indicatorItem.data['name'] !== undefined) {
-      indicatorItem.data['id'] = indicatorItem.data['name'].toLowerCase().replace(/[`~!@#$%^&*()_|+\-=?;:'",.<>\{\}\[\]\\\/ ]/gi, '-')
+    if (indicatorItem.data.name !== undefined) {
+      indicatorItem.data.id = indicatorItem.data.name.toLowerCase().replace(/[`~!@#$%^&*()_|+\-=?;:'",.<>\{\}\[\]\\\/ ]/gi, '-')
     }
 
     if (indicatorsJSON.hasOwnProperty(indicatorItem.key)) {
       (indicatorsJSON[indicatorItem.key]).push(indicatorItem.data)
     } else {
-      var indicatorArray = []
+      const indicatorArray = []
       orderID += 1
-      indicatorItem['order'] = orderID
+      indicatorItem.order = orderID
       indicatorArray.push(indicatorItem.data)
       indicatorsJSON[indicatorItem.key] = indicatorArray
     }
@@ -65,19 +65,21 @@ const convertIndicatorsToJSON = (csvData) => {
 }
 
 // ToDo convert to use map
-export const processIndicators = (generalConfig, csvdata) => {
-  let indicators = convertIndicatorsToJSON(csvdata)
+const processIndicators = (generalConfig, csvdata) => {
+  const indicators = convertIndicatorsToJSON(csvdata)
   _.forIn(indicators, (set) => {
     _.forIn(set, (item) => {
       if (item.detail1) {
-        let newDetail1 = constructDataURL(generalConfig.data, item.detail1)
+        const newDetail1 = constructDataURL(generalConfig.data, item.detail1)
         item.dataURL = newDetail1
       }
       if (item.detail2) {
-        let newDetail2 = constructDataURL(generalConfig.data, item.detail2)
+        const newDetail2 = constructDataURL(generalConfig.data, item.detail2)
         item.sectorDataURL = newDetail2
       }
     })
   })
   return indicators
 }
+
+export default processIndicators

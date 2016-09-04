@@ -4,8 +4,8 @@ import { expect } from 'chai'
 
 import RowLabel from '../../src/components/RowLabel'
 
-describe('<RowLabel/>', function () {
-  it('should have an h4 tag', function () {
+describe('<RowLabel/>', () => {
+  it('should have an h4 tag', () => {
     const wrapper = shallow(
       <RowLabel
         labelClass={'labelClass'}
@@ -15,7 +15,7 @@ describe('<RowLabel/>', function () {
     expect(wrapper.find('h4')).to.have.length(1)
   })
 
-  it('should have props for labelClass and labelTitle', function () {
+  it('should have props for labelClass and labelTitle', () => {
     const wrapper = shallow(
       <RowLabel
         labelClass={'labelClass'}

@@ -1,8 +1,7 @@
 {
   "parser"  : "babel-eslint",
   "extends" : [
-    "standard",
-    "standard-react"
+    "airbnb"
   ],
   "plugins": [
     "babel"
@@ -21,6 +20,12 @@
     "semi" : [2, "never"],
     "max-len": [2, 120, 2],
     "generator-star-spacing": 0,
-    "babel/generator-star-spacing": 1
+    "babel/generator-star-spacing": 1,
+    "comma-dangle": [2, "never"],
+    "arrow-body-style": "off",
+    "jsx-quotes": ["error", "prefer-single"],
+    "no-prototype-builtins": "off",
+    "react/jsx-filename-extension" : "off",
+    "no-console": "off",
   }
 }

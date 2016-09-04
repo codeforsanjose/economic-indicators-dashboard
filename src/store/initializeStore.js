@@ -3,7 +3,7 @@ import { routerMiddleware } from 'react-router-redux'
 import thunk from 'redux-thunk'
 import makeRootReducer from './reducers'
 
-export default (initialState = {}, history) => {
+const initializeStore = (initialState = {}, history) => {
   // ======================================================
   // Middleware Configuration
   // ======================================================
@@ -35,10 +35,16 @@ export default (initialState = {}, history) => {
 
   if (module.hot) {
     module.hot.accept('./reducers', () => {
+      /* eslint-disable global-require */
       const reducers = require('./reducers').default
+      /* eslint-enable global-require */
+
       store.replaceReducer(reducers)
     })
   }
 
   return store
 }
+
+export default initializeStore
+

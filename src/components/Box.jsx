@@ -1,10 +1,10 @@
 
-/*eslint no-unused-vars: [2, { "varsIgnorePattern": "Props" }]*/
-/*eslint max-len: [2, 250, 4]*/ // extend the maximum allowed characters
+/* eslint no-unused-vars: [2, { "varsIgnorePattern": "Props" }] */
+/* eslint max-len: [2, 250, 4] */
 
 import React, { PropTypes } from 'react'
 
-import { dataTags } from '../utilities/constants'
+import dataTags from '../utilities/constants'
 import InfoButton from './InfoButton'
 import DetailsButton from './DetailsButton'
 import BoxIndicator from './BoxIndicator'
@@ -28,17 +28,17 @@ class Box extends React.Component {
   clickHandler = (e) => {
     this.props.clickHandler(e, this.props.item)
   }
-  render () {
-    var boxType = this.props.boxType
-    var headline = this.props.item.name
-    var content = this.props.item.value
-    var footer = this.props.item[dataTags.changeFromPrevYear]
-    var trend = this.props.item.trend
-    var idName = this.props.item.id
-    var date = this.props.item.date
-    var source = this.props.item.source
-    var details = this.props.item.detail1
-    var maxBoxes = this.props.maxBoxes
+  render() {
+    const boxType = this.props.boxType
+    const headline = this.props.item.name
+    const content = this.props.item.value
+    const footer = this.props.item[dataTags.changeFromPrevYear]
+    const trend = this.props.item.trend
+    const idName = this.props.item.id
+    const date = this.props.item.date
+    const source = this.props.item.source
+    const details = this.props.item.detail1
+    const maxBoxes = this.props.maxBoxes
 
     const boxClassNames = getBoxClassNames(maxBoxes)
 
