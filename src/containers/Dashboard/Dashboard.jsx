@@ -6,15 +6,15 @@ import { connect } from 'react-redux'
 
 require('es6-promise').polyfill()
 
-import { BoxGroup } from '../../components/BoxGroup'
-import { ChartPanel } from '../../components/ChartPanel'
+import BoxGroup from '../../components/BoxGroup'
+import ChartPanel from '../../components/ChartPanel'
+import Header from '../../components/Header'
+import Footer from '../../components/Footer'
 
 import { chartTypes, getChartID } from '../../utilities/chartIDs'
 
 import { getInitialDataURL } from '../../utilities/dataURLs'
-import { renderIntroText,
-         renderTitleRight,
-         renderFooterRight } from '../../utilities/generalConfig'
+import { renderIntroText } from '../../utilities/generalConfig'
 import { fetchGeneralConfigIfNeeded,
          fetchChartDataIfNeeded,
          fetchSectorDataIfNeeded } from './dashboardActions'
@@ -196,28 +196,12 @@ class DashboardComponent extends React.Component {
 
     return (
       <div>
-        <div key='header'>
-          <nav className='navbar econ-header'>
-            <div className='container-fluid'>
-              <span className='head-title'><span className='sjeconomy'>SJECONOMY</span> INDICATORS</span>
-              <span className='nav navbar-nav navbar-right head-title-right'>
-                <span id='header-title-right-content'>{renderTitleRight(generalConfig)}</span>
-              </span>
-            </div>
-          </nav>
-        </div>
+        <Header generalConfig={generalConfig} />
         <div className='container-fluid' key='dashboard-content'>
           <div className='intro-text-container' dangerouslySetInnerHTML={renderIntroText(generalConfig)} />
             {boxGroups}
-
         </div>
-        <div key='footer'>
-          <footer className='econ-footer'>
-            <div className='container'>
-              <span className='footer-subtext' id='footer-right-content'>{renderFooterRight(generalConfig)}</span>
-            </div>
-          </footer>
-        </div>
+        <Footer generalConfig={generalConfig} />
       </div>
     )
   }

@@ -2,7 +2,7 @@ import React from 'react'
 import { shallow } from 'enzyme'
 import { expect } from 'chai'
 
-import { RowLabel } from '../../src/components/RowLabel'
+import RowLabel from '../../src/components/RowLabel'
 
 describe('<RowLabel/>', function () {
   it('should have an h4 tag', function () {
@@ -15,7 +15,7 @@ describe('<RowLabel/>', function () {
     expect(wrapper.find('h4')).to.have.length(1)
   })
 
-  it('should have props for indicators and chartsConfig', function () {
+  it('should have props for labelClass and labelTitle', function () {
     const wrapper = shallow(
       <RowLabel
         labelClass={'labelClass'}

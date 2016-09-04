@@ -3,8 +3,8 @@
 
 import React, { PropTypes } from 'react'
 
-import { Box } from './Box'
-import { RowLabel } from './RowLabel'
+import Box from './Box'
+import RowLabel from './RowLabel'
 
 class BoxGroup extends React.Component {
   render () {
@@ -47,4 +47,4 @@ BoxGroup.propTypes = {
   detailsEventHandler: PropTypes.func
 }
 
-export { BoxGroup }
+export default BoxGroup

@@ -28,4 +28,4 @@ RowLabel.propTypes = {
   labelTitle: PropTypes.string.isRequired
 }
 
-export { RowLabel }
+export default RowLabel

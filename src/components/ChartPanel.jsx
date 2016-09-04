@@ -70,4 +70,4 @@ ChartPanel.propTypes = {
   sectorDataURL: PropTypes.string
 }
 
-export { ChartPanel }
+export default ChartPanel
