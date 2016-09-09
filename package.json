@@ -2,7 +2,7 @@
   "name": "economic-indicators-dashboard",
   "version": "0.0.1",
   "description": "Economic Indicators Dashboard by Code for San Jose",
-  "main": "index.js",
+  "main": "./src/main.js",
   "engines": {
     "node": ">=6.2.0",
     "npm": "^3.9.0"
@@ -110,6 +110,7 @@
     "koa-convert": "^1.2.0",
     "koa-proxy": "^0.6.0",
     "koa-static": "^3.0.0",
+    "lodash": "4.15.0",
     "node-sass": "^3.7.0",
     "normalize.css": "^4.1.1",
     "numeral": "1.5.3",
