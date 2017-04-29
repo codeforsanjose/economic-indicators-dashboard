@@ -39,7 +39,7 @@
 		},
 		"Labor Force": {
 			"detail1": {
-				"title": "Age Distribution of San Jose Labor Force (2014)",
+				"title": "Age Distribution of San Jose Labor Force",
 				"title-offset": 200,
 				"plotstyle": "horizontal-bar-chart",
 				"x-title": "number in labor force",
@@ -64,7 +64,7 @@
 		},
 		"Foreign Born Population": {
 			"detail1": {
-				"title": "Place of Birth of San Jose's Foreign Born Residents (2014)",
+				"title": "Place of Birth of San Jose's Foreign Born Residents",
 				"title-offset": 200,
 				"plotstyle": "horizontal-bar-chart",
 				"x-title": "number of residents",
