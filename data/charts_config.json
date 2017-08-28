@@ -12,15 +12,6 @@
 				"y-title": "jobs",
 				"y-title-offset": 30,
 				"legend": "no"
-			},
-			"detail2": {
-				"plotstyle": "horizontal-bar-chart",
-				"title": "San Jose Jobs by Sector",
-				"title-offset": 200,
-				"x-max": 85000,
-				"x-precision": 0,
-				"x-title": "jobs",
-				"x-title-offset": 10
 			}
 		},
 		"Unemployment Rate": {
