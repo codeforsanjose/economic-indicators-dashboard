@@ -94,7 +94,7 @@
     "cssnano": "^3.3.2",
     "d3": "3.5.17",
     "debug": "^2.2.0",
-    "dompurify": "0.8.2",
+    "dompurify": "2.0.15",
     "es6-promise": "3.2.1",
     "extract-text-webpack-plugin": "^1.0.0",
     "file-loader": "^0.8.4",
